@@ -11,6 +11,7 @@ Além da análise descritiva, o sistema conta com funcionalidades, como previsõ
 * Beatriz Azevedo dos Santos
 * Mariana Andrade
 * Sarah Mariana Guedes de Almeida
+* Renata Sampaio Queiroz
   
 
 ## Professor
