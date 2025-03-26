@@ -6,17 +6,16 @@ Além da análise descritiva, o sistema conta com funcionalidades, como previsõ
 
 ## Integrantes
 
-* Alváro Felix da Silva
-* Ana Cecília Souza Lorens
-* Beatriz Azevedo dos Santos
-* Mariana Andrade
-* Sarah Mariana Guedes de Almeida
-* Renata Sampaio Queiroz
+* Alváro Felix da Silva.
+* Ana Cecília Souza Lorens.
+* Beatriz Azevedo dos Santos.
+* Mariana Andrade.
+* Sarah Mariana Guedes de Almeida.
   
-
 ## Professor
 
-* Hugo Bastos de Paula
+* Hugo Bastos de Paula.
+* Hayala Nepomuceno Curto.
 
 ## Instruções de utilização
 
