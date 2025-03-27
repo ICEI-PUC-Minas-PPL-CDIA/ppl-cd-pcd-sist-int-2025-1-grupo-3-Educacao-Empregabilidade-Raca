@@ -43,9 +43,12 @@ O estudo é importante para compreender padrões de contratação dentro do merc
 
 O setor de tecnologia no Brasil, em constante expansão, representa um fator crucial para o desenvolvimento econômico e social do país. No entanto, esse crescimento não se traduz em oportunidades equitativas para todos. As desigualdades raciais, profundamente enraizadas na história brasileira, persistem e se manifestam de forma alarmante nessa área.
 
-Essa disparidade começa com as dificuldades de acesso à educação superior de qualidade. Apesar da crescente demanda por profissionais qualificados, a baixa representação de pessoas pretas, pardas, amarelas e indígenas em cargos de liderança e em áreas de alta remuneração é evidente. Tal desigualdade não apenas limita o potencial individual, mas também restringe a capacidade de inovação e a diversidade de perspectivas no setor em questão.
+Uma das principais barreiras enfrentadas está no acesso à educação superior de qualidade. Apesar da crescente demanda por profissionais qualificados, a baixa representação de pessoas pretas, pardas, amarelas e indígenas em cargos de liderança e em áreas de alta remuneração é evidente. Tal desigualdade não apenas limita o potencial individual, mas também restringe a capacidade de inovação e a diversidade de perspectivas no setor tecnológico.
+
+Para compreender essa disparidade, este projeto utilizará bases de dados secundárias, como o CAGED, administrado pelo Ministério do Trabalho e Emprego. Diferente de bancos de dados baseados em respostas voluntárias, como os do Kaggle, o CAGED fornece informações oficiais e sistematicamente coletadas sobre contratações e demissões formais em todo o país. Sua abrangência nacional e atualização mensal permitem acompanhar as tendências do mercado de trabalho com maior precisão. Além disso, a base contém informações detalhadas sobre vínculos empregatícios, incluindo salário individual, setor de atuação (CNAE), cargo e ocupação (CBO), jornada de trabalho e tipo de admissão ou desligamento, o que possibilita análises mais granulares sobre desigualdade racial e remuneração.
 
 Nesse contexto, este projeto se insere na interseção entre educação, raça e empregabilidade. Para isso, serão utilizadas bases de dados como as do CAGED e do State of Data 2023, que fornecem informações sobre a trajetória educacional e profissional de indivíduos no Brasil. A análise desses dados permitirá identificar padrões, contribuindo para a formulação de políticas e práticas que promovam a equidade racial no mercado de trabalho tecnológico.
+
 
 ###    Problema
 
