@@ -16,6 +16,7 @@
 Professores:
 
 **Prof. Hugo Bastos de Paula**
+**Prof. Hayala Nepomuceno Curto.**
 
 ---
 
@@ -86,16 +87,6 @@ O projeto fornece um panorama quantitativo e qualitativo sobre as disparidades r
 
 ###    Dicionário de dados
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
-
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
-
-
-###    Descrição de dados
-
 `Base de dados principal Kaggle-2023`
 
 | Atribuição          | Tipo de Dado       | Descrição                                                                 |
@@ -113,7 +104,48 @@ uma fonte para enriquecimentos dos dados principais.
 | P2_h                | Numérico (contínuo) | Faixa salarial anual ou mensal da pessoa (ex: R$ 3.000, R$ 5.000, etc.).   |
 | P2_i                | Numérico (contínuo) | Tempo de experiência na área de dados, em anos (ex: 2 anos, 5 anos, etc.). |
 | P2_j                | Numérico (contínuo) | Tempo de experiência na área de TI/engenharia de software antes de trabalhar na área de dados (ex: 3 anos, 6 anos, etc.). |
+A tabela da base principal apresenta atributos relacionados ao perfil sociodemográfico e profissional de indivíduos, incluindo gênero, cor/raça, nível de ensino e área de formação. Além disso, investiga a percepção de impacto da identidade na experiência profissional e traz informações sobre situação de trabalho, setor de atuação, senioridade, faixa salarial e tempo de experiência na área de dados e TI. Esses dados permitem uma análise sobre diversidade e desigualdade no mercado de trabalho.
 
+`Base de dados segundária CAGED-2023`
+
+| Atribuição | Tipo de Dado | Descrição                                                                 |
+|------------|-------------|---------------------------------------------------------------------------|
+| A1         | Categórico  | Região geográfica onde a pessoa reside ou trabalha.                     |
+| B1         | Categórico  | Sessão ou departamento vinculado ao indivíduo.                          |
+| C1         | Categórico  | Subclasse específica dentro de uma categoria maior.                     |
+| D1         | Categórico  | Categoria profissional ou ocupacional do indivíduo.                     |
+| E1         | Categórico  | Nível de escolaridade atingido pelo indivíduo.                          |
+| F1         | Numérico    | Idade da pessoa, expressa em anos.                                       |
+| G1         | Numérico    | Quantidade de horas contratuais de trabalho por semana.                 |
+| H1         | Categórico  | Identificação de raça/cor com base em categorias pré-definidas.         |
+| I1         | Categórico  | Sexo do indivíduo (exemplo: Masculino, Feminino, Outro).                |
+| J1         | Numérico    | Valor do salário recebido pelo indivíduo.                               |
+| K1         | Categórico  | Código que representa a unidade do salário (exemplo: mensal, anual).    |
+| L1         | Numérico    | Valor fixo do salário, sem incluir adicionais ou variáveis.             |
+
+A tabela apresenta atributos relacionados ao perfil profissional e trabalhista de indivíduos, incluindo região, categoria profissional, grau de instrução e idade. Além disso, traz informações sobre carga horária contratual, raça/cor, sexo e salário, incluindo a unidade de pagamento e o valor fixo recebido. Esses dados permitem análises sobre padrões salariais, diversidade e condições de trabalho em diferentes setores. 
+
+
+###    Descrição de dados
+
+A integração das bases **Kaggle 2023** e **CAGED 2023**:  
+
+### **Análise de Dados Numéricos**  
+Os atributos numéricos do **CAGED 2023**, como **idade, salário, horas contratuais e tempo de experiência**, podem ser analisados através de:  
+- **Média**: representa o valor médio de cada variável, fornecendo um panorama geral da distribuição.  
+- **Desvio Padrão**: indica a dispersão dos dados em relação à média. Um alto desvio sugere grande variação salarial, por exemplo.  
+- **Mínimo e Máximo**: estabelecem os limites dos valores observados, mostrando a amplitude dos salários e idades, por exemplo.  
+- **Quartis**: dividem os dados em percentis, permitindo identificar a mediana e possíveis assimetrias na distribuição.  
+- **Histogramas**: auxiliam na visualização da distribuição das variáveis, revelando padrões e tendências.  
+
+### **Análise de Dados Categóricos**  
+As variáveis categóricas do **Kaggle**, como **gênero, cor/raça, setor de atuação e nível do cargo**, podem ser exploradas por meio de:  
+- **Moda**: identifica a categoria mais frequente (exemplo: setor mais comum no mercado de trabalho).  
+- **Quantidade de categorias distintas**: informa a diversidade dentro de um atributo, como a variedade de áreas de formação.  
+- **Distribuição das categorias**: pode ser representada por tabelas de frequência ou gráficos de barras, permitindo visualizar a predominância de diferentes grupos.  
+
+### **Conclusão**  
+A fusão das bases permite uma análise mais profunda sobre padrões salariais, desigualdades no mercado de trabalho e mobilidade profissional, utilizando estatísticas descritivas para quantificar e visualizar tendências.A base principal do **Kaggle 2023** contém informações detalhadas sobre o perfil sociodemográfico e profissional dos indivíduos, incluindo percepção de discriminação, setor de atuação e experiência no mercado de trabalho. O **CAGED 2023** enriquece essa base ao fornecer dados formais sobre vínculos empregatícios, como salários, carga horária, categoria profissional e localização. A integração dessas bases permite uma análise mais robusta, combinando percepções individuais com registros oficiais, o que possibilita estudos mais aprofundados sobre desigualdade, mobilidade profissional e tendências do mercado de trabalho.
 
 ## Preparação dos dados
 
