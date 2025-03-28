@@ -89,21 +89,22 @@ O projeto fornece um panorama quantitativo e qualitativo sobre as disparidades r
 
 `Base de dados principal Kaggle-2023`
 
-| Atribuição          | Tipo de Dado       | Descrição                                                                 |
-|---------------------|--------------------|---------------------------------------------------------------------------|
-| P1_b                | Categórico         | Gênero da pessoa (ex: masculino, feminino, não binário, etc.).             |
-| P1_c                | Categórico         | Cor/raça/etnia da pessoa (ex: branca, negra, parda, indígena, asiática, etc.). |
-| P1_e                | Booleano           | Indica se o entrevistado acredita que sua experiência profissional foi prejudicada (sim ou não). |
-| P1_e_2              | Booleano           | Indica se a experiência foi prejudicada devido à cor/raça/etnia (sim ou não). |
-| P1_f                | Categórico         | Aspectos prejudicados na experiência profissional (ex: oportunidades de promoção, networking, etc.). |
-| P1_l                | Ordinal            | Nível de ensino da pessoa (ex: Ensino Médio, Superior, Pós-graduação, etc.). |
-| P1_m                | Categórico         | Área de formação da pessoa (ex: Ciências da Computação, Engenharia, Administração, etc.). |
-| P2_a                | Categórico         | Situação atual de trabalho da pessoa (ex: empregado, desempregado, estagiário, etc.). |
-| P2_b                | Categórico         | Setor da empresa ou área de atuação da pessoa (ex: Tecnologia, Saúde, Educação, etc.). |
-| P2_g                | Ordinal            | Nível do cargo atual (ex: Pleno, Júnior, Sênior, etc.).                   |
-| P2_h                | Numérico (contínuo) | Faixa salarial anual ou mensal da pessoa (ex: R$ 3.000, R$ 5.000, etc.).   |
-| P2_i                | Numérico (contínuo) | Tempo de experiência na área de dados, em anos (ex: 2 anos, 5 anos, etc.). |
-| P2_j                | Numérico (contínuo) | Tempo de experiência na área de TI/engenharia de software antes de trabalhar na área de dados (ex: 3 anos, 6 anos, etc.). |
+| Atribuição | Tipo de Dado         | Descrição                                                                 |
+|------------|----------------------|---------------------------------------------------------------------------|
+| P1_b       | Categórico           | Gênero da pessoa (masculino, feminino, não binário, etc.).               |
+| P1_c       | Categórico           | Cor/raça/etnia da pessoa (branca, negra, parda, indígena, asiática, etc.).|
+| P1_e       | Booleano             | Indica se a experiência profissional foi prejudicada (sim ou não).       |
+| P1_e_2     | Booleano             | Indica se a experiência foi prejudicada devido à cor/raça/etnia (sim ou não). |
+| P1_f       | Categórico           | Aspectos prejudicados na experiência profissional (promoção, networking, etc.). |
+| P1_l       | Ordinal              | Nível de ensino da pessoa (Ensino Médio, Superior, Pós-graduação, etc.). |
+| P1_m       | Categórico           | Área de formação da pessoa (Ciências da Computação, Engenharia, etc.).  |
+| P2_a       | Categórico           | Situação atual de trabalho (empregado, desempregado, estagiário, etc.).  |
+| P2_b       | Categórico           | Setor da empresa ou área de atuação (Tecnologia, Saúde, Educação, etc.). |
+| P2_g       | Ordinal              | Nível do cargo atual (Pleno, Júnior, Sênior, etc.).                      |
+| P2_h       | Numérico (contínuo)  | Faixa salarial anual ou mensal (R$ 3.000, R$ 5.000, etc.).              |
+| P2_i       | Numérico (contínuo)  | Tempo de experiência na área de dados (2 anos, 5 anos, etc.).            |
+| P2_j       | Numérico (contínuo)  | Tempo de experiência em TI antes de dados (3 anos, 6 anos, etc.).       |
+
 A tabela da base principal apresenta atributos relacionados ao perfil sociodemográfico e profissional de indivíduos, incluindo gênero, cor/raça, nível de ensino e área de formação. Além disso, investiga a percepção de impacto da identidade na experiência profissional e traz informações sobre situação de trabalho, setor de atuação, senioridade, faixa salarial e tempo de experiência na área de dados e TI. Esses dados permitem uma análise sobre diversidade e desigualdade no mercado de trabalho.
 
 `Base de dados segundária CAGED-2023`
