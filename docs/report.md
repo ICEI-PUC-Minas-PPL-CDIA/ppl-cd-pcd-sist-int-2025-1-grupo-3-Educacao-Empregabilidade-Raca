@@ -145,14 +145,16 @@ As variáveis categóricas do **Kaggle**, como **gênero, cor/raça, setor de at
 - **Quantidade de categorias distintas**: informa a diversidade dentro de um atributo, como a variedade de áreas de formação.  
 - **Distribuição das categorias**: pode ser representada por tabelas de frequência ou gráficos de barras, permitindo visualizar a predominância de diferentes grupos.  
 
-### **Conclusão**  
-A fusão das bases permite uma análise mais profunda sobre padrões salariais, desigualdades no mercado de trabalho e mobilidade profissional, utilizando estatísticas descritivas para quantificar e visualizar tendências.A base principal do **Kaggle 2023** contém informações detalhadas sobre o perfil sociodemográfico e profissional dos indivíduos, incluindo percepção de discriminação, setor de atuação e experiência no mercado de trabalho. O **CAGED 2023** enriquece essa base ao fornecer dados formais sobre vínculos empregatícios, como salários, carga horária, categoria profissional e localização. A integração dessas bases permite uma análise mais robusta, combinando percepções individuais com registros oficiais, o que possibilita estudos mais aprofundados sobre desigualdade, mobilidade profissional e tendências do mercado de trabalho.
-
 ## Preparação dos dados
 A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
 
 Entretanto, a integração dessas informações revelou desafios significativos. A base de dados do INEP apresentava incompatibilidades estruturais em relação ao conjunto de dados principal, dificultando a conciliação das informações. Ademais, o elevado volume de dados dessa fonte comprometeu a viabilidade do processamento e da análise conjunta, exigindo uma reformulação na estratégia adotada para a construção do estudo.
 
+Após a definição da base secundária CAGED-2023, a próxima etapa consistiu na seleção de atributos relevantes para enriquecimento, um processo essencial para ampliar a profundidade analítica dos dados. Esse enriquecimento permite a incorporação de informações detalhadas sobre vínculos empregatícios, proporcionando uma visão mais completa sobre o comportamento do mercado de trabalho. Além disso, foi definida a chave estrangeira, que consiste em um campo ou conjunto de campos utilizados para estabelecer a relação entre tabelas distintas, garantindo a integridade e coerência da fusão dos dados.  
+
+Com a análise e a definição desses atributos, a próxima etapa envolveu a descrição dos dados por meio de gráficos que se relacionam entre si, considerando os atributos selecionados tanto da base principal quanto da base secundária. Essa abordagem possibilita uma análise aprofundada dos padrões salariais, das desigualdades no mercado de trabalho e da mobilidade profissional, utilizando estatísticas descritivas para quantificar e visualizar tendências.  
+
+A base principal do Kaggle 2023 apresenta um conjunto abrangente de informações sociodemográficas e profissionais, incluindo percepção de discriminação, setor de atuação e experiência no mercado de trabalho. Complementarmente, o CAGED 2023 agrega dados formais sobre vínculos empregatícios, abrangendo aspectos como remuneração, carga horária, categoria profissional e localização. A fusão dessas bases proporciona uma análise mais robusta, ao combinar percepções individuais com registros administrativos, permitindo a investigação aprofundada de dinâmicas de desigualdade, mobilidade profissional e tendências do mercado de trabalho com maior precisão e confiabilidade.
 
 ## Indução de modelos
 
