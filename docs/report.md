@@ -149,13 +149,9 @@ As variáveis categóricas do **Kaggle**, como **gênero, cor/raça, setor de at
 A fusão das bases permite uma análise mais profunda sobre padrões salariais, desigualdades no mercado de trabalho e mobilidade profissional, utilizando estatísticas descritivas para quantificar e visualizar tendências.A base principal do **Kaggle 2023** contém informações detalhadas sobre o perfil sociodemográfico e profissional dos indivíduos, incluindo percepção de discriminação, setor de atuação e experiência no mercado de trabalho. O **CAGED 2023** enriquece essa base ao fornecer dados formais sobre vínculos empregatícios, como salários, carga horária, categoria profissional e localização. A integração dessas bases permite uma análise mais robusta, combinando percepções individuais com registros oficiais, o que possibilita estudos mais aprofundados sobre desigualdade, mobilidade profissional e tendências do mercado de trabalho.
 
 ## Preparação dos dados
+A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
 
-A preparação dos dados consiste dos seguintes passos:
-
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
+Entretanto, a integração dessas informações revelou desafios significativos. A base de dados do INEP apresentava incompatibilidades estruturais em relação ao conjunto de dados principal, dificultando a conciliação das informações. Ademais, o elevado volume de dados dessa fonte comprometeu a viabilidade do processamento e da análise conjunta, exigindo uma reformulação na estratégia adotada para a construção do estudo.
 
 
 ## Indução de modelos
