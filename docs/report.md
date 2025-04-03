@@ -89,7 +89,7 @@ O projeto fornece um panorama quantitativo e qualitativo sobre as disparidades r
 
 `Base de dados principal Kaggle-2023`
 
-| Atribuição | Tipo de Dado         | Descrição                                                                 |
+| Atributo | Tipo de Dado         | Descrição                                                                 |
 |------------|----------------------|---------------------------------------------------------------------------|
 | P1_b       | Categórico           | Gênero da pessoa (masculino, feminino, não binário, etc.).               |
 | P1_c       | Categórico           | Cor/raça/etnia da pessoa (branca, negra, parda, indígena, asiática, etc.).|
@@ -109,7 +109,7 @@ A tabela da base principal apresenta atributos relacionados ao perfil sociodemog
 
 `Base de dados segundária CAGED-2023`
 
-| Atribuição | Tipo de Dado | Descrição                                                                 |
+| Atributo | Tipo de Dado | Descrição                                                                 |
 |------------|-------------|---------------------------------------------------------------------------|
 | A1         | Categórico  | Região geográfica onde a pessoa reside ou trabalha.                     |
 | B1         | Categórico  | Sessão ou departamento vinculado ao indivíduo.                          |
