@@ -8,7 +8,7 @@ Os principais documentos a serem produzidos são:
 
 * `State_of_data_BR_2023_Kaggle - df_survey_2023.csv`
 
-# Relatório Exploratória - Atributo Raça/Cor (State of Data 2023)
+# Relatório Gráfico Atributo Raça/Cor (Base Principal)
 
 ## 1. Raça/Cor x Faixa Salarial
 Esse gráfico mostra como os diferentes grupos raciais estão distribuídos nas faixas salariais informadas.
@@ -24,6 +24,32 @@ Analisa o nível educacional predominante dentro de cada grupo racial.
 Relação entre os anos de experiência profissional e a raça dos participantes.
 
 ![Gráfico 3](data/state_grafico_3.png)
+# Relatório Gráfico - Atributo Raça/Cor (Base Secundária)
+
+## Introdução
+Este relatório apresenta uma análise aprofundada baseada em combinações de variáveis com foco central
+no atributo 'raça/cor', conforme registrado na base de dados do panorama anual de 2023.
+
+## 1. Raça x Faixa Etária
+Como as faixas etárias estão distribuídas entre os grupos raciais.
+
+![Gráfico 1](assets/data/panorama_grafico_1.png)
+
+## 2. Raça x Faixa Etária x Salário
+Variação salarial dentro das faixas etárias por raça.
+
+![Gráfico 2](assets/data/panorama_grafico_2.png)
+
+## 3. Raça x Idade x Salário
+Dispersão de idade e salário com destaque para raça.
+
+![Gráfico 3](assets/data/panorama_grafico_3.png)
+
+## 4. Raça x Faixa Etária x Salário Médio
+Média salarial por faixa etária em cada grupo racial.
+
+![Gráfico 4](assets/data/panorama_grafico_4.png)
+
 
 # Relatório Exploratória - Educação (State of Data 2023)
 ## 1. Distribuição de Pessoas com Doutorado por Gênero e Cor/Raça
