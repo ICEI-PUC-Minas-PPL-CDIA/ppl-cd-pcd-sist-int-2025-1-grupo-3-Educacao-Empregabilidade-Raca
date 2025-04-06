@@ -143,7 +143,43 @@ Os atributos numéricos do **CAGED 2023**, como **idade, salário, horas contrat
 As variáveis categóricas do **Kaggle**, como **gênero, cor/raça, setor de atuação e nível do cargo**, podem ser exploradas por meio de:  
 - **Moda**: identifica a categoria mais frequente (exemplo: setor mais comum no mercado de trabalho).  
 - **Quantidade de categorias distintas**: informa a diversidade dentro de um atributo, como a variedade de áreas de formação.  
-- **Distribuição das categorias**: pode ser representada por tabelas de frequência ou gráficos de barras, permitindo visualizar a predominância de diferentes grupos.  
+- **Distribuição das categorias**: pode ser representada por tabelas de frequência ou gráficos de barras, permitindo visualizar a predominância de diferentes grupos.
+
+## Relatório Exploratória - Educação (State of Data 2023)
+### 1. Distribuição de Pessoas com Doutorado por Gênero e Cor/Raça
+Analisa a representatividade de gênero e raça entre indivíduos com doutorado.
+
+![Gráfico 1](https://drive.google.com/uc?export=view&id=1HB3HYRV7MrdjNHs7zrh1An4bgFyT9ne2)
+
+### 2. Nível de Ensino por Área de Formação
+Mapeia a distribuição de profissionais em diferentes estágios educacionais (da graduação ao doutorado) por área do conhecimento.
+
+![Gráfico 2](https://drive.google.com/uc?export=view&id=10F5vZqSEMlZl_qJAGmPGsyATYWpo_S53)
+
+### 3. Número de Pessoas com Doutorado em Tecnologia por Gênero e Cor/Raça
+Avalia a diversidade em Tecnologia, focado no nível de doutorado.
+
+![Gráfico 3](https://drive.google.com/uc?export=view&id=1KVzQf07dQ_ds5j6hhuAmcAlXuYrqMnBa)
+
+### 4. Número de Pessoas com Pós-Graduação por Área de Formação
+Identifica quais áreas do conhecimento atraem mais especialistas.
+
+![Gráfico 4](https://drive.google.com/uc?export=view&id=1ZSa3msbyJARB9M0rfxXtydHv62a4mDFS)
+
+### 5. Número de Pessoas Empregadas e Desempregadas na Área de Formação de Computação / Engenharia de Software / Sistemas de Informação/ TI
+Mede a empregabilidade de formados em tecnologia e seus status profissionais.
+
+![Gráfico 5](https://drive.google.com/uc?export=view&id=13imyTWcirlwSc8U1-VXKch9766f88hAJ)
+
+### 6. Número de Pessoas Pretas por Nível de Ensino
+Avalia o acesso da população negra a cada etapa da educação formal.
+
+![Gráfico 6](https://drive.google.com/uc?export=view&id=1NegHG6T4CxhfmoFR70n47Iarr_WrCS_m)
+
+### 7. Pessoas com Graduação/Bacharelado e Seus Setores de Atuação
+Mapeia onde os graduados estão inseridos no mercado de trabalho.
+
+![Gráfico 7](https://drive.google.com/uc?export=view&id=14Rdkofd0zqHbdNq7bA4lRWOFClywJKlC)
 
 ## Preparação dos dados
 A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
