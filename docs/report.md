@@ -109,20 +109,21 @@ A tabela da base principal apresenta atributos relacionados ao perfil sociodemog
 
 `Base de dados segundária CAGED-2023`
 
-| Atributo | Tipo de Dado | Descrição                                                                 |
-|------------|-------------|---------------------------------------------------------------------------|
-| A1         | Categórico  | Região geográfica onde a pessoa reside ou trabalha.                     |
-| B1         | Categórico  | Sessão ou departamento vinculado ao indivíduo.                          |
-| C1         | Categórico  | Subclasse específica dentro de uma categoria maior.                     |
-| D1         | Categórico  | Categoria profissional ou ocupacional do indivíduo.                     |
-| E1         | Categórico  | Nível de escolaridade atingido pelo indivíduo.                          |
-| F1         | Numérico    | Idade da pessoa, expressa em anos.                                       |
-| G1         | Numérico    | Quantidade de horas contratuais de trabalho por semana.                 |
-| H1         | Categórico  | Identificação de raça/cor com base em categorias pré-definidas.         |
-| I1         | Categórico  | Sexo do indivíduo (exemplo: Masculino, Feminino, Outro).                |
-| J1         | Numérico    | Valor do salário recebido pelo indivíduo.                               |
-| K1         | Categórico  | Código que representa a unidade do salário (exemplo: mensal, anual).    |
-| L1         | Numérico    | Valor fixo do salário, sem incluir adicionais ou variáveis.             |
+| Atributo | Tipo de dado  | Subtipo de dado          | Descrição                                                                 |
+|----------|----------------|---------------------------|---------------------------------------------------------------------------|
+| A1       | Qualitativo     | Nominal                   | Região geográfica onde a pessoa reside ou trabalha.                      |
+| B1       | Qualitativo     | Nominal                   | Sessão ou departamento vinculado ao indivíduo.                           |
+| C1       | Qualitativo     | Nominal                   | Subclasse específica dentro de uma categoria maior.                      |
+| D1       | Qualitativo     | Nominal                   | Categoria profissional ou ocupacional do indivíduo.                      |
+| E1       | Qualitativo     | Ordinal                   | Nível de escolaridade atingido pelo indivíduo.                           |
+| F1       | Quantitativo    | Discreto                  | Idade da pessoa, expressa em anos.                                       |
+| G1       | Quantitativo    | Discreto                  | Quantidade de horas contratuais de trabalho por semana.                  |
+| H1       | Qualitativo     | Nominal                   | Identificação de raça/cor com base em categorias pré-definidas.          |
+| I1       | Qualitativo     | Nominal                   | Sexo do indivíduo (exemplo: Masculino, Feminino, Outro).                 |
+| J1       | Quantitativo    | Contínuo                  | Valor do salário recebido pelo indivíduo.                                |
+| K1       | Qualitativo     | Nominal                   | Código que representa a unidade do salário (exemplo: mensal, anual).     |
+| L1       | Quantitativo    | Contínuo                  | Valor fixo do salário, sem incluir adicionais ou variáveis.              |
+
 
 A tabela apresenta atributos relacionados ao perfil profissional e trabalhista de indivíduos, incluindo região, categoria profissional, grau de instrução e idade. Além disso, traz informações sobre carga horária contratual, raça/cor, sexo e salário, incluindo a unidade de pagamento e o valor fixo recebido. Esses dados permitem análises sobre padrões salariais, diversidade e condições de trabalho em diferentes setores. 
 
