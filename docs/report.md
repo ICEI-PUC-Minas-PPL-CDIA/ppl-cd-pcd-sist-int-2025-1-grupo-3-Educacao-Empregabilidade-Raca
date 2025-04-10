@@ -132,7 +132,7 @@ A tabela apresenta atributos relacionados ao perfil profissional e trabalhista d
 
 A integração das bases **Kaggle 2023** e **CAGED 2023**:  
 
-**###Análise Gráfica Kaggle**
+**Análise Gráfica Kaggle**
 
 ![Gráfico 1](imagens/state_grafico_1.png)
 
@@ -140,15 +140,15 @@ A integração das bases **Kaggle 2023** e **CAGED 2023**:
 
 ![Gráfico 3](imagens/state_grafico_3.png)
 
-**###Análise Gráfica CAGED**
+**Análise Gráfica CAGED**
 
-![Gráfico 1](docs/imagens/panorama_grafico_1.png)
+![Gráfico 1](imagens/panorama_grafico_1.png)
 
-![Gráfico 2](docs/imagens/panorama_grafico_2.png)
+![Gráfico 2](imagens/panorama_grafico_2.png)
 
-![Gráfico 3](docs/imagens/panorama_grafico_3.png)
+![Gráfico 3](imagens/panorama_grafico_3.png)
 
-![Gráfico 4](docs/imagens/panorama_grafico_4.png)
+![Gráfico 4](imagens/panorama_grafico_4.png)
 
 ## Preparação dos dados
 A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
