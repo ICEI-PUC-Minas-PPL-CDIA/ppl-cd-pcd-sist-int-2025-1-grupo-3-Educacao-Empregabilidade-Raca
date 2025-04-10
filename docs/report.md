@@ -132,19 +132,23 @@ A tabela apresenta atributos relacionados ao perfil profissional e trabalhista d
 
 A integração das bases **Kaggle 2023** e **CAGED 2023**:  
 
-### **Análise de Dados Numéricos**  
-Os atributos numéricos do **CAGED 2023**, como **idade, salário, horas contratuais e tempo de experiência**, podem ser analisados através de:  
-- **Média**: representa o valor médio de cada variável, fornecendo um panorama geral da distribuição.  
-- **Desvio Padrão**: indica a dispersão dos dados em relação à média. Um alto desvio sugere grande variação salarial, por exemplo.  
-- **Mínimo e Máximo**: estabelecem os limites dos valores observados, mostrando a amplitude dos salários e idades, por exemplo.  
-- **Quartis**: dividem os dados em percentis, permitindo identificar a mediana e possíveis assimetrias na distribuição.  
-- **Histogramas**: auxiliam na visualização da distribuição das variáveis, revelando padrões e tendências.  
+**###Análise Gráfica Kaggle**
 
-### **Análise de Dados Categóricos**  
-As variáveis categóricas do **Kaggle**, como **gênero, cor/raça, setor de atuação e nível do cargo**, podem ser exploradas por meio de:  
-- **Moda**: identifica a categoria mais frequente (exemplo: setor mais comum no mercado de trabalho).  
-- **Quantidade de categorias distintas**: informa a diversidade dentro de um atributo, como a variedade de áreas de formação.  
-- **Distribuição das categorias**: pode ser representada por tabelas de frequência ou gráficos de barras, permitindo visualizar a predominância de diferentes grupos.  
+![Gráfico 1](docs/imagens/state_grafico_1.png)
+
+![Gráfico 2](docs/imagens/state_grafico_2.png)
+
+![Gráfico 3](docs/imagens/state_grafico_3.png)
+
+**###Análise Gráfica CAGED**
+
+![Gráfico 1](docs/imagens/panorama_grafico_1.png)
+
+![Gráfico 2](docs/imagens/panorama_grafico_2.png)
+
+![Gráfico 3](docs/imagens/panorama_grafico_3.png)
+
+![Gráfico 4](docs/imagens/panorama_grafico_4.png)
 
 ## Preparação dos dados
 A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
