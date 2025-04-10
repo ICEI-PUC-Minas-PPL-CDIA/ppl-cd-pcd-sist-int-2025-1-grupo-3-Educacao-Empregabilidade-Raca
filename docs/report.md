@@ -134,11 +134,11 @@ A integração das bases **Kaggle 2023** e **CAGED 2023**:
 
 **###Análise Gráfica Kaggle**
 
-![Gráfico 1](docs/imagens/state_grafico_1.png)
+![Gráfico 1](imagens/state_grafico_1.png)
 
-![Gráfico 2](docs/imagens/state_grafico_2.png)
+![Gráfico 2](imagens/state_grafico_2.png)
 
-![Gráfico 3](docs/imagens/state_grafico_3.png)
+![Gráfico 3](imagens/state_grafico_3.png)
 
 **###Análise Gráfica CAGED**
 
