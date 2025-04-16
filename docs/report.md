@@ -188,6 +188,25 @@ Mapeia onde os graduados estão inseridos no mercado de trabalho.
 
 ![Gráfico 4](imagens/panorama_grafico_4.png)
 
+
+#### Relatório Exploratória - Empregabilidade e Faixa Salarial (CAGED)
+![Gráfico de empregabilidade por raça/cor](https://i.imgur.com/u6oixye.png)
+![Gráfico de empregabilidade por grau](https://i.imgur.com/kcvTaDt.png)
+![Gráfico de faixa salarial](https://i.imgur.com/uoyfwdu.png)
+Mostra a quantidade de registros(pessoas) para determinada faixa salarial.
+![Gráfico de empregabilidade por faixa salarial](https://i.imgur.com/KdlQqJ4.png)
+![Gráfico de faixa salarial por grau de instrução](https://i.imgur.com/J5ZX9cF.png)
+![Gráfico de faixa salarial por cor/raça](https://i.imgur.com/rlfALZA.png)
+Mostra a quantidade de pessoas de determinada cor/raça para cada faixa salarial.
+![Gráfico de Distribuição de salário por raça/cor](https://i.imgur.com/Vvx2eoP.png)
+
+#### Relatório Exploratória - Empregabilidade e Faixa Salarial (STATE OF DATA 2023)
+![Gráfico empregabilidade e faixa salarial](https://i.imgur.com/hOQCEAe.png)
+Mostra a faixa salarial dos tipos de empregados analisados no projeto.
+![Gráfico empregabilidade e raça/cor](https://i.imgur.com/qFnYLZO.png)
+Mostra a distribuição de empregados(e o tipo) para cada cor/raça analisada no projeto.
+
+
 ## Preparação dos dados
 A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
 
