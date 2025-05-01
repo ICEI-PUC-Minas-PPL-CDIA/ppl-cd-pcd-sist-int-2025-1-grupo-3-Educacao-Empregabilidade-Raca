@@ -208,15 +208,101 @@ Mostra a distribuição de empregados(e o tipo) para cada cor/raça analisada no
 
 
 ## Preparação dos dados
-A definição do tema do projeto e a seleção de colunas foram realizadas com base em conjuntos de dados disponibilizados no Kaggle. Paralelamente, a busca por fontes secundárias levou à utilização inicial de dados fornecidos pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP).
+# Definição do Tema e Seleção Inicial de Variáveis
 
-Entretanto, a integração dessas informações revelou desafios significativos. A base de dados do INEP apresentava incompatibilidades estruturais em relação ao conjunto de dados principal, dificultando a conciliação das informações. Ademais, o elevado volume de dados dessa fonte comprometeu a viabilidade do processamento e da análise conjunta, exigindo uma reformulação na estratégia adotada para a construção do estudo.
+A escolha do tema do projeto foi orientada por dados obtidos a partir de uma base do Kaggle, com foco em recortes sociodemográficos e trajetórias profissionais no contexto do mercado de trabalho. A seleção inicial de colunas relevantes foi fundamentada em atributos que permitissem examinar questões de desigualdade, inserção e mobilidade profissional, com ênfase na interseccionalidade entre raça/cor e características formativas.
 
-Após a definição da base secundária CAGED-2023, a próxima etapa consistiu na seleção de atributos relevantes para enriquecimento, um processo essencial para ampliar a profundidade analítica dos dados. Esse enriquecimento permite a incorporação de informações detalhadas sobre vínculos empregatícios, proporcionando uma visão mais completa sobre o comportamento do mercado de trabalho. Além disso, foi definida a chave estrangeira, que consiste em um campo ou conjunto de campos utilizados para estabelecer a relação entre tabelas distintas, garantindo a integridade e coerência da fusão dos dados.  
+Paralelamente, iniciou-se uma busca por fontes secundárias que possibilitassem o enriquecimento da base principal. Nesse momento, os dados do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) foram considerados como potencial base complementar. Essa base continha informações sobre matrículas, instituições e cursos de ensino superior.
 
-Com a análise e a definição desses atributos, a próxima etapa envolveu a descrição dos dados por meio de gráficos que se relacionam entre si, considerando os atributos selecionados tanto da base principal quanto da base secundária. Essa abordagem possibilita uma análise aprofundada dos padrões salariais, das desigualdades no mercado de trabalho e da mobilidade profissional, utilizando estatísticas descritivas para quantificar e visualizar tendências.  
+#  Desafios de Integração com o INEP
 
-A base principal do Kaggle 2023 apresenta um conjunto abrangente de informações sociodemográficas e profissionais, incluindo percepção de discriminação, setor de atuação e experiência no mercado de trabalho. Complementarmente, o CAGED 2023 agrega dados formais sobre vínculos empregatícios, abrangendo aspectos como remuneração, carga horária, categoria profissional e localização. A fusão dessas bases proporciona uma análise mais robusta, ao combinar percepções individuais com registros administrativos, permitindo a investigação aprofundada de dinâmicas de desigualdade, mobilidade profissional e tendências do mercado de trabalho com maior precisão e confiabilidade.
+A tentativa de integração da base do INEP à base principal revelou limitações técnicas e estruturais. A principal dificuldade se deu devido à falta de chaves de junção compatíveis — os atributos do INEP não possuíam colunas diretamente associáveis a indivíduos ou agrupamentos presentes na base do Kaggle. 
+
+Além disso, o elevado volume de dados do INEP, associado ao seu formato extensivo e necessidade de tratamento adicional, comprometeu a viabilidade computacional de realizar análises integradas. Diante dessas barreiras, optou-se pela reformulação da estratégia de enriquecimento de dados.
+
+#  Escolha da Base CAGED-2023 como Fonte Complementar
+
+Como alternativa, foi selecionada a base CAGED 2023, de responsabilidade do Ministério do Trabalho, por sua natureza oficial e abrangência nacional. Essa base oferece registros administrativos sobre vínculos empregatícios formais e contempla atributos como: salário, horas contratuais, grau de instrução, classificação ocupacional e localização geográfica.
+
+A etapa seguinte consistiu na curadoria das variáveis que seriam extraídas da base CAGED com a finalidade de enriquecer a base principal. Essa seleção foi orientada pelo objetivo analítico de ampliar a profundidade do estudo, adicionando informações robustas sobre a realidade contratual dos indivíduos. Foram priorizados atributos que permitissem analisar padrão salarial, categoria profissional e características de jornada.
+
+#  Definição de Chave Estrangeira e Estratégia de Fusão
+
+A fim de garantir integridade referencial na junção entre as bases, foi definida uma chave composta pelos seguintes campos: `idade`, `genero`, `cor_raca` e `nivel_ensino`. Essa chave estrangeira possibilitou realizar a fusão das bases via `left join`, com a base Kaggle assumida como principal.
+
+A estratégia adotada priorizou a preservação de todos os registros da base principal, com a base CAGED atuando como complementar, contribuindo apenas quando havia correspondência nas chaves.
+
+#  Visualização e Descrição Exploratória dos Dados
+
+Com as bases organizadas e fundidas, iniciou-se a etapa de análise exploratória com a geração de gráficos descritivos. A construção de visualizações envolveu a interrelação de variáveis-chave — como raça/cor, faixa salarial, grau de instrução e jornada contratual — por meio de histogramas, boxplots e gráficos de contagem.
+
+Essas representações permitiram a identificação de padrões estruturais e disparidades raciais, além de fornecerem suporte visual à leitura crítica dos dados.
+
+A análise gráfica também contribuiu para a formulação de hipóteses relacionadas à mobilidade profissional e à concentração de determinados grupos em faixas salariais específicas, indicando dinâmicas relevantes do mercado de trabalho e potenciais zonas de exclusão.
+
+#  Contraste entre Fontes e Contribuição Analítica
+
+A base Kaggle se destacou por fornecer dados subjetivos, relacionados à percepção de discriminação, status profissional atual e experiência de trabalho. Já o CAGED agregou elementos objetivos e administrativos, permitindo o contraste entre discurso e realidade formal.
+
+A fusão dessas fontes ampliou a capacidade interpretativa da pesquisa, ao permitir análises que vão além dos registros institucionais e contemplam também a dimensão vivencial dos respondentes.
+
+Essa complementaridade entre percepções individuais e dados oficiais fortaleceu a abordagem metodológica do estudo, viabilizando uma análise mais confiável e multidimensional das desigualdades e oportunidades no mercado de trabalho brasileiro.
+
+# Limpeza e Tratamento das Bases
+
+## 1.1 Kaggle
+
+- Inicialmente, observou-se que a coluna `situacao_trabalho` havia sido transformada incorretamente, apresentando apenas um valor fixo.
+- A base original foi reimportada para restaurar os valores textuais originais.
+- Aplicou-se um mapeamento categórico que associou valores numéricos às diferentes situações de trabalho, preservando a diversidade das respostas.
+- Colunas como `idade`, `genero`, `cor_raca` e `nivel_ensino` foram renomeadas e padronizadas.
+- Valores ausentes foram tratados com substituição por `-1` (via `.fillna()`), a fim de manter registros e não inviabilizar o balanceamento posterior.
+- Foi realizada a limpeza de **outliers** com base no método de intervalo interquartil (IQR), eliminando valores extremos nas variáveis numéricas antes da modelagem.
+
+## 1.2 CAGED
+
+- As colunas `graudeinstrução`, `raçacor` e `sexo` foram renomeadas para `nivel_ensino`, `cor_raca` e `genero`, respectivamente.
+- As colunas de interesse foram reorganizadas e padronizadas.
+- As variáveis utilizadas para junção foram convertidas para tipo `int` para garantir integridade na chave de combinação.
+
+# Combinação das Bases
+
+- A base Kaggle foi adotada como base principal.
+- Realizou-se junção com a base CAGED usando um `left join`, com as chaves: `idade`, `genero`, `cor_raca`, `nivel_ensino`.
+- Registros da base Kaggle foram mantidos integralmente, enquanto os dados do CAGED complementaram as informações disponíveis.
+
+# Criação da Variável Alvo
+
+- Foi criada a variável `vinculo_formal`, categorizando como **1** os indivíduos em situação "Empregado (CLT)" ou "Servidor Público" (códigos 1 e 3), e como **0** os demais.
+- Essa variável representou a inserção formal do indivíduo no mercado de trabalho.
+
+# Modelagem
+
+- Os dados foram preparados para treinamento:
+  - A variável `situacao_trabalho` foi removida do conjunto preditor para evitar vazamento de informação.
+  - Variáveis categóricas foram codificadas via `LabelEncoder`.
+- Para balancear as classes (evitando que a classe majoritária dominasse a predição), foi aplicado o método **SMOTE (Synthetic Minority Over-sampling Technique)**.
+- A base balanceada foi dividida em **80% para treino** e **20% para teste**.
+- Um modelo de **Árvore de Decisão** com profundidade máxima de **5** foi treinado.
+
+#  Avaliação do Modelo
+
+- **Acurácia final:** **77,27%**
+- **Relatório de Classificação:**
+  - **Precisão** para classe “Formal”: adequada
+  - **Recall** para classe “Não Formal”: consistente
+  - **F1-score**: equilibrado entre as classes
+- A **matriz de confusão** foi visualizada com `seaborn` (heatmap), demonstrando boa capacidade de distinção entre classes.
+- A **árvore de decisão** foi exportada como imagem em alta resolução, com tamanho de **40x20 polegadas** e resolução **300 DPI**, para permitir interpretação clara dos nós, condições e decisões.
+
+# Considerações Finais
+
+- O processo evidenciou a importância de evitar **vazamento de informações** (como foi inicialmente diagnosticado com a variável `situacao_trabalho`).
+- O uso de **SMOTE** foi essencial para mitigar o desbalanceamento inicial da variável alvo.
+- A etapa de **limpeza de outliers** garantiu que valores extremos não distorcessem o comportamento do modelo.
+- O modelo demonstrou **desempenho satisfatório** e capacidade de **generalização**, servindo como base para estudos futuros mais robustos, incluindo **regressão logística** ou **Random Forest** para análise de variáveis de maior importância.
+
+
 
 ## Indução de modelos
 
