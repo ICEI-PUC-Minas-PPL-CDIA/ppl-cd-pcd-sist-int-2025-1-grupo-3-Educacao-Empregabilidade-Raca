@@ -288,24 +288,8 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 - Treinamento de modelo de **Árvore de Decisão** com profundidade máxima **5**.
 
 ## Avaliação do Modelo
-
-- **Acurácia:** **77,27%**
-- **Relatório de Classificação:**
-  - Precisão da classe “Formal”: adequada
-  - Recall da classe “Não Formal”: consistente
-  - F1-score: equilibrado
 - Visualização da matriz de confusão com `seaborn`.
-- Exportação da árvore de decisão como imagem de alta resolução (40x20 polegadas, 300 DPI).
-
-## Considerações Finais
-
-- Identificado e corrigido **vazamento de informação** na variável `situacao_trabalho`.
-- O **SMOTE** foi essencial para lidar com o desbalanceamento.
-- A limpeza de **outliers** garantiu maior robustez na modelagem.
-- O modelo teve **desempenho satisfatório** e potencial de generalização, podendo ser aprofundado com **regressão logística** ou **Random Forest** para análises futuras.
-
-
-
+- Exportação da árvore de decisão como imagem de alta resolução (40x20 polegadas, 300 DPI)
 
 ## Indução de modelos
 
