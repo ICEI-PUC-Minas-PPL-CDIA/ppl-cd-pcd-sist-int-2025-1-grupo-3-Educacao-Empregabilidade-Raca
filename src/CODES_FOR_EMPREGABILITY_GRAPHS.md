@@ -1,6 +1,5 @@
  ## **CÓDIGO GRÁFICOS - State of Data 2023**
-# Código completo para gerar o gráfico "Empregabilidade por Raça/Cor"
-
+```
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -74,8 +73,9 @@ plt.xticks(rotation=45)
 plt.legend(title="Empregabilidade", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.show()
-
+```
  ## **CÓDIGO GRÁFICOS - Cadastro Geral de Empregados e Desempregados**
+``` 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -185,8 +185,9 @@ plt.ylabel("Salário (R$)")
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
+```
 ## Gerar e salvar os gráficos como imagens:
+```
 import os
 from matplotlib import pyplot as plt
 
@@ -251,5 +252,5 @@ plt.xlabel("Raça/Cor")
 plt.ylabel("Salário (R$)")
 plt.xticks(rotation=45)
 salvar_grafico(fig6, "boxplot_salario_raca")
-
+```
 
