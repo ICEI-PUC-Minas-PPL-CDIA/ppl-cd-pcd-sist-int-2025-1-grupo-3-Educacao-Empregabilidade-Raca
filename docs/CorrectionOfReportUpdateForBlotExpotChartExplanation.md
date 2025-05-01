@@ -184,11 +184,11 @@ Mapeia onde os graduados estão inseridos no mercado de trabalho.
 
 ![Gráfico 2](imagens/panorama_grafico_2.png)
 
-(Importante mencionar que a partir deste gráfico identificamos na nossa base de dados a existência de outliers que poderiam comprometer o comportamento do nosso modelo, motivo pelo qual, a partir desta percepção, restou necessária a realização de remoção dos outliers ainda existentes após a primeira limpeza da base de dados.)
-
 ![Gráfico 3](imagens/panorama_grafico_3.png)
 
 ![Gráfico 4](imagens/panorama_grafico_4.png)
+
+(Importante mencionar que a partir do gráfico blot spot identificamos na nossa base de dados a existência de outliers que poderiam comprometer o comportamento do nosso modelo, motivo pelo qual, a partir desta percepção, restou necessária a realização de remoção dos outliers ainda existentes após a primeira limpeza da base de dados.)
 
 
 #### Relatório Exploratória - Empregabilidade e Faixa Salarial (CAGED)
