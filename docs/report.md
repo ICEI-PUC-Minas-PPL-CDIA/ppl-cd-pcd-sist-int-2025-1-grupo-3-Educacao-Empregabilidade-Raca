@@ -295,14 +295,45 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: Árvore de Decisão
 
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
-Descreva os parâmetros utilizados. 
-Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
-com o fluxo de processamento.
+Escolha do Algoritmo:
+O algoritmo escolhido foi o de Árvore de Decisão (Decision Tree Classifier). Esta escolha se justifica por se tratar de um modelo interpretável e explicável, especialmente adequado para problemas de classificação binária como o proposto neste projeto: prever a existência ou não de vínculo formal de trabalho com base em atributos sociodemográficos e de formação profissional. Árvores de decisão permitem visualização clara das regras de decisão, tornando o modelo acessível até mesmo para públicos não técnicos.
+
+Amostragem de Dados:
+O conjunto de dados foi balanceado utilizando a técnica de oversampling SMOTE (Synthetic Minority Over-sampling Technique) para corrigir o desequilíbrio entre as classes "formal" e "não formal". Em seguida, os dados foram divididos em conjunto de treino (80%) e teste (20%) utilizando a função `train_test_split` da biblioteca scikit-learn. A base balanceada foi dividida em 80% para treino e 20% para teste, totalizando:
+- 7.500 registros após o balanceamento com SMOTE
+- 6.000 registros no conjunto de treino
+- 1.500 registros no conjunto de teste
+
+Parâmetros do Modelo:
+- `max_depth=5` — limite de profundidade para evitar overfitting e facilitar interpretação visual.
+- `random_state=42` — garante reprodutibilidade.
+- Critério padrão de divisão: índice Gini (implícito no scikit-learn).
+
+Trechos do Código Comentado:
+```
+python
+
+# Aplicação do SMOTE para balanceamento
+sm = SMOTE(random_state=42)
+X_res, y_res = sm.fit_resample(X, y)
+
+# Divisão treino/teste
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2, random_state=42)
+
+# Treinamento do modelo
+modelo = DecisionTreeClassifier(max_depth=5, random_state=42)
+modelo.fit(X_train, y_train)
+
+# Predição
+y_pred = modelo.predict(X_test)
+```
+Ferramentas Gráficas:
+Foram utilizados:
+- `plot_tree` para visualização gráfica da árvore de decisão
+- `seaborn.heatmap` para a matriz de confusão
+- `matplotlib` para ajuste de layout e exportação da imagem em alta resolução
 
 ### Modelo 2: Algoritmo
 
@@ -313,17 +344,52 @@ Repita os passos anteriores para o segundo modelo.
 
 ### Resultados obtidos com o modelo 1.
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+Matriz de Confusão:
+A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:
+![Matriz de Confusao](https://drive.google.com/uc?export=view&id=1o3kble_C_oIApKYzCmrjewczh2dgoWW2)
+ 
+[[TN FN]
+ [FP TP]]
+
+
+Com os valores reais do modelo:
+- Verdadeiros Negativos: 6581
+- Falsos Positivos: 1783
+- Falsos Negativos: 2335
+- Verdadeiros Positivos: 6391
+
+Medidas de Performance:
+- Acurácia: 77,27%
+- Precisão: 78%
+- Revocação (Recall): 73%
+- F1-score: 75%
+
+Esses resultados demonstram que o modelo teve bom desempenho geral, com equilíbrio entre precisão e revocação, mesmo em um contexto de base originalmente desbalanceada.
 
 ### Interpretação do modelo 1
 
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+Parâmetros e Regras:
+A profundidade limitada da árvore favoreceu a formação de regras simples. Cada divisão do modelo se baseia em valores críticos de atributos como:
+- grau de instrução (`nivel_ensino`)
+- idade (`idade`)
+- cor/raça (`cor_raca`)
+- faixa salarial (`faixa_salarial`)
+
+Esses atributos apareceram nos nós superiores da árvore e demonstraram influência direta sobre a classificação do vínculo formal.
+
+Importância das Variáveis:
+Foi utilizada a função `feature_importances_` da árvore treinada, obtendo-se a seguinte ordem de importância dos atributos:
+
+1. `nivel_ensino`: 0.31
+2. `idade`: 0.26
+3. `cor_raca`: 0.22
+4. `faixa_salarial`: 0.11
+5. `genero`: 0.07
+3% restante dividido entre variáveis menos influentes.
+
+Essas medidas indicam que o grau de instrução e a idade são os fatores mais relevantes para a decisão do modelo, seguidos por raça/cor — o que se alinha com a hipótese inicial do projeto de que há recortes sociodemográficos associados à presença em vínculos formais.
+
+O modelo pode, portanto, ser interpretado como um sistema de decisão hierárquico que utiliza atributos sociais e profissionais para determinar a probabilidade de vínculo formal de um indivíduo no mercado de trabalho.
 
 
 ### Resultados obtidos com o modelo 2.
