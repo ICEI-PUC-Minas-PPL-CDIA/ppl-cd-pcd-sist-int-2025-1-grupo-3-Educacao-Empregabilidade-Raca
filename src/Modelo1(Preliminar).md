@@ -34,3 +34,15 @@ X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2,
 
 modelo = DecisionTreeClassifier(max_depth=5, random_state=42)
 modelo.fit(X_train, y_train)
+
+y_pred_train = modelo.predict(X_train)
+train_acc = accuracy_score(y_train, y_pred_train)
+
+y_pred = modelo.predict(X_test)
+test_acc = accuracy_score(y_test, y_pred)
+
+print(f"\n✅ Acurácia no treino: {train_acc:.2%}")
+print(f"✅ Acurácia no teste: {test_acc:.2%}")
+
+print("\n📊 Relatório de Classificação (conjunto de teste):")
+print(classification_report(y_test, y_pred, target_names=['Não Formal', 'Formal']))
