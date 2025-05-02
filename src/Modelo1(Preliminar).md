@@ -46,3 +46,31 @@ print(f"✅ Acurácia no teste: {test_acc:.2%}")
 
 print("\n📊 Relatório de Classificação (conjunto de teste):")
 print(classification_report(y_test, y_pred, target_names=['Não Formal', 'Formal']))
+
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Não Formal', 'Formal'], yticklabels=['Não Formal', 'Formal'])
+plt.title("Matriz de Confusão (Heatmap)")
+plt.xlabel("Previsto")
+plt.ylabel("Real")
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(40, 20))  # aumentar mais ainda o tamanho
+plot_tree(
+    modelo,
+    feature_names=X.columns,
+    class_names=['Não Formal', 'Formal'],
+    filled=True,
+    rounded=True,
+    fontsize=12
+)
+
+plt.title("Árvore de Decisão - Vínculo Formal")
+plt.savefig("arvore_decisao_vinculo_formal.png", dpi=300)
+plt.show()
+
+from google.colab import files
+files.download("arvore_decisao_vinculo_formal.png")
+
+```
