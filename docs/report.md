@@ -89,21 +89,15 @@ O projeto fornece um panorama quantitativo e qualitativo sobre as disparidades r
 
 `Base de dados principal Kaggle-2023`
 
-| Atributo | Tipo de Dado  | Subtipo de Dado    | Descrição                                                                 |
-|----------|----------------|---------------------|---------------------------------------------------------------------------|
-| P1_b     | Qualitativo     | Nominal             | Gênero da pessoa (masculino, feminino, não binário, etc.).               |
-| P1_c     | Qualitativo     | Nominal             | Cor/raça/etnia da pessoa (branca, negra, parda, indígena, asiática, etc.).|
-| P1_e     | Qualitativo     | Binário (Booleano)  | Indica se a experiência profissional foi prejudicada (sim ou não).       |
-| P1_e_2   | Qualitativo     | Binário (Booleano)  | Indica se a experiência foi prejudicada devido à cor/raça/etnia (sim ou não). |
-| P1_f     | Qualitativo     | Nominal             | Aspectos prejudicados na experiência profissional (promoção, networking, etc.). |
-| P1_l     | Qualitativo     | Ordinal             | Nível de ensino da pessoa (Ensino Médio, Superior, Pós-graduação, etc.). |
-| P1_m     | Qualitativo     | Nominal             | Área de formação da pessoa (Ciências da Computação, Engenharia, etc.).   |
-| P2_a     | Qualitativo     | Nominal             | Situação atual de trabalho (empregado, desempregado, estagiário, etc.).  |
-| P2_b     | Qualitativo     | Nominal             | Setor da empresa ou área de atuação (Tecnologia, Saúde, Educação, etc.). |
-| P2_g     | Qualitativo     | Ordinal             | Nível do cargo atual (Pleno, Júnior, Sênior, etc.).                       |
-| P2_h     | Quantitativo    | Contínuo            | Faixa salarial anual ou mensal (R$ 3.000, R$ 5.000, etc.).               |
-| P2_i     | Quantitativo    | Contínuo            | Tempo de experiência na área de dados (2 anos, 5 anos, etc.).            |
-| P2_j     | Quantitativo    | Contínuo            | Tempo de experiência em TI antes de dados (3 anos, 6 anos, etc.).        |
+| Atributo | Nome              | Tipo de Dado  | Subtipo de Dado    | Descrição                                                                 |
+|----------|-------------------|----------------|---------------------|---------------------------------------------------------------------------|
+| P1_a     | idade             | Quantitativo   | Contínuo            | Idade da pessoa (em anos).                                               |
+| P1_b     | genero            | Qualitativo    | Nominal             | Gênero da pessoa (masculino, feminino, não binário, etc.).               |
+| P1_c     | cor_raca          | Qualitativo    | Nominal             | Cor/raça/etnia da pessoa (branca, negra, parda, indígena, asiática, etc.).|
+| P1_l     | nivel_ensino      | Qualitativo    | Ordinal             | Nível de ensino da pessoa (Ensino Médio, Superior, Pós-graduação, etc.). |
+| P2_a     | situacao_trabalho | Qualitativo    | Nominal             | Situação atual de trabalho (empregado, desempregado, estagiário, etc.).  |
+| P2_h     | faixa_salarial    | Quantitativo   | Contínuo            | Faixa salarial anual ou mensal (R$ 3.000, R$ 5.000, etc.).               |
+
 
 A tabela da base principal apresenta atributos relacionados ao perfil sociodemográfico e profissional de indivíduos, incluindo gênero, cor/raça, nível de ensino e área de formação. Além disso, investiga a percepção de impacto da identidade na experiência profissional e traz informações sobre situação de trabalho, setor de atuação, senioridade, faixa salarial e tempo de experiência na área de dados e TI. Esses dados permitem uma análise sobre diversidade e desigualdade no mercado de trabalho.
 
@@ -210,31 +204,31 @@ Mostra a distribuição de empregados(e o tipo) para cada cor/raça analisada no
 
 
 ## Preparação dos dados
-## Definição do Tema e Seleção Inicial de Variáveis
+### Definição do Tema e Seleção Inicial de Variáveis
 
 A escolha do tema do projeto foi orientada por dados obtidos a partir de uma base do Kaggle, com foco em recortes sociodemográficos e trajetórias profissionais no contexto do mercado de trabalho. A seleção inicial de colunas relevantes foi fundamentada em atributos que permitissem examinar questões de desigualdade, inserção e mobilidade profissional, com ênfase na interseccionalidade entre raça/cor e características formativas.
 
 Paralelamente, iniciou-se uma busca por fontes secundárias que possibilitassem o enriquecimento da base principal. Nesse momento, os dados do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) foram considerados como potencial base complementar. Essa base continha informações sobre matrículas, instituições e cursos de ensino superior.
 
-## Desafios de Integração com o INEP
+### Desafios de Integração com o INEP
 
 A tentativa de integração da base do INEP à base principal revelou limitações técnicas e estruturais. A principal dificuldade se deu devido à falta de chaves de junção compatíveis — os atributos do INEP não possuíam colunas diretamente associáveis a indivíduos ou agrupamentos presentes na base do Kaggle.
 
 Além disso, o elevado volume de dados do INEP, associado ao seu formato extensivo e necessidade de tratamento adicional, comprometeu a viabilidade computacional de realizar análises integradas. Diante dessas barreiras, optou-se pela reformulação da estratégia de enriquecimento de dados.
 
-## Escolha da Base CAGED-2023 como Fonte Complementar
+### Escolha da Base CAGED-2023 como Fonte Complementar
 
 Como alternativa, foi selecionada a base CAGED 2023, de responsabilidade do Ministério do Trabalho, por sua natureza oficial e abrangência nacional. Essa base oferece registros administrativos sobre vínculos empregatícios formais e contempla atributos como: salário, horas contratuais, grau de instrução, classificação ocupacional e localização geográfica.
 
 A etapa seguinte consistiu na curadoria das variáveis que seriam extraídas da base CAGED com a finalidade de enriquecer a base principal. Essa seleção foi orientada pelo objetivo analítico de ampliar a profundidade do estudo, adicionando informações robustas sobre a realidade contratual dos indivíduos. Foram priorizados atributos que permitissem analisar padrão salarial, categoria profissional e características de jornada.
 
-## Definição de Chave Estrangeira e Estratégia de Fusão
+### Definição de Chave Estrangeira e Estratégia de Fusão
 
 A fim de garantir integridade referencial na junção entre as bases, foi definida uma chave composta pelos seguintes campos: `idade`, `genero`, `cor_raca` e `nivel_ensino`. Essa chave estrangeira possibilitou realizar a fusão das bases via `left join`, com a base Kaggle assumida como principal.
 
 A estratégia adotada priorizou a preservação de todos os registros da base principal, com a base CAGED atuando como complementar, contribuindo apenas quando havia correspondência nas chaves.
 
-## Visualização e Descrição Exploratória dos Dados
+### Visualização e Descrição Exploratória dos Dados
 
 Com as bases organizadas e fundidas, iniciou-se a etapa de análise exploratória com a geração de gráficos descritivos. A construção de visualizações envolveu a interrelação de variáveis-chave — como raça/cor, faixa salarial, grau de instrução e jornada contratual — por meio de histogramas, boxplots e gráficos de contagem.
 
@@ -242,7 +236,7 @@ Essas representações permitiram a identificação de padrões estruturais e di
 
 A análise gráfica também contribuiu para a formulação de hipóteses relacionadas à mobilidade profissional e à concentração de determinados grupos em faixas salariais específicas, indicando dinâmicas relevantes do mercado de trabalho e potenciais zonas de exclusão.
 
-## Contraste entre Fontes e Contribuição Analítica
+### Contraste entre Fontes e Contribuição Analítica
 
 A base Kaggle se destacou por fornecer dados subjetivos, relacionados à percepção de discriminação, status profissional atual e experiência de trabalho. Já o CAGED agregou elementos objetivos e administrativos, permitindo o contraste entre discurso e realidade formal.
 
@@ -252,9 +246,9 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 
 ---
 
-## Limpeza e Tratamento das Bases
+### Limpeza e Tratamento das Bases
 
-### 1.1 Kaggle
+#### 1.1 Kaggle
 
 - A coluna `situacao_trabalho` havia sido transformada incorretamente, apresentando apenas um valor fixo.
 - A base original foi reimportada para restaurar os valores textuais originais.
@@ -263,24 +257,24 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 - Valores ausentes foram substituídos por `-1` com `.fillna()`.
 - Outliers foram removidos com base no método do intervalo interquartil (IQR).
 
-### 1.2 CAGED
+#### 1.2 CAGED
 
 - As colunas `graudeinstrução`, `raçacor` e `sexo` foram renomeadas para `nivel_ensino`, `cor_raca` e `genero`.
 - As colunas de interesse foram reorganizadas e padronizadas.
 - As variáveis para junção foram convertidas para o tipo `int` para garantir integridade nas chaves.
 
-## Combinação das Bases
+### Combinação das Bases
 
 - A base Kaggle foi usada como principal.
 - A junção com a base CAGED foi feita via `left join`, pelas chaves: `idade`, `genero`, `cor_raca`, `nivel_ensino`.
 - Registros da Kaggle foram mantidos integralmente, enquanto o CAGED complementou as informações.
 
-## Criação da Variável Alvo
+### Criação da Variável Alvo
 
 - Criada a variável `vinculo_formal`, com valor **1** para "Empregado (CLT)" e "Servidor Público" (códigos 1 e 3), e **0** para os demais.
 - Representa a inserção formal no mercado de trabalho.
 
-## Modelagem
+### Modelagem
 
 - Preparação dos dados:
   - A variável `situacao_trabalho` foi removida para evitar vazamento de informação.
@@ -289,7 +283,7 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 - Divisão dos dados: **80% treino** e **20% teste**.
 - Treinamento de modelo de **Árvore de Decisão** com profundidade máxima **5**.
 
-## Avaliação do Modelo
+### Avaliação do Modelo
 - Visualização da matriz de confusão com `seaborn`.
 - Exportação da árvore de decisão como imagem de alta resolução (40x20 polegadas, 300 DPI)
 
