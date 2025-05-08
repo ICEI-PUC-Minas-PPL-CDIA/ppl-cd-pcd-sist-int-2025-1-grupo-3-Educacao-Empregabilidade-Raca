@@ -55,14 +55,43 @@ print(y_res_ada.value_counts(normalize=True))
 
 X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2, random_state=42)
 
-modelo = DecisionTreeClassifier(max_depth=5, random_state=42)
-modelo.fit(X_train, y_train)
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import RandomizedSearchCV
 
+# Grade de hiperparâmetros
+param_dist_rf = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [5, 10, 20, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['sqrt', 'log2', None],
+    'bootstrap': [True, False]
+}
+
+# RandomizedSearchCV
+random_search_rf = RandomizedSearchCV(
+    estimator=RandomForestClassifier(random_state=42),
+    param_distributions=param_dist_rf,
+    n_iter=10,
+    cv=3,
+    scoring='accuracy',
+    random_state=42,
+    n_jobs=1
+)
+
+# Treinando
+random_search_rf.fit(X_train, y_train)
+modelo = random_search_rf.best_estimator_
+
+# Avaliação
 y_pred_train = modelo.predict(X_train)
-train_acc = accuracy_score(y_train, y_pred_train)
-
 y_pred = modelo.predict(X_test)
+
+train_acc = accuracy_score(y_train, y_pred_train)
 test_acc = accuracy_score(y_test, y_pred)
+
+print("\n🌲 Melhor modelo (Random Forest):")
+print(random_search_rf.best_params_)
 
 print(f"\n✅ Acurácia no treino: {train_acc:.2%}")
 print(f"✅ Acurácia no teste: {test_acc:.2%}")
@@ -81,13 +110,14 @@ plt.show()
 
 plt.figure(figsize=(40, 20))  # aumentar mais ainda o tamanho
 plot_tree(
-    modelo,
+    modelo.estimators_[0],  # primeira árvore da floresta
     feature_names=X.columns,
     class_names=['Não Formal', 'Formal'],
     filled=True,
     rounded=True,
     fontsize=12
 )
+
 
 plt.title("Árvore de Decisão - Vínculo Formal")
 plt.savefig("arvore_decisao_vinculo_formal.png", dpi=300)
