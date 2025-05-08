@@ -126,4 +126,20 @@ plt.show()
 from google.colab import files
 files.download("arvore_decisao_vinculo_formal.png")
 
+from sklearn.metrics import roc_curve, auc
+
+y_proba = modelo.predict_proba(X_test)[:, 1]
+fpr, tpr, thresholds = roc_curve(y_test, y_proba)
+roc_auc = auc(fpr, tpr)
+
+plt.figure(figsize=(6, 4))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC Curve (área = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlabel('Falso Positivo (1 - Especificidade)')
+plt.ylabel('Verdadeiro Positivo (Sensibilidade)')
+plt.title('Curva ROC - Classificação de Vínculo Formal')
+plt.legend(loc='lower right')
+plt.tight_layout()
+plt.show()
+
 ```
