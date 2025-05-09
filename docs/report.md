@@ -329,6 +329,137 @@ Foram utilizados:
 - `seaborn.heatmap` para a matriz de confusão
 - `matplotlib` para ajuste de layout e exportação da imagem em alta resolução
 
+### Modelo 1 Versão Final
+**Modelo:** Random Forest  
+**Objetivo:** Classificar se um indivíduo possui ou não vínculo formal no mercado de trabalho  
+**Bases:** Conjunto combinado de dados da pesquisa (Kaggle) com enriquecimento a partir do CAGED 2023  
+
+---
+
+## 🔧 ETAPA 1: Instalação da biblioteca SMOTE
+
+```python
+!pip install imbalanced-learn
+```
+Instala a biblioteca necessária para aplicar SMOTE (e ADASYN) — técnicas de balanceamento de classes.
+
+---
+
+## 📥 ETAPA 2: Importações
+
+Bibliotecas utilizadas:
+- `pandas`, `numpy`: manipulação de dados
+- `sklearn`: modelagem, métrica e validação
+- `SMOTE`, `ADASYN`: balanceamento de classes 🟣
+- `PCA`: visualização de dispersão 🟣
+- `seaborn`, `matplotlib`: gráficos
+- `files`, `io`: upload de arquivos no Colab
+
+---
+
+## 📂 ETAPA 3: Upload da Base de Dados
+
+Arquivo utilizado: `base_final_combinada_kaggle_caged_corrigida_ok.csv`
+
+---
+
+## 🧹 ETAPA 4: Tratamento de valores ausentes
+
+```python
+df = df.fillna(-1)
+```
+Preenche valores vazios com -1, evitando falhas futuras no modelo.
+
+---
+
+## 🧾 ETAPA 5: Separação dos dados
+
+```python
+X = df.drop(columns=['vinculo_formal', 'situacao_trabalho'])
+y = df['vinculo_formal']
+```
+Define `X` como os atributos e `y` como a variável alvo. Remove `situacao_trabalho` por ser derivada de `vinculo_formal`.
+
+---
+
+## 🔤 ETAPA 6: Codificação de variáveis categóricas
+
+Transforma colunas com texto em números usando `LabelEncoder`.
+
+---
+
+## 📊 ETAPA 7: Análise e Balanceamento das Classes
+
+### 🟣 7.1: Verificação da distribuição original
+Mostra proporção entre classes antes do balanceamento.
+
+### 🟣 7.2: Aplicação do SMOTE
+
+```python
+X_res, y_res = sm.fit_resample(X, y)
+```
+Gera amostras sintéticas da classe minoritária, equilibrando a base.
+
+### 🟣 7.3: Verificação após o SMOTE
+Confirma que as classes estão igualmente representadas.
+
+### 🟣 7.4: Visualização com PCA
+Reduz a base balanceada para 2 dimensões e mostra a separação visual entre as classes.
+
+### 🟣 7.5: Alternativa com ADASYN
+`ADASYN` foi testado para gerar amostras mais focadas em regiões difíceis, mas o modelo final utilizou SMOTE.
+
+---
+
+## 🌲 MODELO FINAL: Random Forest + Otimização
+
+Utilizou `RandomizedSearchCV` para otimizar:
+- `n_estimators`, `max_depth`, `min_samples_split`, `max_features`, `bootstrap`
+
+---
+
+## 📈 RESULTADOS DO MODELO FINAL
+
+| Métrica                | Valor     |
+|------------------------|-----------|
+| Acurácia (treino)      | 99,28%    |
+| Acurácia (teste)       | 87,27%    |
+| Precisão (Não Formal)  | 0.92      |
+| Revocação (Não Formal) | 0.82      |
+| Precisão (Formal)      | 0.84      |
+| Revocação (Formal)     | 0.93      |
+| F1-score médio         | 0.87      |
+
+Modelo altamente equilibrado e com bom desempenho preditivo.
+
+---
+
+## 🔎 INTERPRETAÇÃO DO MODELO
+
+### 🔝 Atributos mais importantes
+
+1. Faixa Salarial  
+2. Idade  
+3. Participação em entrevistas  
+4. Critérios para escolher onde trabalhar  
+5. Forma de trabalho atual
+
+### 📜 Regras da primeira árvore
+
+- Faixa salarial baixa + idade jovem → tendência de "Não Formal"
+- Faixa salarial alta + entrevistas recentes → tendência de "Formal"
+
+---
+
+## ✅ CONCLUSÃO
+
+O modelo Random Forest com SMOTE se mostrou eficiente, explicável e robusto. A análise das árvores revelou padrões claros relacionados à formalização do vínculo de trabalho. A utilização de técnicas como PCA e ADASYN também enriqueceu o processo analítico.
+
+---
+
+**Relator técnico:** [Nome do Integrante Responsável]  
+
+
 ### Modelo 2: Algoritmo
 
 Repita os passos anteriores para o segundo modelo.
@@ -384,6 +515,53 @@ Foi utilizada a função `feature_importances_` da árvore treinada, obtendo-se 
 Essas medidas indicam que o grau de instrução e a idade são os fatores mais relevantes para a decisão do modelo, seguidos por raça/cor — o que se alinha com a hipótese inicial do projeto de que há recortes sociodemográficos associados à presença em vínculos formais.
 
 O modelo pode, portanto, ser interpretado como um sistema de decisão hierárquico que utiliza atributos sociais e profissionais para determinar a probabilidade de vínculo formal de um indivíduo no mercado de trabalho.
+
+### Interpretação da Versão Final do Modelo 1
+
+## 1. Desempenho do Modelo
+
+- **Acurácia no treino:** 99,28%  
+- **Acurácia no teste:** 87,27%
+
+O modelo mostrou desempenho elevado, com uma acurácia excelente no treino e também muito sólida no teste, indicando um bom poder de generalização com leve risco de overfitting.
+
+---
+
+## 2. Métricas detalhadas (base de teste)
+
+| Classe         | Precisão | Revocação | F1-score | Suporte |
+|----------------|----------|-----------|----------|---------|
+| Não Formal     | 0.92     | 0.82      | 0.87     | 748     |
+| Formal         | 0.84     | 0.93      | 0.88     | 752     |
+| **Acurácia**   | -        | -         | **0.8727** | 1500    |
+| **Macro média**| 0.88     | 0.87      | 0.87     | 1500    |
+| **Ponderada**  | 0.88     | 0.87      | 0.87     | 1500    |
+
+O modelo está balanceado entre as duas classes, com um leve viés a favor de prever corretamente vínculos formais. A precisão e o recall estão acima de 80% em ambas as classes.
+
+---
+
+## 3. Interpretação do Raciocínio do Modelo
+
+A floresta de decisão construiu regras a partir de uma combinação de variáveis altamente correlacionadas com vínculo formal. Os atributos mais influentes foram:
+
+- Faixa Salarial
+- Idade
+- Participação em Entrevistas
+- Critérios para Escolher onde Trabalhar
+- Grau de Insatisfação no Trabalho
+
+**Exemplos de raciocínio do modelo:**
+- Se a faixa salarial é alta e a idade está acima da média, há forte tendência de vínculo formal.
+- Se a pessoa participou de entrevistas nos últimos meses, isso é indício de mobilidade e vínculo formal.
+- Pessoas jovens, com baixa faixa salarial e pouco engajamento com critérios de carreira, tendem a ser classificadas como não formais.
+
+---
+
+## 4. Conclusão
+
+O modelo final de Random Forest apresenta excelente desempenho preditivo e estabilidade.  
+A interpretação das regras fornece insights robustos sobre os fatores associados ao vínculo formal de trabalho, sendo adequado tanto para aplicação técnica quanto para discussões estratégicas ou institucionais.
 
 
 ### Resultados obtidos com o modelo 2.
