@@ -504,7 +504,7 @@ Esses atributos apareceram nos nós superiores da árvore e demonstraram influê
 
 Importância das Variáveis:
 Foi utilizada a função `feature_importances_` da árvore treinada, obtendo-se a seguinte ordem de importância dos atributos:
-!Gráfico da Matriz  de Confusao(https://drive.google.com/file/d/1RoBgzFLdNAbq5ibO_oGxzu-RhTRhmHGs/view?usp=sharing)
+![Gráfico do Google Drive](https://drive.google.com/uc?export=view&id=1RoBgzFLdNAbq5ibO_oGxzu-RhTRhmHGs)
 
 1. `nivel_ensino`: 0.31
 2. `idade`: 0.26
