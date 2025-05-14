@@ -1,5 +1,3 @@
-```
-
 !pip install imbalanced-learn
 
 import pandas as pd
@@ -9,7 +7,7 @@ import seaborn as sns
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 from imblearn.over_sampling import SMOTE, ADASYN
 from sklearn.decomposition import PCA
 from google.colab import files
@@ -21,24 +19,38 @@ file_name = next(iter(uploaded))
 df = pd.read_csv(io.BytesIO(uploaded[file_name]))
 
 df = df.fillna(-1)
-
 X = df.drop(columns=['vinculo_formal', 'situacao_trabalho'])
 y = df['vinculo_formal']
 
-for col in X.select_dtypes(include='object').columns:
-    X[col] = LabelEncoder().fit_transform(X[col].astype(str))
+# Codificação das variáveis categóricas com OneHotEncoder
+categorical_cols = X.select_dtypes(include='object').columns
+for col in categorical_cols:
+    X[col] = X[col].astype(str)
+ohe = OneHotEncoder(sparse_output=False, handle_unknown='ignore', dtype=int)
+encoded_data = ohe.fit_transform(X[categorical_cols])
+encoded_columns = ohe.get_feature_names_out()
+encoded_df = pd.DataFrame(encoded_data, columns=encoded_columns, index=X.index)
+X = X.drop(columns=categorical_cols)
+X = pd.concat([X, encoded_df], axis=1)
+
+print("🔢 Codificações das variáveis categóricas (OneHotEncoder):")
+for col, categories in zip(categorical_cols, ohe.categories_):
+    print(f"\nColuna original: {col}")
+    encoded_cols_for_col = [c for c in encoded_columns if c.startswith(col + '_')]
+    for category, encoded_col in zip(categories, encoded_cols_for_col):
+        print(f"  {category} → Coluna {encoded_col} (1 se presente, 0 se ausente)")
 
 print("🎯 Distribuição antes do SMOTE:")
 print(y.value_counts(normalize=True).rename({0: 'Não Formal', 1: 'Formal'}))
 
-sm = SMOTE(random_state=42)
+sm = SMOTE()
 X_res, y_res = sm.fit_resample(X, y)
 print("\n🎯 Distribuição após o SMOTE:")
 print(y_res.value_counts(normalize=True).rename({0: 'Não Formal', 1: 'Formal'}))
-pca = PCA(n_components=2, random_state=42)
+
+pca = PCA(n_components=2)
 X_vis = pca.fit_transform(X_res)
 y_vis = y_res.reset_index(drop=True)
-
 plt.figure(figsize=(8, 6))
 sns.scatterplot(x=X_vis[:, 0], y=X_vis[:, 1], hue=y_vis, palette='Set2', alpha=0.5)
 plt.title("🔍 Visualização das Amostras após SMOTE (PCA)")
@@ -48,34 +60,28 @@ plt.legend(title='Classe', labels=['Não Formal', 'Formal'])
 plt.tight_layout()
 plt.show()
 
-adasyn = ADASYN(random_state=42)
+adasyn = ADASYN()
 X_res_ada, y_res_ada = adasyn.fit_resample(X, y)
 print("\n🔄 Balanceamento com ADASYN:")
 print(y_res_ada.value_counts(normalize=True))
 
-X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2, random_state=42)
-
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import RandomizedSearchCV
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2)
 
 # Grade de hiperparâmetros
 param_dist_rf = {
     'n_estimators': [50, 100, 200],
-    'max_depth': [5, 10, 20, None],
+    'max_depth': [5, 10, None],
     'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
     'max_features': ['sqrt', 'log2', None],
     'bootstrap': [True, False]
 }
-
 # RandomizedSearchCV
 random_search_rf = RandomizedSearchCV(
-    estimator=RandomForestClassifier(random_state=42),
+    estimator=RandomForestClassifier(),
     param_distributions=param_dist_rf,
-    n_iter=10,
-    cv=3,
+    n_iter=30,
+    cv=5,
     scoring='accuracy',
-    random_state=42,
     n_jobs=1
 )
 
@@ -91,7 +97,9 @@ train_acc = accuracy_score(y_train, y_pred_train)
 test_acc = accuracy_score(y_test, y_pred)
 
 print("\n🌲 Melhor modelo (Random Forest):")
-print(random_search_rf.best_params_)
+print("Melhores hiperparâmetros encontrados:")
+for param, value in random_search_rf.best_params_.items():
+    print(f"{param}: {value}")
 
 print(f"\n✅ Acurácia no treino: {train_acc:.2%}")
 print(f"✅ Acurácia no teste: {test_acc:.2%}")
@@ -141,5 +149,3 @@ plt.title('Curva ROC - Classificação de Vínculo Formal')
 plt.legend(loc='lower right')
 plt.tight_layout()
 plt.show()
-
-```
