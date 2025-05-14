@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import OneHotEncoder
 from imblearn.over_sampling import SMOTE, ADASYN
-from sklearn.decomposition import PCA
 from google.colab import files
 import io
 
@@ -47,18 +46,6 @@ sm = SMOTE()
 X_res, y_res = sm.fit_resample(X, y)
 print("\n🎯 Distribuição após o SMOTE:")
 print(y_res.value_counts(normalize=True).rename({0: 'Não Formal', 1: 'Formal'}))
-
-pca = PCA(n_components=2)
-X_vis = pca.fit_transform(X_res)
-y_vis = y_res.reset_index(drop=True)
-plt.figure(figsize=(8, 6))
-sns.scatterplot(x=X_vis[:, 0], y=X_vis[:, 1], hue=y_vis, palette='Set2', alpha=0.5)
-plt.title("🔍 Visualização das Amostras após SMOTE (PCA)")
-plt.xlabel("Componente Principal 1")
-plt.ylabel("Componente Principal 2")
-plt.legend(title='Classe', labels=['Não Formal', 'Formal'])
-plt.tight_layout()
-plt.show()
 
 adasyn = ADASYN()
 X_res_ada, y_res_ada = adasyn.fit_resample(X, y)
