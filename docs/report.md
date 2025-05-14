@@ -294,6 +294,14 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 Escolha do Algoritmo:
 O algoritmo escolhido foi o de Árvore de Decisão (Decision Tree Classifier). Esta escolha se justifica por se tratar de um modelo interpretável e explicável, especialmente adequado para problemas de classificação binária como o proposto neste projeto: prever a existência ou não de vínculo formal de trabalho com base em atributos sociodemográficos e de formação profissional. Árvores de decisão permitem visualização clara das regras de decisão, tornando o modelo acessível até mesmo para públicos não técnicos.
 
+
+Seleção de atributos e separação dos dados:
+Na etapa de preparação dos dados, a variável-alvo definida foi vinculo_formal, representando a classificação binária entre vínculos formais e não formais de trabalho. As variáveis preditoras (X) foram obtidas a partir da exclusão de vinculo_formal e situacao_trabalho, sendo esta última removida para evitar data leakage, dado seu potencial de correlação direta com a variável-alvo.
+
+As variáveis categóricas presentes em X foram identificadas automaticamente com base em seu tipo (object) e, em seguida, transformadas via codificação One-Hot Encoding utilizando o OneHotEncoder do sklearn, com os parâmetros sparse_output=False e handle_unknown='ignore'. Esse processo gerou colunas binárias para cada categoria observada nas variáveis categóricas, convertendo o conjunto de dados para um formato totalmente numérico, compatível com os algoritmos de machine learning.
+
+Não foi realizada uma etapa explícita de seleção de atributos (feature selection) neste pipeline. Em vez disso, todos os atributos numéricos (originais e codificados) foram mantidos no modelo. A escolha do classificador Random Forest se justifica, em parte, por sua robustez diante de um grande número de variáveis, bem como sua capacidade de estimar automaticamente a importância relativa de cada atributo durante o processo de treinamento, utilizando critérios como a redução da impureza (Gini ou entropia) em cada nó da árvore.
+
 Amostragem de Dados:
 O conjunto de dados foi balanceado utilizando a técnica de oversampling SMOTE (Synthetic Minority Over-sampling Technique) para corrigir o desequilíbrio entre as classes "formal" e "não formal". Em seguida, os dados foram divididos em conjunto de treino (80%) e teste (20%) utilizando a função `train_test_split` da biblioteca scikit-learn. A base balanceada foi dividida em 80% para treino e 20% para teste, totalizando:
 - 7.500 registros após o balanceamento com SMOTE
@@ -372,7 +380,7 @@ Preenche valores vazios com -1, evitando falhas futuras no modelo.
 
 ---
 
-## 🧾 ETAPA 5: Separação dos dados
+## 🧾 ETAPA 5: Seleção de Atributos
 
 ```python
 X = df.drop(columns=['vinculo_formal', 'situacao_trabalho'])
