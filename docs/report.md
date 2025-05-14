@@ -459,16 +459,6 @@ O modelo Random Forest com SMOTE se mostrou eficiente, explicável e robusto. A 
 
 **Relator técnico:** [Nome do Integrante Responsável]  
 
-
-### Modelo 2: Algoritmo
-
-Repita os passos anteriores para o segundo modelo.
-
-
-## Resultados
-
-### Resultados obtidos com o modelo 1.
-
 Matriz de Confusão:
 A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:
 ![Matriz de Confusao](https://drive.google.com/uc?export=view&id=1o3kble_C_oIApKYzCmrjewczh2dgoWW2)
@@ -564,8 +554,47 @@ A floresta de decisão construiu regras a partir de uma combinação de variáve
 O modelo final de Random Forest apresenta excelente desempenho preditivo e estabilidade.  
 A interpretação das regras fornece insights robustos sobre os fatores associados ao vínculo formal de trabalho, sendo adequado tanto para aplicação técnica quanto para discussões estratégicas ou institucionais.
 
+# Modelo 2 : Algoritmo
+Nesta fase, foi utilizado o modelo SVM (Support Vector Machine) com kernel
+RBF, escolhido pelas seguintes razões:
+• É um modelo eficaz para problemas de classificação binária.
+• Tem bom desempenho em bases com margens de separação entre as
+classes.
+• Suporta bem dados que não são linearmente separáveis, como os da
+base em questão.
 
 ### Resultados obtidos com o modelo 2.
+**Base de Treinamento**
+O modelo foi treinado com dados balanceados via SMOTE, ajustando a proporção da classe minoritária ("sem vínculo") para 1:2 em relação à classe majoritária ("com vínculo"). Esse balanceamento foi essencial para evitar que o modelo aprendesse apenas os padrões da classe mais frequente.
+
+- Acurácia no conjunto de treinamento: 68,08%
+- Apesar de ter sido treinado em uma base balanceada, o modelo não atingiu uma acurácia extremamente alta, o que é esperado em SVMs com kernel RBF, já que o foco é minimizar erros de classificação próximos à margem de decisão. Isso também pode indicar que o modelo não está sofrendo overfitting.
+
+**Base de Teste**
+- O modelo foi avaliado em uma base original não balanceada, representando um cenário realista. Para melhorar a performance, foi feito um ajuste dinâmico do limiar de decisão, resultando no valor ideal de:
+- Melhor limiar de decisão: 0.53
+- Acurácia no conjunto de teste: 73,56%
+- Esse ajuste permitiu que o modelo mantivesse uma acurácia estável dentro da faixa desejada (70%–80%), mesmo com desequilíbrio nas classes.
+
+**Relatório de Classificação**
+| Classe          | Precisão | Revocação | F1-score | Suporte |
+|-----------------|----------|-----------|----------|---------|
+| Sem vínculo (0) | 0.64     | 0.10      | 0.17     | 366     |
+| Com vínculo (1) | 0.74     | 0.98      | 0.84     | 958     |
+
+- Precisão média ponderada: 0.71
+- F1-score médio ponderado: 0.66
+- Média macro (mais equilibrada): F1 = 0.51
+
+ Interpretação:
+- O modelo teve excelente desempenho para a classe "com vínculo", com recall de 98%. Porém, teve baixa capacidade de identificar corretamente a classe "sem vínculo", com apenas 10% de recall. 
+Isso revela que, mesmo com SMOTE e ajuste de limiar, a classe minoritária ainda é um desafio, o que é comum em problemas desbalanceados.
+
+**Ajuste de Hiperparâmetros**
+- O GridSearchCV foi aplicado para refinar os parâmetros do SVM, resultando na seguinte combinação ideal:
+| C = 50 |
+| Kernel = RBF |
+- Essa configuração ajuda a equilibrar a flexibilidade do modelo e sua penalização para erros, reforçando sua capacidade de aprendizado não linear.
 
 Matriz de Confusão:
 
@@ -580,10 +609,34 @@ Medidas de Performance:
 
 Os resultados demonstram que o modelo teve um bom desempenho geral, com alta revocação, o que indica que ele é eficiente em identificar os casos "Com vínculo". Porém, a baixa taxa de verdadeiros negativos (62 de 384) e o número grande de falsos positivos (322) sugerem que o modelo tem dificuldades em reconhecer corretamente os casos "Sem vínculo". Tal comportamento pode se dar por um desequilíbrio entre as classes na base de dados, favorecendo a classe majoritária.
 
+**Conclusão Parcial:**
+ O modelo SVM, com kernel RBF, apresentou desempenho estável e razoável, atingindo 73,56% de acurácia na base de teste. No entanto, sua performance para a classe minoritária ("sem vínculo") ainda foi limitada, mesmo após técnicas como SMOTE e ajuste de limiar.
+Recomenda-se:
+- Monitorar a estabilidade do modelo com múltiplas execuções
+devido à ausência de random_state. 
+- Explorar algoritmos alternativos (e.g., Random Forest ou XGBoost) para comparação. 
+- Coletar mais dados ou features para melhorar a discriminação entre classes, caso necessário.
+
+
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+Atributos mais importantes
+Como o modelo SVM não fornece importância direta dos atributos como uma árvore de decisão, usamos a interpretação com base nas variáveis utilizadas e seus efeitos observados nos resultados:
+- Idade
+- Nível de Ensino
+- Cor/Raça
 
+**Tendências identificadas pelo modelo:**
+
+- Idade mais alta e nível de ensino elevado → maior tendência a vínculo formal.
+- Cor/Raça (pretos, pardos, indígenas e amarelos) apresenta influência, mas com possíveis desigualdades detectadas na revocação (modelo acerta mais para quem já tem vínculo). 
+A classe com vínculo formal (1) foi muito melhor identificada que a classe sem vínculo (0), indicando tendência do modelo a prever vínculo formal na maioria dos casos.
+
+**Comportamento do modelo:**
+
+- Quando há perfil mais jovem com menor escolaridade, o modelo tem dificuldade em classificar como "sem vínculo", mesmo que isso seja verdadeiro.
+- Quando o perfil tem escolaridade mais alta, a chance de previsão correta como "com vínculo" aumenta bastante.
+- O modelo, mesmo com SMOTE, ainda tende a favorecer a classe majoritária (com vínculo), o que deve ser considerado em aplicações práticas.
 
 ## Análise comparativa dos modelos
 
