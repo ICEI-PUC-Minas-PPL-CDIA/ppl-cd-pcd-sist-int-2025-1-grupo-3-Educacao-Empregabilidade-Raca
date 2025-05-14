@@ -566,7 +566,9 @@ A interpretação das regras fornece insights robustos sobre os fatores associad
 
 
 ### Resultados obtidos com o modelo 2.
+
 Matriz de Confusão:
+
 A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:
 ![Matriz de Confusao 2](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
 
