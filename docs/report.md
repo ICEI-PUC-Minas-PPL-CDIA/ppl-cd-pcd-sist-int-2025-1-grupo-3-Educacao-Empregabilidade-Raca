@@ -566,8 +566,17 @@ A interpretação das regras fornece insights robustos sobre os fatores associad
 
 
 ### Resultados obtidos com o modelo 2.
+Matriz de Confusão:
+A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:
+![Matriz de Confusao 2](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
 
-Repita o passo anterior com os resultados do modelo 2.
+Medidas de Performance:
+- Acurácia: 72,89%  
+- Precisão: 73,71%  
+- Revocação (Recall): 96,06%  
+- F1-score: 83,47%
+
+Os resultados demonstram que o modelo teve um bom desempenho geral, com alta revocação, o que indica que ele é eficiente em identificar os casos "Com vínculo". Porém, a baixa taxa de verdadeiros negativos (62 de 384) e o número grande de falsos positivos (322) sugerem que o modelo tem dificuldades em reconhecer corretamente os casos "Sem vínculo". Tal comportamento pode se dar por um desequilíbrio entre as classes na base de dados, favorecendo a classe majoritária.
 
 ### Interpretação do modelo 2
 
