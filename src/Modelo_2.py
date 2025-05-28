@@ -358,3 +358,19 @@ plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
 plt.tight_layout()
 plt.show()
 
+
+# 17. Validação cruzada estratificada
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+
+# Configurar validação cruzada estratificada
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+# Reaplicar SMOTE com a melhor estratégia encontrada
+smote = SMOTE(sampling_strategy=best_strategy)
+X_train_balanced, y_train_balanced = smote.fit_resample(X_train_processed, y_train)
+
+# Avaliar o modelo com os melhores parâmetros
+scores = cross_val_score(best_model_smote, X_train_balanced, y_train_balanced, cv=cv, scoring='balanced_accuracy')
+
+print(f"\nValidação Cruzada - Acurácia Balanceada (média): {scores.mean():.2%}")
+print(f"Validação Cruzada - Desvio Padrão: {scores.std():.2%}")
