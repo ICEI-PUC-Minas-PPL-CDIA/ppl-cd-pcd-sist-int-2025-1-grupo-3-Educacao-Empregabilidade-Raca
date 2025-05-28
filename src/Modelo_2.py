@@ -74,13 +74,6 @@ thresholds = np.arange(0.45, 0.81, 0.01)
 best_threshold = 0.5
 best_accuracy = 0
 
-for thresh in thresholds:
-    y_pred_temp = (y_probs > thresh).astype(int)
-    accuracy = accuracy_score(y_test, y_pred_temp)
-    if 0.70 <= accuracy <= 0.80 and accuracy > best_accuracy:
-        best_accuracy = accuracy
-        best_threshold = thresh
-
 # Usar o melhor limiar encontrado
 y_pred = (y_probs > best_threshold).astype(int)
 
@@ -105,12 +98,51 @@ plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
 plt.tight_layout()
 plt.show()
 
-# 14. GridSearchCV para refinar parâmetros
+# 14. GridSearchCV expandido para otimização de hiperparâmetros
+from sklearn.model_selection import GridSearchCV
+
+# Definir o grid de parâmetros (reduzido)
 param_grid = {
-    'C': [20, 30, 40, 50],
-    'kernel': ['rbf'],
+    'C': [0.1, 1, 10, 30, 50, 100],
+    'gamma': ['scale', 'auto', 0.01, 0.1, 1],
+    'kernel': ['rbf']
 }
-grid = GridSearchCV(SVC(probability=True), param_grid, cv=5)
+
+# Configurar o GridSearchCV
+grid = GridSearchCV(
+    SVC(probability=True),
+    param_grid,
+    cv=5,
+    scoring='balanced_accuracy',
+    n_jobs=-1
+)
+
+# Ajustar o modelo
 grid.fit(X_train_balanced, y_train_balanced)
+
+# Exibir os melhores parâmetros e pontuação
 print("\nMelhores parâmetros encontrados pelo GridSearch:")
 print(grid.best_params_)
+print(f"Melhor pontuação (balanced accuracy): {grid.best_score_:.2%}")
+
+# Usar o melhor modelo para previsões
+best_model = grid.best_estimator_
+y_pred = best_model.predict(X_test_processed)
+
+# Avaliar o modelo otimizado
+acuracia_teste = accuracy_score(y_test, y_pred)
+print(f"Acurácia no Teste (modelo otimizado): {acuracia_teste:.2%}")
+print("\nRelatório de Classificação (modelo otimizado):")
+print(classification_report(y_test, y_pred))
+
+# Matriz de confusão para o modelo otimizado
+matriz = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Blues', cbar=False,
+            xticklabels=['Sem vínculo', 'Com vínculo'],
+            yticklabels=['Sem vínculo', 'Com vínculo'])
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
+plt.tight_layout()
+plt.show()
