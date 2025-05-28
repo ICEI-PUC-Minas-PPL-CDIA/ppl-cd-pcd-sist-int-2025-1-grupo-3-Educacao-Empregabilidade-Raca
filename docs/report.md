@@ -557,6 +557,7 @@ Medidas de Performance:
 - Revocação (Recall): 96,06%  
 - F1-score: 83,47%
 
+
 Os resultados demonstram que o modelo teve um bom desempenho geral, com alta revocação, o que indica que ele é eficiente em identificar os casos "Com vínculo". Porém, a baixa taxa de verdadeiros negativos (62 de 384) e o número grande de falsos positivos (322) sugerem que o modelo tem dificuldades em reconhecer corretamente os casos "Sem vínculo". Tal comportamento pode se dar por um desequilíbrio entre as classes na base de dados, favorecendo a classe majoritária.
 
 **Conclusão Parcial:**
@@ -604,6 +605,27 @@ O GridSearchCV foi novamente utilizado para refinar os parâmetros do SVM, resul
 | Kernel = RBF |
 
 Este novo ajuste proporcionou maior penalização a erros, aumentando a capacidade do modelo de identificar corretamente a classe minoritária, enquanto preservou sua flexibilidade para dados não linearmente separáveis.
+
+**Análise da Matriz de Confusão (pós otimização)**
+
+A matriz de confusão e a curva ROC geradas apresentaram a seguinte distribuição:
+
+![Matriz de Confusao 3](https://i.imgur.com/StSG3bL.png)
+![Curva ROC](https://i.imgur.com/BKAYJ3l.png)
+
+- Acurácia: 73.26%
+- Curva ROC (AUC): 0.55 → desempenho próximo ao aleatório.
+  
+**Medidas de Desempenho:**
+ Muitos falsos positivos: 336 casos "Sem vínculo" foram classificados incorretamente como "Com vínculo".
+Baixa taxa de verdadeiros negativos: apenas 38 casos "Sem vínculo" identificados corretamente.
+Alta taxa de verdadeiros positivos: modelo acertou 932 dos casos "Com vínculo".
+
+- Revocação (Recall): Muito alta para "Com vínculo".
+- F1-score: Próximo de 83%, semelhante a outra matriz.
+
+Os resultados mostram que o modelo teve uma boa capacidade de identificar os casos "Com vínculo", com baixa quantidade de falsos negativos (18). Contudo, apresentou dificuldade em identificar corretamente os casos "Sem vínculo", com uma alta quantidade de falsos positivos (336) e poucos verdadeiros negativos (38). Esse comportamento indica que o modelo favorece a classe majoritária, provavelmente em razão de um desbalanceamento entre as classes na base de dados. Além disso, a Curva ROC apresentou um AUC de 0.55, evidenciando uma baixa capacidade discriminativa, com desempenho próximo ao de um classificador aleatório.
+
 
 **Conclusão Parcial:**
 O modelo SVM, com kernel RBF, após otimização, apresentou desempenho mais estável e robusto, atingindo 77,12% de acurácia na base de teste. Sua capacidade de identificar a classe minoritária "sem vínculo" melhorou significativamente, embora ainda exista espaço para avanços.
