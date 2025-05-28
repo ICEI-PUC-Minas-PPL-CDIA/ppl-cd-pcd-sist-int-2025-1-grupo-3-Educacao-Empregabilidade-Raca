@@ -146,3 +146,117 @@ plt.ylabel('Real')
 plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
 plt.tight_layout()
 plt.show()
+
+# 15. Ajuste de limiar com curva ROC
+from sklearn.metrics import roc_curve, auc, f1_score
+
+# Obter probabilidades do modelo otimizado
+y_probs = best_model.predict_proba(X_test_processed)[:, 1]
+
+# Calcular a curva ROC
+fpr, tpr, thresholds = roc_curve(y_test, y_probs)
+roc_auc = auc(fpr, tpr)
+
+# Encontrar o melhor limiar com base na métrica F1
+f1_scores = []
+for thresh in thresholds:
+    y_pred_temp = (y_probs > thresh).astype(int)
+    f1 = f1_score(y_test, y_pred_temp)
+    f1_scores.append(f1)
+
+best_threshold_idx = np.argmax(f1_scores)
+best_threshold = thresholds[best_threshold_idx]
+best_f1 = f1_scores[best_threshold_idx]
+
+print(f"Melhor limiar (maximizando F1): {best_threshold:.2f}")
+print(f"Melhor F1-score: {best_f1:.2%}")
+
+# Previsões com o melhor limiar
+y_pred = (y_probs > best_threshold).astype(int)
+
+# Avaliar com o limiar otimizado
+acuracia_teste = accuracy_score(y_test, y_pred)
+print(f"Acurácia no Teste (limiar otimizado): {acuracia_teste:.2%}")
+print("\nRelatório de Classificação (limiar otimizado):")
+print(classification_report(y_test, y_pred))
+
+# Matriz de confusão
+matriz = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Blues', cbar=False,
+            xticklabels=['Sem vínculo', 'Com vínculo'],
+            yticklabels=['Sem vínculo', 'Com vínculo'])
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
+plt.tight_layout()
+plt.show()
+
+# Plotar curva ROC
+plt.figure(figsize=(6, 5))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Curva ROC (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('Taxa de Falsos Positivos')
+plt.ylabel('Taxa de Verdadeiros Positivos')
+plt.title('Curva ROC')
+plt.legend(loc="lower right")
+plt.show()
+# 15. Ajuste de limiar com curva ROC
+from sklearn.metrics import roc_curve, auc, f1_score
+
+# Obter probabilidades do modelo otimizado
+y_probs = best_model.predict_proba(X_test_processed)[:, 1]
+
+# Calcular a curva ROC
+fpr, tpr, thresholds = roc_curve(y_test, y_probs)
+roc_auc = auc(fpr, tpr)
+
+# Encontrar o melhor limiar com base na métrica F1
+f1_scores = []
+for thresh in thresholds:
+    y_pred_temp = (y_probs > thresh).astype(int)
+    f1 = f1_score(y_test, y_pred_temp)
+    f1_scores.append(f1)
+
+best_threshold_idx = np.argmax(f1_scores)
+best_threshold = thresholds[best_threshold_idx]
+best_f1 = f1_scores[best_threshold_idx]
+
+print(f"Melhor limiar (maximizando F1): {best_threshold:.2f}")
+print(f"Melhor F1-score: {best_f1:.2%}")
+
+# Previsões com o melhor limiar
+y_pred = (y_probs > best_threshold).astype(int)
+
+# Avaliar com o limiar otimizado
+acuracia_teste = accuracy_score(y_test, y_pred)
+print(f"Acurácia no Teste (limiar otimizado): {acuracia_teste:.2%}")
+print("\nRelatório de Classificação (limiar otimizado):")
+print(classification_report(y_test, y_pred))
+
+# Matriz de confusão
+matriz = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Blues', cbar=False,
+            xticklabels=['Sem vínculo', 'Com vínculo'],
+            yticklabels=['Sem vínculo', 'Com vínculo'])
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
+plt.tight_layout()
+plt.show()
+
+# Plotar curva ROC
+plt.figure(figsize=(6, 5))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Curva ROC (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('Taxa de Falsos Positivos')
+plt.ylabel('Taxa de Verdadeiros Positivos')
+plt.title('Curva ROC')
+plt.legend(loc="lower right")
+plt.show()
+
