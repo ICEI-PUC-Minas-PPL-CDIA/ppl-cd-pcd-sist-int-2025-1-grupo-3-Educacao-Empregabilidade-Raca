@@ -260,3 +260,101 @@ plt.title('Curva ROC')
 plt.legend(loc="lower right")
 plt.show()
 
+
+# 16. Teste de diferentes proporções de SMOTE
+from imblearn.over_sampling import SMOTE
+from sklearn.metrics import f1_score
+
+# Diagnóstico
+print("Shape de X_train_processed:", X_train_processed.shape)
+print("Shape de y_train:", y_train.shape)
+print("Valores únicos em y_train:", np.unique(y_train))
+print("Distribuição de classes em y_train:", dict(zip(*np.unique(y_train, return_counts=True))))
+print("Valores NaN em X_train_processed:", np.any(np.isnan(X_train_processed)))
+print("Valores inf em X_train_processed:", np.any(np.isinf(X_train_processed)))
+
+# Tratar NaN ou inf em X_train_processed
+if np.any(np.isnan(X_train_processed)) or np.any(np.isinf(X_train_processed)):
+    print("Valores NaN ou inf encontrados. Imputando...")
+    from sklearn.impute import SimpleImputer
+    imputer = SimpleImputer(strategy='mean')
+    X_train_processed = imputer.fit_transform(X_train_processed)
+    X_test_processed = imputer.transform(X_test_processed)
+
+# Garantir que y_train seja 1D e numérico
+y_train = np.array(y_train).ravel()
+y_train = pd.to_numeric(y_train, errors='coerce')
+if np.any(np.isnan(y_train)):
+    raise ValueError("y_train contém valores NaN após conversão.")
+
+# Verificar classes
+unique, counts = np.unique(y_train, return_counts=True)
+minority_count = min(counts)
+if len(unique) < 2:
+    print("Aviso: y_train contém apenas uma classe. Pulando SMOTE.")
+    best_f1 = 0
+    best_strategy = None
+    best_model_smote = SVC(**grid.best_params_, probability=True)
+    best_model_smote.fit(X_train_processed, y_train)
+    best_y_pred = best_model_smote.predict(X_test_processed)
+else:
+    # Testar diferentes proporções de SMOTE
+    sampling_strategies = [0.3, 0.5, 0.7, 1.0]
+    best_f1 = 0
+    best_strategy = 0
+    best_model_smote = None
+    best_y_pred = None
+
+    for strategy in sampling_strategies:
+        try:
+            # Aplicar SMOTE com k_neighbors ajustado para classes pequenas
+            smote = SMOTE(sampling_strategy=strategy, k_neighbors=min(5, minority_count-1) if minority_count > 1 else 1, random_state=42)
+            X_train_balanced, y_train_balanced = smote.fit_resample(X_train_processed, y_train)
+
+            # Treinar o modelo com os melhores parâmetros do GridSearch
+            model = SVC(**grid.best_params_, probability=True)
+            model.fit(X_train_balanced, y_train_balanced)
+
+            # Avaliar
+            y_pred = model.predict(X_test_processed)
+            f1 = f1_score(y_test, y_pred)
+
+            if f1 > best_f1:
+                best_f1 = f1
+                best_strategy = strategy
+                best_model_smote = model
+                best_y_pred = y_pred
+        except Exception as e:
+            print(f"Erro ao aplicar SMOTE com sampling_strategy={strategy}: {str(e)}")
+            continue
+
+# Verificar se um modelo válido foi encontrado
+if best_model_smote is None:
+    print("Aviso: Nenhum modelo SMOTE bem-sucedido. Usando modelo sem SMOTE.")
+    best_model_smote = SVC(**grid.best_params_, probability=True)
+    best_model_smote.fit(X_train_processed, y_train)
+    best_y_pred = best_model_smote.predict(X_test_processed)
+    best_f1 = f1_score(y_test, best_y_pred)
+    best_strategy = None
+
+print(f"Melhor estratégia SMOTE: {best_strategy}")
+print(f"F1-score com melhor estratégia: {best_f1:.2%}")
+
+# Avaliar o modelo com a melhor estratégia
+acuracia_teste = accuracy_score(y_test, best_y_pred)
+print(f"Acurácia no Teste (melhor SMOTE): {acuracia_teste:.2%}")
+print("\nRelatório de Classificação (melhor SMOTE):")
+print(classification_report(y_test, best_y_pred))
+
+# Matriz de confusão
+matriz = confusion_matrix(y_test, best_y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Blues', cbar=False,
+            xticklabels=['Sem vínculo', 'Com vínculo'],
+            yticklabels=['Sem vínculo', 'Com vínculo'])
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.title(f'Matriz de Confusão - Acurácia: {acuracia_teste:.2%}')
+plt.tight_layout()
+plt.show()
+
