@@ -52,7 +52,7 @@ print("Shape de y:", y.shape)
 print("Valores únicos em y:", np.unique(y))
 
 # 8. Dividir em treino e teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # 9. Aplicar pré-processamento ao conjunto de treino
 X_train_processed = preprocessor.fit_transform(X_train)
@@ -63,7 +63,7 @@ smote = SMOTE(sampling_strategy=0.5)  # Ajustado para 0.5 (1:2)
 X_train_balanced, y_train_balanced = smote.fit_resample(X_train_processed, y_train)
 
 # 11. Treinar o modelo SVM
-svm_model = SVC(kernel='rbf', C=30, probability=True)
+svm_model = SVC(kernel='rbf', 'linear', 'poly', C=30, probability=True)
 svm_model.fit(X_train_balanced, y_train_balanced)
 
 # 12. Fazer previsões com ajuste dinâmico de limiar
@@ -103,9 +103,9 @@ from sklearn.model_selection import GridSearchCV
 
 # Definir o grid de parâmetros (reduzido)
 param_grid = {
-    'C': [0.1, 1, 10, 30, 50, 100],
+    'C': [10, 20, 30, 40, 50 ],
     'gamma': ['scale', 'auto', 0.01, 0.1, 1],
-    'kernel': ['rbf']
+    'kernel': ['rbf', 'linear', 'poly']
 }
 
 # Configurar o GridSearchCV
