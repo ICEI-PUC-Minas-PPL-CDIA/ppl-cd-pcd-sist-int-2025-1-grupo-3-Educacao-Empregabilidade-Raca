@@ -42,17 +42,12 @@ for col, categories in zip(categorical_cols, ohe.categories_):
 print("🎯 Distribuição antes do SMOTE:")
 print(y.value_counts(normalize=True).rename({0: 'Não Formal', 1: 'Formal'}))
 
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2)
+
 sm = SMOTE()
 X_res, y_res = sm.fit_resample(X, y)
 print("\n🎯 Distribuição após o SMOTE:")
 print(y_res.value_counts(normalize=True).rename({0: 'Não Formal', 1: 'Formal'}))
-
-adasyn = ADASYN()
-X_res_ada, y_res_ada = adasyn.fit_resample(X, y)
-print("\n🔄 Balanceamento com ADASYN:")
-print(y_res_ada.value_counts(normalize=True))
-
-X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2)
 
 # Grade de hiperparâmetros
 param_dist_rf = {
