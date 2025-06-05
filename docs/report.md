@@ -287,231 +287,230 @@ Essa complementaridade entre percepções individuais e dados oficiais fortalece
 - Visualização da matriz de confusão com `seaborn`.
 - Exportação da árvore de decisão como imagem de alta resolução (40x20 polegadas, 300 DPI)
 
-## Indução de modelos
+### Indução de modelos
 
-### Modelo 1: Árvore de Decisão
+## Modelo 1: Random Forest
 
-Escolha do Algoritmo:
-O algoritmo escolhido foi o de Árvore de Decisão (Decision Tree Classifier). Esta escolha se justifica por se tratar de um modelo interpretável e explicável, especialmente adequado para problemas de classificação binária como o proposto neste projeto: prever a existência ou não de vínculo formal de trabalho com base em atributos sociodemográficos e de formação profissional. Árvores de decisão permitem visualização clara das regras de decisão, tornando o modelo acessível até mesmo para públicos não técnicos.
+Este relatório descreve a construção, otimização, análise e interpretação do primeiro modelo de classificação utilizado para prever o vínculo formal no mercado de trabalho com base em dados combinados da pesquisa (Kaggle) e do sistema CAGED 2023.
+O algoritmo escolhido foi o de Random Forest Classifier, uma técnica baseada na combinação de múltiplas árvores de decisão. Esta escolha se justifica por ser um modelo robusto, eficiente e capaz de lidar bem com conjuntos de dados que possuem variáveis tanto categóricas quanto numéricas, além de ser menos suscetível ao overfitting em relação a modelos simples como uma única árvore de decisão. Considerando a pergunta orientada a dados, o Random Forest se mostra particularmente adequado, pois permite identificar os fatores que mais influenciam na obtenção de vínculos formais. Além disso, o modelo oferece uma análise clara da importância das variáveis, contribuindo para entender quais características estão mais associadas ao acesso dessas populações a melhores condições no mercado formal de trabalho. A robustez e a capacidade explicativa do Random Forest tornam-no uma escolha coerente tanto do ponto de vista estatístico quanto social, especialmente em análises que buscam evidenciar desigualdades e orientar políticas de inclusão.
 
 
-Seleção de atributos e separação dos dados:
-Na etapa de preparação dos dados, a variável-alvo definida foi vinculo_formal, representando a classificação binária entre vínculos formais e não formais de trabalho. As variáveis preditoras (X) foram obtidas a partir da exclusão de vinculo_formal e situacao_trabalho, sendo esta última removida para evitar data leakage, dado seu potencial de correlação direta com a variável-alvo.
+### _Seleção de atributos e separação dos dados:_
+Na etapa de preparação dos dados, a variável-alvo definida foi vinculo_formal, representando a classificação binária entre vínculos formais e não formais de trabalho. As variáveis preditoras (X) foram selecionadas a partir da exclusão das colunas vinculo_formal e situacao_trabalho, sendo esta última removida com o objetivo de evitar data leakage, devido à sua alta correlação com a variável-alvo. As variáveis categóricas presentes em X foram identificadas automaticamente com base no tipo object e, posteriormente, transformadas em variáveis binárias por meio de One-Hot Encoding, utilizando o OneHotEncoder da biblioteca scikit-learn com os parâmetros sparse_output=False e handle_unknown='ignore'. Esse processo garantiu que o dataset fosse convertido para um formato numérico, compatível com os algoritmos de machine learning. Não foi aplicada uma etapa manual de seleção de atributos. Em vez disso, todas as variáveis disponíveis, tanto numéricas quanto categóricas codificadas, foram mantidas no modelo. 
 
-As variáveis categóricas presentes em X foram identificadas automaticamente com base em seu tipo (object) e, em seguida, transformadas via codificação One-Hot Encoding utilizando o OneHotEncoder do sklearn, com os parâmetros sparse_output=False e handle_unknown='ignore'. Esse processo gerou colunas binárias para cada categoria observada nas variáveis categóricas, convertendo o conjunto de dados para um formato totalmente numérico, compatível com os algoritmos de machine learning.
 
-Não foi realizada uma etapa explícita de seleção de atributos (feature selection) neste pipeline. Em vez disso, todos os atributos numéricos (originais e codificados) foram mantidos no modelo. A escolha do classificador Random Forest se justifica, em parte, por sua robustez diante de um grande número de variáveis, bem como sua capacidade de estimar automaticamente a importância relativa de cada atributo durante o processo de treinamento, utilizando critérios como a redução da impureza (Gini ou entropia) em cada nó da árvore.
+_Amostragem dos Dados:_
 
-Amostragem de Dados:
-O conjunto de dados foi balanceado utilizando a técnica de oversampling SMOTE (Synthetic Minority Over-sampling Technique) para corrigir o desequilíbrio entre as classes "formal" e "não formal". Em seguida, os dados foram divididos em conjunto de treino (80%) e teste (20%) utilizando a função `train_test_split` da biblioteca scikit-learn. A base balanceada foi dividida em 80% para treino e 20% para teste, totalizando:
-- 7.500 registros após o balanceamento com SMOTE
-- 6.000 registros no conjunto de treino
-- 1.500 registros no conjunto de teste
+Devido ao desequilíbrio observado entre as classes "formal" e "não formal", foi aplicada a técnica de oversampling SMOTE (Synthetic Minority Over-sampling Technique), que gera amostras sintéticas da classe minoritária, a fim de balancear o conjunto de dados. Após o balanceamento, a base de dados foi dividida em dois subconjuntos, utilizando a função train_test_split do scikit-learn, sendo:
 
-Parâmetros do Modelo:
-- `max_depth=5` — limite de profundidade para evitar overfitting e facilitar interpretação visual.
-- `random_state=42` — garante reprodutibilidade.
-- Critério padrão de divisão: índice Gini (implícito no scikit-learn).
 
-Trechos do Código Comentado:
-```
-python
+- 80% para treino
+- 20% para teste
 
-# Aplicação do SMOTE para balanceamento
+
+_Ajuste de Hiperparâmetros e Configuração do Modelo_
+O modelo Random Forest foi ajustado utilizando a busca aleatória de hiperparâmetros via RandomizedSearchCV, que permite testar múltiplas combinações de parâmetros de forma eficiente. A grade de busca incluiu variações nos seguintes parâmetros:
+
+-n_estimators: quantidade de árvores na floresta (50, 100, 200)
+
+-max_depth: profundidade máxima das árvores (5, 10, None)
+
+-min_samples_split: número mínimo de amostras para dividir um nó (2, 5, 10)
+
+-max_features: número de variáveis consideradas na divisão dos nós ('sqrt', 'log2', None)
+
+-bootstrap: utilização ou não do bootstrap (True, False)
+
+
+O melhor modelo foi selecionado com base na métrica de acurácia, utilizando validação cruzada com 5 folds.
+
+_Trechos do Código Comentado:_
+
+
+```# Aplicação do SMOTE para balanceamento
 sm = SMOTE(random_state=42)
 X_res, y_res = sm.fit_resample(X, y)
 
 # Divisão treino/teste
 X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2, random_state=42)
 
+# Ajuste de hiperparâmetros com RandomizedSearchCV
+random_search_rf = RandomizedSearchCV(
+    estimator=RandomForestClassifier(random_state=42),
+    param_distributions=param_dist_rf,
+    n_iter=30,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=1
+)
+
 # Treinamento do modelo
-modelo = DecisionTreeClassifier(max_depth=5, random_state=42)
-modelo.fit(X_train, y_train)
+random_search_rf.fit(X_train, y_train)
+modelo = random_search_rf.best_estimator_
 
 # Predição
 y_pred = modelo.predict(X_test)
 ```
-Ferramentas Gráficas:
-Foram utilizados:
-- `plot_tree` para visualização gráfica da árvore de decisão
-- `seaborn.heatmap` para a matriz de confusão
-- `matplotlib` para ajuste de layout e exportação da imagem em alta resolução
+_Ferramentas Gráficas Utilizadas:_
 
-# Modelo 1 – Random Forest (Versão Final)
+Foram aplicadas diferentes ferramentas para a análise visual dos resultados e interpretação do modelo:
 
-Este relatório descreve detalhadamente a construção, otimização, análise e interpretação do primeiro modelo de classificação utilizado para prever o vínculo formal no mercado de trabalho com base em dados combinados da pesquisa (Kaggle) e do sistema CAGED 2023. A técnica de Random Forest foi adotada por sua robustez, interpretabilidade e bom desempenho preditivo.
 
----
+-seaborn.heatmap — para construção da matriz de confusão, permitindo avaliar visualmente os acertos e erros do modelo.
 
-## Etapa 1: Instalação da Biblioteca
+-plot_tree — utilizado para plotar uma das árvores que compõem a Random Forest, com o objetivo de ilustrar graficamente parte da lógica de decisão.
 
-Antes de começar a aplicação das técnicas de balanceamento, é necessário instalar bibliotecas adicionais que não fazem parte da instalação padrão do Python.
+-matplotlib — aplicada para personalização dos gráficos, ajustes de layout e exportação das imagens em alta resolução.
 
-```bash
-!pip install imbalanced-learn
+-Curva ROC (Receiver Operating Characteristic) — construída com auxílio do matplotlib e funções da sklearn.metrics, permitindo avaliar a performance do modelo em termos de sensibilidade e especificidade.
+
+
+### Etapas do Processo
+1. Carregamento dos Dados
+
 ```
-
-Essa linha instala a biblioteca imbalanced-learn, que inclui ferramentas como SMOTE e ADASYN, utilizadas para balanceamento de classes desiguais na variável alvo.
-
-## Etapa 2: Importações
-
-Nesta etapa, são carregadas todas as bibliotecas necessárias para manipulação, visualização de dados, modelagem preditiva e avaliação de desempenho do modelo.
-
-Importações principais:
-- pandas, numpy: manipulação e estruturação de dados
-- sklearn: ferramentas de modelagem, validação e métricas
-- SMOTE, ADASYN: técnicas para balancear dados desbalanceados
-- matplotlib, seaborn: bibliotecas de visualização gráfica
-- io, files: suporte ao carregamento de arquivos no Google Colab
-
-## Etapa 3: Upload da Base de Dados
-
-Nesta etapa, a base final combinada e tratada foi carregada no ambiente.
-
-**Arquivo utilizado:**
-`base_final_combinada_kaggle_caged_corrigida_ok.csv`
-
-Essa base contém dados de respondentes da pesquisa combinados com atributos do sistema CAGED, incluindo dados sociodemográficos, profissionais e histórico de vínculos empregatícios.
-
-## Etapa 4: Tratamento de Valores Ausentes
-
-Como parte da limpeza dos dados, os valores nulos foram substituídos por -1 para evitar falhas na execução do modelo.
-
-```python
-df = df.fillna(-1)
+uploaded = files.upload()
+df = pd.read_csv(io.BytesIO(uploaded[file_name]))
+Faz o upload do arquivo base_final_combinada_kaggle_caged_corrigida_ok.csv e carrega no Pandas.
 ```
+2. Tratamento de Dados
 
-## Etapa 5: Separação das Variáveis X e y
+```df = df.fillna(-1)```
+Substitui valores nulos por -1 para evitar erros no modelo.
 
-A separação entre X e y define quais atributos serão usados como preditores e qual será a variável alvo.
+3. Separação de Variáveis
 
-```python
-X = df.drop(columns=['vinculo_formal', 'situacao_trabalho'])
+```
+ X = df.drop(columns=['vinculo_formal', 'situacao_trabalho'])
 y = df['vinculo_formal']
 ```
+X: dados de entrada (características). 
 
-X inclui todas as variáveis independentes (ex: idade, raça, escolaridade, faixa salarial, forma de contratação, entre outras variáveis sociodemográficas e profissionais).
+y: variável alvo (vínculo formal — 0 ou 1).
 
-y representa a variável que queremos prever: `vinculo_formal`, sendo:
-- 1 para indivíduo com vínculo formal
-- 0 para indivíduo sem vínculo formal
+4. Codificação de Variáveis Categóricas
+ 
+```OneHotEncoder(...)```
 
-A variável `situacao_trabalho`, por ser derivada diretamente de `vinculo_formal`, foi removida para evitar vazamento de dados no modelo.
+As variáveis categóricas são transformadas em números, criando colunas binárias (0 ou 1) para cada categoria. Isso permite que o modelo consiga interpretar essas variáveis.
 
-## Etapa 6: Codificação de Variáveis Categóricas
-
-As colunas com valores textuais (como “sexo”, “escolaridade”, “região”) foram transformadas em valores numéricos por meio de LabelEncoder, garantindo compatibilidade com algoritmos de machine learning.
-
-## Etapa 7: Balanceamento das Classes
-
-Para evitar que o modelo aprenda de forma enviesada devido ao desbalanceamento entre as classes "com vínculo" e "sem vínculo", foram aplicadas técnicas de oversampling.
-
-### 7.1 - Verificação da Distribuição Original
-
-Antes de aplicar o SMOTE, foi verificada a proporção das classes. Observou-se um número significativamente maior de pessoas com vínculo formal.
-
-### 7.2 - Aplicação do SMOTE
-
-```python
-X_res, y_res = sm.fit_resample(X, y)
+5. Balanceamento dos Dados (SMOTE)
 ```
+sm = SMOTE()
+X_res, y_res = sm.fit_resample(X, y)}
+```
+O SMOTE cria registros sintéticos para balancear as classes, já que existia mais pessoas sem vínculo formal do que com.
 
-O SMOTE (Synthetic Minority Oversampling Technique) cria novos exemplos sintéticos da classe minoritária para balancear a base, sem apenas replicar os existentes.
+**_Criação e Otimização do Modelo (Random Forest)_**
+6. Divisão dos Dados
+```
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2)
+```
+Separa 80% dos dados para treino e 20% para teste.
 
-### 7.3 - Verificação da Distribuição Após SMOTE
+7. Otimização de Hiperparâmetros
+```
+RandomizedSearchCV(...)
+```
+Testa combinações de parâmetros como:
 
-Confirmou-se a uniformização das classes: 50% formal e 50% não formal.
+- n_estimators: número de árvores na floresta.
+- max_depth: profundidade máxima das árvores.
+- min_samples_split: mínimo de amostras para dividir um nó.
+- max_features: número de features considerado em cada divisão.
 
-### 7.4 - Alternativa com ADASYN
+8. Treinamento
+```
+random_search_rf.fit(X_train, y_train)
+```
+Encontra o melhor modelo e treina os dados.
 
-Foi também aplicada a técnica ADASYN, que gera dados sintéticos com foco em regiões de maior complexidade de decisão. Apesar disso, a versão final do modelo foi induzida com SMOTE, que apresentou melhor equilíbrio visual e desempenho.
+**_Avaliação do Modelo_**
 
-## Modelo Final: Random Forest com Otimização
+9. Métricas
+```
+accuracy_score, confusion_matrix, classification_report
+```
+Mede o desempenho com:
+- Acurácia no treino e teste.
+- Matriz de Confusão.
 
-O modelo final foi construído com o algoritmo Random Forest, que combina várias árvores de decisão para melhorar a precisão e reduzir o risco de overfitting.
+Precisão, Recall e F1-Score para cada classe.
 
-Foi utilizado o RandomizedSearchCV para otimização automática dos seguintes hiperparâmetros:
-- n_estimators
-- max_depth
-- min_samples_split
-- max_features
-- bootstrap
+10. Curva ROC
+```
+roc_curve, auc
+```
+Avalia a capacidade do modelo em diferenciar as classes. A área sob a curva (AUC) indica a qualidade (quanto mais perto de 1, melhor).
 
-Essa etapa garantiu que o modelo tivesse o melhor desempenho possível dentro das combinações testadas.
+_**Visualização da Árvore**_
+```
+plot_tree(modelo.estimators_[0])
+```
+Mostra uma das árvores da floresta para entender as regras de decisão que o modelo aprendeu.
 
-## Resultados do Modelo Final
+_**Resultados Principais**_
 
-Esta seção apresenta os resultados quantitativos do modelo treinado com SMOTE e Random Forest.
 
-| Métrica              | Valor   |
-|----------------------|---------|
-| Acurácia (treino)    | 99,28%  |
-| Acurácia (teste)     | 87,27%  |
-| F1-score médio       | 0,87    |
+**Visualização da Árvore de Decisão**
 
-Esses resultados demonstram um excelente desempenho do modelo. A diferença entre treino e teste indica que, embora o modelo memorize bem os dados de treino, ainda generaliza satisfatoriamente para dados novos.
+A figura apresentada corresponde à árvore de decisão gerada pelo modelo Random Forest, limitada em profundidade para fins de visualização e interpretação. A árvore ilustra como o modelo realiza as divisões sequenciais nas variáveis, com o objetivo de classificar os vínculos como formal ou não formal:
 
-## Métricas Detalhadas (Base de Teste)
+![arvore](https://i.imgur.com/n3rROCG.jpeg)
 
-A tabela a seguir apresenta as principais métricas de avaliação para as duas classes previstas:
+-Cada nó da árvore representa uma decisão baseada em um atributo do conjunto de dados (ex.: escolaridade, faixa salarial, área de atuação, entre outros). As divisões são feitas de forma a maximizar a separação entre as classes, utilizando como critério a redução da impureza (Índice Gini). As cores dos nós indicam a predominância da classe:
 
-| Classe       | Precisão | Revocação | F1-score | Suporte |
-|--------------|----------|-----------|----------|---------|
-| Não Formal   | 0.92     | 0.82      | 0.87     | 748     |
-| Formal       | 0.84     | 0.93      | 0.88     | 752     |
-| Acurácia     | -        | -         | 0.8727   | 1500    |
+- Azul: predominância da classe "Formal".
 
-As métricas indicam que o modelo está bem balanceado entre as classes, com uma leve tendência a prever corretamente vínculos formais. Ambos os grupos têm valores de precisão e recall acima de 80%, o que mostra qualidade preditiva em diferentes perfis de trabalhadores.
+- Laranja: predominância da classe "Não Formal".
 
-## Matriz de Confusão
 
-A matriz de confusão detalha os acertos e erros cometidos pelo modelo na base de teste.
+-Nos _nós_ terminais (folhas), são apresentados:
 
-|                       | Previsto: Não Formal | Previsto: Formal |
-|-----------------------|----------------------|------------------|
-| Real: Não Formal      | 6581                 | 1783             |
-| Real: Formal          | 2335                 | 6391             |
+-O número total de amostras que chegaram até aquele nó.
 
-- VP (Formal corretamente previsto): 6391
-- VN (Não Formal corretamente previsto): 6581
-- FP (Formal previsto incorretamente): 1783
-- FN (Não Formal previsto incorretamente): 2335
+-A distribuição das classes naquele ponto.
 
-## Interpretação do Modelo
+-A classe atribuída como resultado da classificação.
 
-### Atributos Mais Importantes
+-**Principais insights observados:**
+A árvore revela que algumas variáveis possuem maior poder discriminativo, aparecendo nos níveis superiores da árvore, ou seja, são usadas nas primeiras divisões. Isso reforça a importância relativa dessas variáveis para a decisão, o que também é consistente com a análise de importância dos atributos feita internamente pelo Random Forest.
 
-A partir da função `feature_importances_`, foram destacados os seguintes atributos como mais relevantes para a decisão do modelo:
-- Faixa Salarial
-- Idade
-- Participação em Entrevistas
-- Critérios para Escolher onde Trabalhar
-- Grau de Insatisfação no Trabalho
+**-Limitações da Interpretação:**
+A árvore visualizada representa uma única árvore do conjunto Random Forest, que, por ser um modelo de ensemble, combina centenas de árvores para realizar suas previsões. Portanto, essa árvore isolada não representa todo o processo decisório do modelo, mas ajuda na compreensão dos padrões que ele aprende.
+Além disso, devido às restrições de profundidade impostas para melhorar a visualização, parte da complexidade real da árvore foi simplificada.
 
-Estes atributos têm alta correlação com vínculos empregatícios formais, refletindo aspectos econômicos, comportamentais e estruturais da realidade brasileira.
 
-### Regras da Primeira Árvore
+**Matriz de Confusão**: Permite ver onde o modelo acerta e onde erra (confunde as classes):
 
-Exemplos de raciocínio extraído da primeira árvore da floresta:
-- Se faixa salarial é baixa e idade jovem, o modelo tende a classificar como “Não Formal”.
-- Se a faixa salarial é alta, a idade é média e houve participação recente em entrevistas, tende a prever como “Formal”.
+![matriz](https://i.imgur.com/WLoAd4y.jpeg)
 
-## Conclusão
+A matriz de confusão gerada permite avaliar o desempenho do modelo na tarefa de classificação binária entre vínculos formais e não formais. Observa-se que:
 
-O modelo final, baseado em Random Forest e treinado com dados balanceados via SMOTE, demonstrou-se altamente eficaz para o propósito de prever a existência de vínculo formal com base em atributos sociodemográficos e profissionais.
+-O modelo classificou corretamente 703 casos como "Formal" e 175 como "Não Formal".
 
-A precisão e estabilidade do modelo o tornam aplicável em contextos reais, como diagnósticos institucionais, políticas públicas de empregabilidade ou ferramentas preditivas em processos seletivos. A utilização de técnicas como codificação de variáveis, otimização de hiperparâmetros e balanceamento supervisionado contribuiu significativamente para sua robustez.
+-Ocorreram 41 falsos negativos (indivíduos com vínculo formal que foram classificados como não formal).
 
-Além de sua performance preditiva, o modelo oferece boa interpretabilidade, evidenciada pelas regras geradas pelas árvores e pelo destaque de variáveis coerentes com a realidade do mercado de trabalho. Isso o qualifica tanto para uso técnico quanto estratégico.
+-E um total de 140 falsos positivos (indivíduos sem vínculo formal classificados incorretamente como formal).
 
-# Modelo 2 : Algoritmo
-Nesta fase, foi utilizado o modelo SVM (Support Vector Machine) com kernel
-RBF, escolhido pelas seguintes razões:
-• É um modelo eficaz para problemas de classificação binária.
-• Tem bom desempenho em bases com margens de separação entre as
-classes.
-• Suporta bem dados que não são linearmente separáveis, como os da
-base em questão.
+_Este resultado evidencia que o modelo apresenta uma maior capacidade de identificar corretamente os vínculos formais, mas encontra dificuldade em classificar com precisão os casos de não vínculo formal, o que é típico em cenários com dados desbalanceados ou quando uma das classes possui características mais homogêneas e fáceis de aprender._
+
+
+**Curva ROC**: Mostra se o modelo diferencia bem quem tem ou não vínculo formal.
+
+![curva](https://i.imgur.com/fu3c6Jt.jpeg)
+
+A Curva ROC apresenta uma área sob a curva (AUC) de 0,85, o que indica um desempenho considerado bom a muito bom. A AUC reflete a capacidade do modelo em diferenciar as classes:
+
+-Quanto mais a curva se aproxima do canto superior esquerdo, melhor é o desempenho do classificador.
+
+-Uma AUC de 0,85 significa que há 85% de chance de o modelo classificar corretamente um exemplo aleatório da classe positiva em relação a um da classe negativa.
+
+_Portanto, o modelo apresenta uma boa sensibilidade e especificidade, conseguindo equilibrar bem a taxa de verdadeiros positivos e falsos positivos, apesar dos erros observados na matriz de confusão._
+
+
+**_Considerações Finais sobre os Resultados_**
+-O modelo demonstra ser mais eficiente na previsão de vínculos formais, o que pode ser interessante para a análise do mercado de trabalho formalizado. Entretanto, há uma tendência a classificar excessivamente como "Formal", evidenciado pelo número relativamente alto de falsos positivos. A boa AUC (0,85) valida o modelo como uma ferramenta robusta para análise, embora melhorias possam ser buscadas, seja através de ajuste de hiperparâmetros, seja explorando outros modelos ou técnicas de balanceamento de dados.
 
 ### Resultados obtidos com o modelo 2.
 **Base de Treinamento**
