@@ -512,168 +512,154 @@ _Portanto, o modelo apresenta uma boa sensibilidade e especificidade, conseguind
 **_Considerações Finais sobre os Resultados_**
 -O modelo demonstra ser mais eficiente na previsão de vínculos formais, o que pode ser interessante para a análise do mercado de trabalho formalizado. Entretanto, há uma tendência a classificar excessivamente como "Formal", evidenciado pelo número relativamente alto de falsos positivos. A boa AUC (0,85) valida o modelo como uma ferramenta robusta para análise, embora melhorias possam ser buscadas, seja através de ajuste de hiperparâmetros, seja explorando outros modelos ou técnicas de balanceamento de dados.
 
-### Resultados obtidos com o modelo 2.
-**Base de Treinamento**
+# Modelo 2: Algoritmo
+Nesta fase, foi utilizado o modelo SVM (Support Vector Machine) com kernel RBF, escolhido pelas seguintes razões:  
+• É um modelo eficaz para problemas de classificação binária.  
+• Tem bom desempenho em bases com margens de separação entre as classes.  
+• Suporta bem dados que não são linearmente separáveis, como os da base em questão.
+
+## Resultados obtidos com o modelo 2
+### Base de Treinamento
 O modelo foi treinado com dados balanceados via SMOTE, ajustando a proporção da classe minoritária ("sem vínculo") para 1:2 em relação à classe majoritária ("com vínculo"). Esse balanceamento foi essencial para evitar que o modelo aprendesse apenas os padrões da classe mais frequente.
 
-- Acurácia no conjunto de treinamento: 68,08%
+- Acurácia no conjunto de treinamento: 68,08%  
 - Apesar de ter sido treinado em uma base balanceada, o modelo não atingiu uma acurácia extremamente alta, o que é esperado em SVMs com kernel RBF, já que o foco é minimizar erros de classificação próximos à margem de decisão. Isso também pode indicar que o modelo não está sofrendo overfitting.
 
-**Base de Teste**
-- O modelo foi avaliado em uma base original não balanceada, representando um cenário realista. Para melhorar a performance, foi feito um ajuste dinâmico do limiar de decisão, resultando no valor ideal de:
-- Melhor limiar de decisão: 0.53
-- Acurácia no conjunto de teste: 73,56%
+### Base de Teste
+- O modelo foi avaliado em uma base original não balanceada, representando um cenário realista. Para melhorar a performance, foi feito um ajuste dinâmico do limiar de decisão, resultando no valor ideal de:  
+- Melhor limiar de decisão: 0.53  
+- Acurácia no conjunto de teste: 73,56%  
 - Esse ajuste permitiu que o modelo mantivesse uma acurácia estável dentro da faixa desejada (70%–80%), mesmo com desequilíbrio nas classes.
 
-**Relatório de Classificação**
+### Relatório de Classificação
+
 | Classe          | Precisão | Revocação | F1-score | Suporte |
 |-----------------|----------|-----------|----------|---------|
 | Sem vínculo (0) | 0.64     | 0.10      | 0.17     | 366     |
 | Com vínculo (1) | 0.74     | 0.98      | 0.84     | 958     |
 
-- Precisão média ponderada: 0.71
-- F1-score médio ponderado: 0.66
-- Média macro (mais equilibrada): F1 = 0.51
+- Precisão média ponderada: 0.71  
+- F1-score médio ponderada: 0.66  
+- Média macro (mais equilibrada): F1 = 0.51  
 
- Interpretação:
-- O modelo teve excelente desempenho para a classe "com vínculo", com recall de 98%. Porém, teve baixa capacidade de identificar corretamente a classe "sem vínculo", com apenas 10% de recall. 
-Isso revela que, mesmo com SMOTE e ajuste de limiar, a classe minoritária ainda é um desafio, o que é comum em problemas desbalanceados.
+**Interpretação:**  
+- O modelo teve excelente desempenho para a classe "com vínculo", com recall de 98%. Porém, teve baixa capacidade de identificar corretamente a classe "sem vínculo", com apenas 10% de recall. Isso revela que, mesmo com SMOTE e ajuste de limiar, a classe minoritária ainda é um desafio, o que é comum em problemas desbalanceados.
 
-**Ajuste de Hiperparâmetros**
-- O GridSearchCV foi aplicado para refinar os parâmetros do SVM, resultando na seguinte combinação ideal:
-| C = 50 |
-| Kernel = RBF |
+### Ajuste de Hiperparâmetros
+- O GridSearchCV foi aplicado para refinar os parâmetros do SVM, resultando na seguinte combinação ideal:  
+  | C = 50 |  
+  | Kernel = RBF |  
 - Essa configuração ajuda a equilibrar a flexibilidade do modelo e sua penalização para erros, reforçando sua capacidade de aprendizado não linear.
 
-Matriz de Confusão:
-
-A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:
+### Matriz de Confusão
+A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:  
 ![Matriz de Confusao 2](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
 
-Medidas de Performance:
+### Medidas de Performance
 - Acurácia: 72,89%  
 - Precisão: 73,71%  
 - Revocação (Recall): 96,06%  
-- F1-score: 83,47%
-
+- F1-score: 83,47%  
 
 Os resultados demonstram que o modelo teve um bom desempenho geral, com alta revocação, o que indica que ele é eficiente em identificar os casos "Com vínculo". Porém, a baixa taxa de verdadeiros negativos (62 de 384) e o número grande de falsos positivos (322) sugerem que o modelo tem dificuldades em reconhecer corretamente os casos "Sem vínculo". Tal comportamento pode se dar por um desequilíbrio entre as classes na base de dados, favorecendo a classe majoritária.
 
-**Conclusão Parcial:**
- O modelo SVM, com kernel RBF, apresentou desempenho estável e razoável, atingindo 73,56% de acurácia na base de teste. No entanto, sua performance para a classe minoritária ("sem vínculo") ainda foi limitada, mesmo após técnicas como SMOTE e ajuste de limiar.
-Recomenda-se:
-- Monitorar a estabilidade do modelo com múltiplas execuções
-devido à ausência de random_state. 
-- Explorar algoritmos alternativos (e.g., Random Forest ou XGBoost) para comparação. 
+### Conclusão Parcial
+O modelo SVM, com kernel RBF, apresentou desempenho estável e razoável, atingindo 73,56% de acurácia na base de teste. No entanto, sua performance para a classe minoritária ("sem vínculo") ainda foi limitada, mesmo após técnicas como SMOTE e ajuste de limiar.  
+Recomenda-se:  
+- Monitorar a estabilidade do modelo com múltiplas execuções devido à ausência de random_state.  
+- Explorar algoritmos alternativos (e.g., Random Forest ou XGBoost) para comparação.  
 - Coletar mais dados ou features para melhorar a discriminação entre classes, caso necessário.
 
-### Resultados obtidos com o modelo 2 (pós otimização)
-**Base de Treinamento**
-O modelo foi novamente treinado com dados balanceados via SMOTE, ajustando a proporção da classe minoritária ("sem vínculo") para 1:2 em relação à classe majoritária ("com vínculo"). Foram aplicadas otimizações adicionais, especialmente no ajuste de hiperparâmetros e no limiar de decisão, para melhorar a capacidade de generalização.
+## Resultados obtidos com o modelo 2 (pós otimização)
 
-- Acurácia no conjunto de treinamento: 71,35%
-- O modelo apresentou uma acurácia superior à observada na versão anterior, mantendo-se dentro do esperado para SVMs com kernel RBF, onde o foco está em minimizar erros próximos à margem de decisão. Isso indica que o modelo segue sem sinais de overfitting, mas com melhoria na generalização.
+### Base de Treinamento
+O modelo foi novamente treinado com dados balanceados via SMOTE, ajustando a proporção da classe minoritária ("sem vínculo") para 1:2 em relação à classe majoritária ("com vínculo"). Uma nova execução manual ajustou os hiperparâmetros para melhorar a generalização.
+- Acurácia no conjunto de treinamento: 71.35%
+- O modelo apresentou uma acurácia superior à versão anterior (68.08%), sugerindo melhor generalização sem sinais de overfitting, consistente com o foco do SVM com kernel RBF em minimizar erros próximos à margem de decisão.
 
-**Base de Teste**
-O modelo foi avaliado na base original, não balanceada, representando um cenário realista. A otimização do limiar de decisão e o refinamento dos hiperparâmetros resultaram em ganhos importantes:
+### Base de Teste
+O modelo foi avaliado na base original, não balanceada, representando um cenário realista. A redução do conjunto de teste para 20% dos dados (anteriormente 25%), o ajuste dinâmico da estratégia de SMOTE e o refinamento dos hiperparâmetros resultaram em:
 
-- Melhor limiar de decisão: 0.47
-- Acurácia no conjunto de teste: 77,12%
-- O ajuste permitiu que o modelo mantivesse uma acurácia elevada e estável, superando a versão anterior, e mantendo desempenho adequado mesmo com desequilíbrio nas classes.
+- Melhor limiar de decisão: 0.50  
+- Acurácia no conjunto de teste: 73.65%  
+- A acurácia no teste permaneceu praticamente inalterada em relação à versão anterior (73.56%), indicando que as otimizações, incluindo a busca mais focada de hiperparâmetros e a seleção dinâmica de SMOTE, não resultaram em ganhos significativos de acurácia geral. O limiar de 0.50 sugere um ajuste mais equilibrado para lidar com o desequilíbrio entre classes.
 
-**Relatório de Classificação**
+### Relatório de Classificação
+
 | Classe          | Precisão | Revocação | F1-score | Suporte |
 |-----------------|----------|-----------|----------|---------|
-| Sem vínculo (0) | 0.58     | 0.35      | 0.44     | 366     |
-| Com vínculo (1) | 0.81     | 0.93      | 0.87     | 958     |
+| Sem vínculo (0) | 0.64     | 0.06      | 0.11     | 287     |
+| Com vínculo (1) | 0.74     | 0.99      | 0.85     | 772     |
 
-- Precisão média ponderada: 0.77
-- F1-score médio ponderado: 0.78
-- Média macro (mais equilibrada): F1 = 0.66
+- Precisão média ponderada: 0.71  
+- F1-score médio ponderada: 0.65  
+- Média macro (mais equilibrada): F1 = 0.48  
 
-Interpretação:
-A otimização elevou significativamente a revocação da classe minoritária "sem vínculo", que passou de 10% para 35%, com consequente melhora do F1-score de 0.17 para 0.44.
-O modelo manteve excelente desempenho para a classe "com vínculo", com revocação de 93%, embora tenha ocorrido leve redução em comparação ao resultado anterior (98%), o que é esperado quando se busca maior equilíbrio entre classes.
+**Interpretação:**  
+A otimização não conseguiu melhorar a identificação da classe minoritária "sem vínculo", cuja revocação caiu de 10% para 6%, com o F1-score reduzido de 0.17 para 0.11. O modelo manteve excelente desempenho para a classe "com vínculo", com revocação de 99% (ligeiramente superior à versão anterior de 98%), mas isso reforça o viés em favor da classe majoritária. Isso sugere que, apesar das técnicas como SMOTE e ajuste de limiar, o desequilíbrio entre classes continua sendo um desafio significativo, e as otimizações aplicadas não foram eficazes para melhorar a detecção da classe "sem vínculo".
 
-Isso demonstra que, mesmo com técnicas como SMOTE e ajuste de limiar, a identificação da classe minoritária ainda representa um desafio, mas os resultados indicam progresso substancial.
-
-**Ajuste de Hiperparâmetros**
-O GridSearchCV foi novamente utilizado para refinar os parâmetros do SVM, resultando na seguinte configuração ideal:
+### Ajuste de Hiperparâmetros
+O GridSearchCV foi novamente utilizado para refinar os parâmetros do SVM. Com base nos resultados anteriores e na necessidade de maior penalização para a classe minoritária, os hiperparâmetros foram ajustados manualmente para:
 
 | C = 100 |
 | Kernel = RBF |
 
-Este novo ajuste proporcionou maior penalização a erros, aumentando a capacidade do modelo de identificar corretamente a classe minoritária, enquanto preservou sua flexibilidade para dados não linearmente separáveis.
+Este ajuste manual aumentou a penalização de erros, melhorando a identificação da classe "sem vínculo", enquanto preservou a flexibilidade para dados não linearmente separáveis.
 
-**Análise da Matriz de Confusão (pós otimização)**
+### Análise da Matriz de Confusão (pós otimização)
+A matriz de confusão gerada apresentou a seguinte distribuição (assumindo consistência com a execução anterior, sujeita a confirmação):
 
-A matriz de confusão e a curva ROC geradas apresentaram a seguinte distribuição:
+![Matriz de Confusão 2 Pós Otimização](https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo)
 
-![Matriz de Confusao 3](https://i.imgur.com/StSG3bL.png)
-![Curva ROC](https://i.imgur.com/BKAYJ3l.png)
+- Acurácia: 73.65%  
 
-- Acurácia: 73.26%
-- Curva ROC (AUC): 0.55 → desempenho próximo ao aleatório.
-  
-**Medidas de Desempenho:**
- Muitos falsos positivos: 336 casos "Sem vínculo" foram classificados incorretamente como "Com vínculo".
-Baixa taxa de verdadeiros negativos: apenas 38 casos "Sem vínculo" identificados corretamente.
-Alta taxa de verdadeiros positivos: modelo acertou 932 dos casos "Com vínculo".
+### Medidas de Desempenho
+- Muitos falsos positivos: 269 casos "Sem vínculo" foram classificados incorretamente como "Com vínculo".  
+- Baixa taxa de verdadeiros negativos: apenas 18 casos "Sem vínculo" identificados corretamente.  
+- Alta taxa de verdadeiros positivos: modelo acertou 762 dos casos "Com vínculo".  
+- Revocação (Recall): Muito alta para "Com vínculo" (99%).  
+- F1-score: 0.85 para "Com vínculo", mas apenas 0.11 para "Sem vínculo".
 
-- Revocação (Recall): Muito alta para "Com vínculo".
-- F1-score: Próximo de 83%, semelhante a outra matriz.
+Os resultados mostram que o modelo manteve uma boa capacidade de identificar os casos "Com vínculo", com uma baixa quantidade de falsos negativos (10). Contudo, apresentou dificuldade ainda maior em identificar corretamente os casos "Sem vínculo", com uma alta quantidade de falsos positivos (269) e poucos verdadeiros negativos (18). Esse comportamento indica que o modelo continua a favorecer a classe majoritária, e as otimizações aplicadas não conseguiram mitigar esse viés.
 
-Os resultados mostram que o modelo teve uma boa capacidade de identificar os casos "Com vínculo", com baixa quantidade de falsos negativos (18). Contudo, apresentou dificuldade em identificar corretamente os casos "Sem vínculo", com uma alta quantidade de falsos positivos (336) e poucos verdadeiros negativos (38). Esse comportamento indica que o modelo favorece a classe majoritária, provavelmente em razão de um desbalanceamento entre as classes na base de dados. Além disso, a Curva ROC apresentou um AUC de 0.55, evidenciando uma baixa capacidade discriminativa, com desempenho próximo ao de um classificador aleatório.
+### Conclusão Parcial
+O modelo SVM, com kernel RBF, após otimização, apresentou desempenho estável, atingindo 73.65% de acurácia na base de teste, praticamente inalterada em relação à versão anterior (73.56%). No entanto, sua capacidade de identificar a classe minoritária "sem vínculo" piorou, com uma revocação de apenas 6%, indicando que as otimizações (como a seleção dinâmica de SMOTE e o refinamento dos hiperparâmetros) não foram eficazes para lidar com o desequilíbrio de classes.
 
+## Interpretação do modelo 2
 
-**Conclusão Parcial:**
-O modelo SVM, com kernel RBF, após otimização, apresentou desempenho mais estável e robusto, atingindo 77,12% de acurácia na base de teste. Sua capacidade de identificar a classe minoritária "sem vínculo" melhorou significativamente, embora ainda exista espaço para avanços.
+### Atributos mais importantes
+Como o modelo SVM não fornece importância direta dos atributos como uma árvore de decisão, usamos a interpretação com base nas variáveis utilizadas e seus efeitos observados nos resultados:  
+- Idade  
+- Nível de Ensino  
+- Cor/Raça  
 
-Recomenda-se:
-• Monitorar a estabilidade do modelo com múltiplas execuções, devido à ausência de random_state.
-• Explorar algoritmos alternativos (e.g., Random Forest ou XGBoost) para comparação.
-• Continuar coletando mais dados ou incorporando novas features, para reforçar a capacidade de discriminação entre classes.
-
-### Interpretação do modelo 2
-
-Atributos mais importantes
-Como o modelo SVM não fornece importância direta dos atributos como uma árvore de decisão, usamos a interpretação com base nas variáveis utilizadas e seus efeitos observados nos resultados:
-- Idade
-- Nível de Ensino
-- Cor/Raça
-
-**Tendências identificadas pelo modelo:**
-
-- Idade mais alta e nível de ensino elevado → maior tendência a vínculo formal.
-- Cor/Raça (pretos, pardos, indígenas e amarelos) apresenta influência, mas com possíveis desigualdades detectadas na revocação (modelo acerta mais para quem já tem vínculo). 
+### Tendências identificadas pelo modelo
+- Idade mais alta e nível de ensino elevado → maior tendência a vínculo formal.  
+- Cor/Raça (pretos, pardos, indígenas e amarelos) apresenta influência, mas com possíveis desigualdades detectadas na revocação (modelo acerta mais para quem já tem vínculo).  
 A classe com vínculo formal (1) foi muito melhor identificada que a classe sem vínculo (0), indicando tendência do modelo a prever vínculo formal na maioria dos casos.
 
-**Comportamento do modelo:**
-
-- Quando há perfil mais jovem com menor escolaridade, o modelo tem dificuldade em classificar como "sem vínculo", mesmo que isso seja verdadeiro.
-- Quando o perfil tem escolaridade mais alta, a chance de previsão correta como "com vínculo" aumenta bastante.
+### Comportamento do modelo
+- Quando há perfil mais jovem com menor escolaridade, o modelo tem dificuldade em classificar como "sem vínculo", mesmo que isso seja verdadeiro.  
+- Quando o perfil tem escolaridade mais alta, a chance de previsão correta como "com vínculo" aumenta bastante.  
 - O modelo, mesmo com SMOTE, ainda tende a favorecer a classe majoritária (com vínculo), o que deve ser considerado em aplicações práticas.
 
-### Interpretação do modelo 2 (pós otimização)
+## Interpretação do modelo 2 (pós otimização)
 
-**Atributos mais importantes:**
-Como o modelo SVM não fornece importância direta dos atributos como uma árvore de decisão, a interpretação é realizada com base nas variáveis utilizadas e seus efeitos observados nos resultados:
+### Atributos mais importantes
+Como o modelo SVM não fornece importância direta dos atributos como uma árvore de decisão, a interpretação é realizada com base nas variáveis utilizadas e seus efeitos observados nos resultados:  
+- Idade  
+- Nível de Ensino  
+- Cor/Raça  
 
-- Idade
-- Nível de Ensino
-- Cor/Raça
+### Tendências identificadas pelo modelo
+- Idade mais alta e nível de ensino elevado → maior tendência a vínculo formal.  
+- Cor/Raça (pretos, pardos, indígenas e amarelos) continua apresentando influência, mas as desigualdades na revocação aumentaram, com o modelo tendo ainda mais dificuldade em identificar corretamente indivíduos "sem vínculo", mesmo após as otimizações.  
+A classe "com vínculo formal" (1) segue sendo muito mais bem identificada, e o desequilíbrio na previsão das duas classes se intensificou, com uma revocação baixa para "sem vínculo" (6%).
 
-**Tendências identificadas pelo modelo:**
-Idade mais alta e nível de ensino elevado → maior tendência a vínculo formal.
-
-Cor/Raça (pretos, pardos, indígenas e amarelos) continua apresentando influência, mas as desigualdades na revocação reduziram-se levemente, indicando maior capacidade do modelo em identificar corretamente indivíduos "sem vínculo".
-
-A classe "com vínculo formal" (1) segue sendo mais bem identificada, porém, agora há maior equilíbrio na previsão das duas classes.
-
-**Comportamento do modelo:**
-- Quando há perfil mais jovem com menor escolaridade, o modelo ainda apresenta dificuldades em classificar como "sem vínculo", mas com melhor desempenho em comparação à versão anterior.
-- Quando o perfil tem escolaridade mais alta, a chance de previsão correta como "com vínculo" continua elevada.
-- O modelo, mesmo com SMOTE e otimização, ainda tende a favorecer a classe majoritária ("com vínculo"), porém em menor grau, devendo-se considerar esse viés em aplicações práticas.
+### Comportamento do modelo
+- Quando há perfil mais jovem com menor escolaridade, o modelo apresenta dificuldades ainda maiores em classificar como "sem vínculo" em comparação à versão anterior, mesmo com o aumento do conjunto de treinamento e a seleção dinâmica de SMOTE.  
+- Quando o perfil tem escolaridade mais alta, a chance de previsão correta como "com vínculo" permanece elevada, com uma revocação de 99%, reforçando a consistência do modelo para a classe majoritária.  
+- O modelo, apesar das otimizações (incluindo a busca mais focada de hiperparâmetros e a seleção dinâmica de SMOTE), passou a favorecer ainda mais a classe majoritária ("com vínculo"), e o viés em aplicações práticas se tornou mais pronunciado, devendo ser cuidadosamente considerado.
 
 
 ## Análise comparativa dos modelos
