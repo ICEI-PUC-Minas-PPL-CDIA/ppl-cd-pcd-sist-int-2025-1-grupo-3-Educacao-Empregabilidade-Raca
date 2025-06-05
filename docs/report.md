@@ -674,8 +674,283 @@ e extrapolar um pouco o que os dados sugerem.
 Tende criar um pacote de distribuição para o modelo construído, para ser aplicado 
 em um sistema inteligente.
 
+Aqui está o conteúdo do seu **Relatório Desafios do Projeto** convertido para **Markdown** (já reestruturado para manter fidelidade ao formato, você pode copiar e colar em um editor de Markdown como Typora, Obsidian, ou GitHub):
 
-## 8. Conclusão
+---
+
+# Relatório Desafios do Projeto
+
+## 1. Evolução do Pipeline de Modelagem
+
+### 1.1 Primeira abordagem — Árvore de Decisão
+
+**Motivação**
+Iniciamos o projeto com um modelo simples e interpretável: Árvore de Decisão (`DecisionTreeClassifier`), a fim de visualizar rapidamente as regras de classificação.
+
+**Trecho de código principal**
+
+```python
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+modelo = DecisionTreeClassifier()
+modelo.fit(X_train, y_train)
+
+plt.figure(figsize=(40, 20))
+plot_tree(modelo, feature_names=X.columns, class_names=['Não Formal', 'Formal'], filled=True)
+```
+
+**Resultados e desafios**
+
+* Facilidade de interpretação
+* Baixa performance geral, principalmente em *recall* para a classe "Não Formal"
+* Modelo apresentou *overfitting* (acurácia muito alta no treino e baixa no teste)
+
+---
+
+### 1.2 Segunda abordagem — Random Forest como alternativa de otimização do modelo anterior, aplicando RandomizedSearchCV
+
+**Motivação**
+Após as limitações da árvore de decisão, buscamos um algoritmo mais robusto: **Random Forest**, que permite reduzir overfitting e melhorar generalização.
+Além disso, buscamos otimizar hiperparâmetros com **RandomizedSearchCV**.
+
+**Trecho de código**
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import RandomizedSearchCV
+
+param_dist_rf = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [5, 10, None],
+    'min_samples_split': [2, 5, 10],
+    'max_features': ['sqrt', 'log2', None],
+    'bootstrap': [True, False]
+}
+
+random_search_rf = RandomizedSearchCV(
+    estimator=RandomForestClassifier(),
+    param_distributions=param_dist_rf,
+    n_iter=30,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+
+random_search_rf.fit(X_train, y_train)
+```
+
+**Resultados e desafios**
+
+* Modelo mais robusto que a árvore simples
+* Algum ganho de performance geral, mas persistência de forte desbalanceamento nas previsões
+* Classes minoritárias ("Não Formal") continuavam sendo preditas com baixa sensibilidade
+* Visualização da árvore individual revelou que poucas variáveis estavam influenciando o modelo
+
+**Tentativa de otimização que não logrou êxito**
+
+* Ajustes no número de árvores (`n_estimators`)
+* Ajustes em profundidade (`max_depth`)
+* Testes com **undersampling** e **oversampling**
+
+  > *SMOTE foi inicialmente aplicado antes do split, causando vazamento de dados.*
+
+Após a correção (SMOTE apenas no treino), a performance manteve-se modesta, sem ganhos significativos.
+
+---
+
+### 1.3 Terceira abordagem — SVM com SMOTE e ajuste fino de threshold
+
+**Motivação**
+Com os resultados limitados da Random Forest, partimos para um modelo com outro paradigma: **SVM** (Support Vector Machine) com kernel `rbf` e aplicação de **SMOTE** no conjunto de treino.
+Também foi tentada uma otimização dinâmica do *threshold* com base na **curva ROC** para melhorar o equilíbrio das classes.
+
+**Trecho de código**
+
+```python
+from sklearn.svm import SVC
+from imblearn.over_sampling import SMOTE
+from sklearn.metrics import roc_curve, auc
+
+# SMOTE após split
+sm = SMOTE()
+X_train_res, y_train_res = sm.fit_resample(X_train, y_train)
+
+# Treinamento do modelo
+svm_model = SVC(kernel='linear', C=30, probability=True)
+svm_model.fit(X_train_res, y_train_res)
+
+# Ajuste do threshold
+y_probs = svm_model.predict_proba(X_test)[:, 1]
+fpr, tpr, thresholds = roc_curve(y_test, y_probs)
+roc_auc = auc(fpr, tpr)
+```
+
+**Resultados e desafios**
+
+* Modelo capaz de obter boas curvas ROC
+* Threshold tuning com diferentes valores testados
+* Baixo ganho efetivo de acurácia balanceada
+* Mesmo após grid search e otimização do threshold, o modelo persistia com dificuldade para generalizar a classe "Não Formal"
+
+---
+
+## 2. Desafios Técnicos Enfrentados (Resumo)
+
+### 2.1 Qualidade da base
+
+Durante o carregamento inicial da base `base_final_combinada_kaggle_caged_corrigida_ok.csv`, foram identificados problemas de qualidade estrutural no arquivo.
+
+Erro encontrado:
+
+```
+ParserError: Error tokenizing data. C error: Expected X fields in line Y, saw Z
+```
+
+**Causa:** delimitadores inconsistentes.
+**Solução aplicada:**
+
+```python
+df = pd.read_csv(io.BytesIO(uploaded[file_name]), quoting=csv.QUOTE_ALL)
+```
+
+---
+
+### 2.2 Inconsistência em variáveis categóricas
+
+Variáveis afetadas: `cor_raca` e `nivel_ensino`.
+Problemas observados:
+
+* Strings com variações de caixa
+* Espaços em branco antes ou depois
+* Valores numéricos ou nulos ocasionais
+
+**Tratamento aplicado:**
+
+```python
+df['cor_raca'] = df['cor_raca'].astype(str).str.lower().str.strip()
+df['nivel_ensino'] = df['nivel_ensino'].astype(str).str.lower().str.strip()
+```
+
+---
+
+### 2.3 Desbalanceamento severo da variável alvo
+
+Distribuição observada:
+
+```python
+df['vinculo_formal'].value_counts(normalize=True)
+```
+
+Exemplo:
+
+```
+1 (Formal)      ~83%
+0 (Não Formal)  ~17%
+```
+
+**Impactos:**
+
+* Modelos tendiam a prever a classe majoritária
+* Métricas como acurácia eram enganosamente altas
+
+**Estratégias tentadas:**
+
+* **SMOTE**
+* **RandomOverSampler**
+* **RandomUnderSampler**
+
+---
+
+### 2.4 Aplicação incorreta de SMOTE na primeira versão
+
+**Erro inicial:**
+
+```python
+# ERRADO — Aplicação de SMOTE antes da divisão
+sm = SMOTE()
+X_res, y_res = sm.fit_resample(X, y)
+
+X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.2)
+```
+
+**Correção:**
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+sm = SMOTE()
+X_train_res, y_train_res = sm.fit_resample(X_train, y_train)
+```
+
+---
+
+### 2.5 Limitação das variáveis disponíveis
+
+Principais variáveis disponíveis:
+
+* `idade` (numérica)
+* `cor_raca` (categórica)
+* `nivel_ensino` (categórica)
+
+**Problema:**
+Baixa correlação com a variável alvo `vinculo_formal`.
+
+**Confirmação com PCA:**
+
+```python
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_train_processed)
+
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y_train, cmap='coolwarm')
+plt.title('PCA - Distribuição das classes')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.show()
+```
+
+Resultado: **alta sobreposição das classes** → baixa capacidade de separação.
+
+---
+
+### Resumo Geral dos Desafios
+
+| Desafio                           | Impacto                    | Tratativa aplicada            |
+| --------------------------------- | -------------------------- | ----------------------------- |
+| Qualidade da base (delimitadores) | Erro no carregamento       | `quoting=csv.QUOTE_ALL`       |
+| Inconsistência em categóricas     | Quebra no OneHotEncoder    | Padronização com `.str`       |
+| Desbalanceamento da variável alvo | Baixa detecção da minoria  | SMOTE, Over, UnderSampler     |
+| Vazamento de dados no SMOTE       | Métricas infladas          | SMOTE após split              |
+| Limitação das variáveis           | Baixa capacidade preditiva | Engenharia de features futura |
+
+---
+
+## 3. Tentativas de Otimização Não Bem-Sucedidas (Registro)
+
+* Otimização de hiperparâmetros com **RandomizedSearchCV** (Random Forest) → ganho limitado
+* Alteração do kernel da **SVM** (testes com `rbf`, `linear` e `poly`) → sem ganho consistente
+* Alteração de `sampling_strategy` no **SMOTE** (`0.3`, `0.5`, `1.0`) → pouca variação nos resultados
+* Tuning do threshold com base na **curva ROC** → sem ganho expressivo
+
+---
+
+## 4. Considerações Finais
+
+O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnicas de modelagem, revelou que o maior limitador da performance atual reside na **limitação das variáveis disponíveis** na base.
+
+**Modelos testados:**
+
+| Modelo                         | Resultado                                     |
+| ------------------------------ | --------------------------------------------- |
+| Árvore de Decisão              | Interpretável, mas com overfitting            |
+| Random Forest + otimização     | Melhor que árvore simples, mas ainda limitado |
+| SVM + SMOTE + threshold tuning | Marginalmente superior, mas sem ganho robusto |
+
+
+
+## 8. Conclusão Final do Trabalho
 
 Apresente aqui a conclusão do seu trabalho. Discussão dos resultados obtidos no trabalho, 
 onde se verifica as observações pessoais de cada aluno.
