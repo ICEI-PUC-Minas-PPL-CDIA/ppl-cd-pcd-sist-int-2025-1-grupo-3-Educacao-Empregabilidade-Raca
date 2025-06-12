@@ -6,11 +6,35 @@ authors:
     affiliation: PUC Minas
     family-names: de Paula
     given-names: Hugo
+   - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Curto
+    given-names: Hayala
+   - name-suffix: Aluno
+    affiliation: PUC Minas
+    family-names: Felix
+    given-names: Alváro
+   - name-suffix: Aluna
+    affiliation: PUC Minas
+    family-names: Lorens
+    given-names: Ana
+   - name-suffix: Aluna
+    affiliation: PUC Minas
+    family-names: Santos
+    given-names: Beatriz
+   - name-suffix: Aluna
+    affiliation: PUC Minas
+    family-names: Andrade
+    given-names: Mariana
+   - name-suffix: Aluna
+    affiliation: PUC Minas
+    family-names: Alemeida
+    given-names: Sarah
 keywords:
   - Ciência de Dados
   - Jupyter Notebooks
   - Aprendizado de Máquina
-repository-code:
+repository-code:https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2023-06-30
+date-released: 2025-06-27
