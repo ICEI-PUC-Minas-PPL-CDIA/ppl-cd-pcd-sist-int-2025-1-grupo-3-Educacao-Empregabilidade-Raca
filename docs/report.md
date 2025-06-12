@@ -964,37 +964,69 @@ Uma conclusão deve ter 3 partes:
 
 # REFERÊNCIAS
 
-Como um projeto de sistema inteligente não requer revisão bibliográfica, 
-a inclusão das referências não é obrigatória. No entanto, caso você 
-tenha utilizado referências na introdução ou deseje 
-incluir referências relacionadas às tecnologias, padrões, ou metodologias 
-que serão usadas no seu trabalho, relacione-as de acordo com a ABNT.
+**[1]** - BRASIL. **Ministério do Trabalho e Emprego**. Cadastro Geral de Empregados e Desempregados (CAGED). Brasília, DF: MTE, 2023. Disponível em: <https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/microdados-rais-e-caged>. Acesso em: 12 jun. 2025.
 
-Verifique no link abaixo como devem ser as referências no padrão ABNT:
+**[2]** - DATAHACKERS. **State of Data Brazil 2023**. São Paulo: DataHackers, 2023. Disponível em: <https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023>. Acesso em: 12 jun. 2025.
 
-http://www.pucminas.br/imagedb/documento/DOC\_DSC\_NOME\_ARQUI20160217102425.pdf
+**[3]** - PEDREGOSA, Fabian et al. **Scikit-learn: Machine Learning in Python**. Journal of Machine Learning Research, v. 12, p. 2825-2830, 2011. Disponível em: <https://jmlr.org/papers/v12/pedregosa11a.html>. Acesso em: 12 jun. 2025.
 
-Por exemplo:
-
-**[1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
-
-**[2]** - _COPPIN, Ben. **Inteligência artificial**. Rio de Janeiro, RJ: LTC, c2010. E-book. ISBN 978-85-216-2936-8._
-
-**[3]** - _CORMEN, Thomas H. et al. **Algoritmos: teoria e prática**. Rio de Janeiro, RJ: Elsevier, Campus, c2012. xvi, 926 p. ISBN 9788535236996._
-
-**[4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
-
-**[5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
+**[4]** - CHAWLA, Nitesh V. et al. **SMOTE: Synthetic Minority Over-sampling Technique**. Journal of Artificial Intelligence Research, v. 16, p. 321-357, 2002. Disponível em: <https://www.jair.org/index.php/jair/article/view/10302>. Acesso em: 12 jun. 2025.
 
 
 
 # APÊNDICES
 
-**Colocar link:**
+## Bases de Dados
+- **Base principal – State of Data BR 2023 (Kaggle)**  
+  `assets/data/State_of_data_BR_2023_Kaggle - df_survey_2023.csv`
 
-Do código (armazenado no repositório);
+- **Base secundária original – CAGED 2023**  
+  `assets/data/CAGED - Cadastro Geral de Empregados e Desempregados-acess download instructions-txt`
 
-Dos artefatos (armazenado do repositório);
+- **Base secundária filtrada**  
+  `assets/data/dados_filtrados_Cadastro Geral de Empregados e Desempregados.xlsx`
+
+- **Base final combinada (Kaggle + CAGED)**  
+  `assets/data/base_final_combinada_kaggle_caged_corrigida_ok.csv`
+
+## Códigos
+
+- **Gráficos sobre educação**  
+  `src/CODES_FOR_EDUCATION_GRAPHS.md`
+
+- **Gráficos sobre empregabilidade**  
+  `src/CODES_FOR_EMPREGABILITY_GRAPHS.md`
+
+- **Gráficos sobre raça/cor**  
+  `src/RaceChartsCode.md`
+
+- **Modelo 1 – Random Forest**  
+  `src/Modelo_1.py`
+
+- **Modelo 2 – SVM**  
+  `src/Modelo_2.py`
+
+## Artefatos
+
+### Modelo 1 – Random Forest
+
+- Árvore de decisão:  
+  ![Árvore de decisão](https://i.imgur.com/n3rROCG.jpeg)
+
+- Matriz de confusão:  
+  ![Matriz de confusão](https://i.imgur.com/WLoAd4y.jpeg)
+
+- Curva ROC-AUC:  
+  ![Curva ROC-AUC](https://i.imgur.com/fu3c6Jt.jpeg)
+
+### Modelo 2 – SVM
+
+- Matriz de confusão inicial:  
+  ![Matriz de confusão inicial](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
+
+- Matriz de confusão após otimização:  
+  ![Matriz de confusão após otimização](https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo)
+
 
 Da apresentação final (armazenado no repositório);
 
