@@ -135,13 +135,35 @@ O código está correto e funcional, porém **a base original apresenta limitaç
 
 **Desenvolvido para fins acadêmicos – PUC Minas – 2024.**
 
+## Histórico de Versões
 
-## Histórico de versões
+**0.3.0**  
+CHANGE: Implementação e avaliação do segundo modelo — Support Vector Machine (SVM).  
+- Aplicado balanceamento via SMOTE para tratar desbalanceamento.  
+- Utilização de OneHotEncoder para variáveis categóricas.  
+- Resultado: Acurácia de 73,56%.  
 
-* 0.1.1
-    * CHANGE: Atualização das documentacoes. Código permaneceu inalterado.
-* 0.1.0
-    * Indução do primeiro modelo do agente inteligente.
-* 0.0.1
-    * Trabalhando na preparação dos dados.
+**0.2.1**  
+CHANGE: Ajustes e melhorias no primeiro modelo — mudança para Random Forest Classifier.  
+- Superou Decision Tree em AUC, alcançando 85,13%.  
+- Realizada validação cruzada para garantir robustez.  
 
+**0.1.1**  
+CHANGE: Desenvolvimento inicial com Decision Tree Classifier.  
+- Modelo baseline para análise exploratória.  
+- Resultados limitados devido a alta variabilidade e desequilíbrio dos dados.  
+- Identificado necessidade de tratamento de dados (balanceamento e codificação).
+
+**0.1.0**  
+FEATURE: Preparação dos dados.  
+- Junção das bases CAGED 2023 e State of Data BR 2023.  
+- Tratamento inicial: limpeza, padronização e definição das variáveis preditoras.  
+- Mapeamento das categorias raciais e faixas salariais para análise segmentada.
+
+**0.0.2**  
+INIT: Coleta e inspeção das bases de dados.  
+- Análise exploratória inicial para identificação de problemas
+- Definição dos objetivos do projeto focados em empregabilidade e desigualdades raciais.
+
+**0.0.1**
+- Trabalhando na preparação dos dados.
