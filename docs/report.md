@@ -1011,21 +1011,21 @@ Uma conclusão deve ter 3 partes:
 ### Modelo 1 – Random Forest
 
 - Árvore de decisão:  
-  ![Árvore de decisão](https://i.imgur.com/n3rROCG.jpeg)
+  https://i.imgur.com/n3rROCG.jpeg
 
 - Matriz de confusão:  
-  ![Matriz de confusão](https://i.imgur.com/WLoAd4y.jpeg)
+  https://i.imgur.com/WLoAd4y.jpeg
 
 - Curva ROC-AUC:  
-  ![Curva ROC-AUC](https://i.imgur.com/fu3c6Jt.jpeg)
+  https://i.imgur.com/fu3c6Jt.jpeg
 
 ### Modelo 2 – SVM
 
 - Matriz de confusão inicial:  
-  ![Matriz de confusão inicial](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
+  https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc
 
 - Matriz de confusão após otimização:  
-  ![Matriz de confusão após otimização](https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo)
+  https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo
 
 
 Da apresentação final (armazenado no repositório);
