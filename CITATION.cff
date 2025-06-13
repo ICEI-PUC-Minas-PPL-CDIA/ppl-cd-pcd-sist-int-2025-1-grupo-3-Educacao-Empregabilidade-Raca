@@ -1,15 +1,8 @@
 cff-version: 1.0.1
 message: Por favor, cite o repositório utilizando estes metadados.
-title: Repositório modelo para a disciplina de Projeto em Ciência de Dados I - Sistemas Inteligentes.
+title: Empregabilidade e Raça: O que os dados revelam
+type: Software 
 authors:
-   - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: de Paula
-    given-names: Hugo
-   - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: Curto
-    given-names: Hayala
    - name-suffix: Aluno
     affiliation: PUC Minas
     family-names: Felix
@@ -30,10 +23,21 @@ authors:
     affiliation: PUC Minas
     family-names: Alemeida
     given-names: Sarah
+   - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: de Paula
+    given-names: Hugo
+   - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Curto
+    given-names: Hayala
 keywords:
   - Ciência de Dados
   - Jupyter Notebooks
   - Aprendizado de Máquina
+  - Empregabilidade 
+  - Educação 
+  - Raça/ Cor 
 repository-code: https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca
 license: CC-BY-4.0
 version: 1.0.0
