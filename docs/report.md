@@ -25,6 +25,42 @@ _Curso de Ciência de Dados, Unidade Praça da Liberdade_
 _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil_
 
 ---
+## índice
+
+- [1. Introdução](#1-introdução)
+- [2. Objetivos do Projeto](#2-objetivos-do-projeto)
+- [3. Descrição das Bases de Dados](#3-descrição-das-bases-de-dados)
+  - [3.1. Base Kaggle – State of Data BR 2023](#31-base-kaggle--state-of-data-br-2023)
+  - [3.2. Base CAGED – Cadastro Geral de Empregados e Desempregados](#32-base-caged--cadastro-geral-de-empregados-e-desempregados)
+  - [3.3. Integração e Tratamento das Bases](#33-integração-e-tratamento-das-bases)
+- [4. Metodologia de Modelagem](#4-metodologia-de-modelagem)
+  - [4.1. Pipeline de Processamento](#41-pipeline-de-processamento)
+  - [4.2. Técnicas de Balanceamento (SMOTE)](#42-técnicas-de-balanceamento-smote)
+  - [4.3. Ajuste de Hiperparâmetros](#43-ajuste-de-hiperparâmetros)
+  - [4.4. Critérios de Avaliação](#44-critérios-de-avaliação)
+- [5. Modelo 1 – Random Forest](#5-modelo-1--random-forest)
+  - [5.1. Motivação e Construção](#51-motivação-e-construção)
+  - [5.2. Resultados e Métricas](#52-resultados-e-métricas)
+  - [5.3. Limitações e Aprendizados](#53-limitações-e-aprendizados)
+- [6. Modelo 2 – SVM com Otimizações](#6-modelo-2--svm-com-otimizações)
+  - [6.1. Estratégia de Implementação](#61-estratégia-de-implementação)
+  - [6.2. Resultados Iniciais](#62-resultados-iniciais)
+  - [6.3. Pós-Otimização e Avaliação Final](#63-pós-otimização-e-avaliação-final)
+  - [6.4. Interpretação e Tendências Detectadas](#64-interpretação-e-tendências-detectadas)
+- [7. Análise Comparativa dos Modelos](#7-análise-comparativa-dos-modelos)
+  - [7.1. Forças e Fragilidades](#71-forças-e-fragilidades)
+  - [7.2. Cenários Potenciais de Aplicação](#72-cenários-potenciais-de-aplicação)
+- [8. Conclusão Geral](#8-conclusão-geral)
+  - [8.1. Principais Limitações](#81-principais-limitações)
+  - [8.2. Possíveis Melhorias Futuras](#82-possíveis-melhorias-futuras)
+- [9. Referências Bibliográficas](#9-referências-bibliográficas)
+- [10. Apêndices](#10-apêndices)
+  - [10.1. Bases de Dados Utilizadas](#101-bases-de-dados-utilizadas)
+  - [10.2. Códigos-Fonte dos Modelos e Gráficos](#102-códigos-fonte-dos-modelos-e-gráficos)
+  - [10.3. Artefatos Visuais (Árvores, Matrizes de Confusão, Curvas ROC)](#103-artefatos-visuais-árvores-matrizes-de-confusão-curvas-roc)
+  - [10.4. Link para Vídeo de Apresentação](#104-link-para-vídeo-de-apresentação)
+
+---
 
 ## Resumo
 
