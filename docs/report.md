@@ -28,7 +28,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 ## Índice
 
 - [Resumo](#resumo)
-- [Introdução](#introducao)
+- [Introdução](#introdução)
   - [Contextualização](#contextualizacao)
   - [Problema](#problema)
   - [Objetivo geral](#objetivo-geral)
