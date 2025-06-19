@@ -1090,7 +1090,8 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
   https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo
 
 
-Da apresentação final (armazenado no repositório);
+**Da apresentação final**:
+[Slides da Apresentação] (https://www.canva.com/design/DAGqwMQ1Zu8/5N--otF0AgXit8CctMs5gQ/view?utm_content=DAGqwMQ1Zu8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc679359ef6)
 
 Do vídeo de apresentação (armazenado no repositório).
 
