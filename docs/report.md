@@ -726,9 +726,33 @@ A classe "com vínculo formal" (1) segue sendo muito mais bem identificada, e o 
 
 ## Análise comparativa dos modelos
 
-Discuta sobre as forças e fragilidades de cada modelo. Exemplifique casos em que um
-modelo se sairia melhor que o outro. Nesta seção é possível utilizar a sua imaginação
-e extrapolar um pouco o que os dados sugerem.
+Durante o desenvolvimento do projeto de modelagem preditiva para classificação de vínculos formais e não formais, foram testadas três abordagens distintas: Árvore de Decisão, Random Forest e SVM com SMOTE e ajuste de threshold. Cada uma delas revelou não só as capacidades técnicas dos modelos, mas também destacou os desafios estruturais presentes na base de dados. A seguir, realizamos uma análise comparativa entre essas abordagens, considerando seus pontos fortes, limitações e casos práticos em que cada modelo pode se sobressair.
+
+1. Árvore de Decisão: Interpretabilidade com Overfitting
+A Árvore de Decisão foi escolhida como primeira abordagem pela sua simplicidade e alta interpretabilidade, permitindo visualizar com clareza as regras de decisão formadas. Essa característica é especialmente valiosa em contextos onde é necessário justificar as previsões do modelo para públicos não técnicos, como em políticas públicas ou relatórios de auditoria.
+
+No entanto, os testes revelaram limitações importantes. O modelo apresentou overfitting significativo, com acurácia alta no conjunto de treino e desempenho muito inferior nos dados de teste. A principal fragilidade foi a baixa capacidade de identificar corretamente a classe minoritária ("Não Formal"), o que é especialmente problemático em contextos de dados desbalanceados. A árvore simples também mostrou pouca robustez frente à escassez de variáveis relevantes na base.
+
+Quando se destaca: em análises iniciais, prototipagem ou quando a explicabilidade das regras é mais importante que a performance.
+
+2. Random Forest:
+Diante das limitações do modelo anterior, foi implementada uma Random Forest, com otimização de hiperparâmetros via RandomizedSearchCV. Essa abordagem buscou melhorar a generalização do modelo e reduzir o overfitting, além de oferecer maior robustez diante de ruídos ou variações nos dados.
+
+Embora tenha havido alguma melhora em relação à Árvore de Decisão, os resultados ainda foram insatisfatórios para a classe “Não Formal”. Técnicas de balanceamento como SMOTE, RandomUnderSampler e RandomOverSampler foram aplicadas, mas trouxeram apenas melhorias modestas. Além disso, mesmo após o ajuste dos hiperparâmetros, o modelo permaneceu dependente de poucas variáveis preditoras, evidenciando a baixa capacidade discriminativa da base.
+
+Quando se destaca: em conjuntos de dados mais ricos e diversos, com múltiplas variáveis relevantes, onde sua estrutura de ensemble pode brilhar. É ideal para situações em que se busca um equilíbrio entre performance e alguma interpretabilidade.
+
+3. SVM com SMOTE e Threshold Tuning: Refinamento com Baixo Impacto
+Na tentativa de contornar o problema estrutural dos modelos anteriores, foi adotado um modelo de Support Vector Machine (SVM) com kernel linear. Essa abordagem foi combinada com a técnica de SMOTE corretamente aplicada após o split e ajuste do threshold de decisão com base na curva ROC, visando melhorar o equilíbrio entre precisão e recall para a classe minoritária.
+
+Apesar de apresentar boas curvas ROC e permitir maior controle sobre o ponto de corte para classificação, a acurácia balanceada continuou modesta. O SVM mostrou-se sensível à escolha do kernel e do parâmetro C, mas mesmo após tuning, os ganhos foram marginais. Isso reforça a ideia de que não é o modelo que limita os resultados, e sim a escassez de variáveis discriminativas.
+
+Quando se destaca: em contextos onde é necessário um controle refinado sobre erros de classificação e quando a sensibilidade para a minoria (por exemplo, casos raros) é prioritária, como em diagnósticos médicos ou detecção de fraudes.
+
+Desafios e Limitações Estruturais
+Independentemente do modelo adotado, todos enfrentaram o mesmo desafio central a presença de poucas variáveis relevantes como idade, cor/raça e nível de ensino, gerou baixa separação entre as classes. Uma análise com PCA confirmou essa sobreposição, indicando que os modelos estavam limitados pela estrutura dos dados, e não apenas pelas técnicas aplicadas.
+
+A análise comparativa entre os modelos reforça uma lição essencial em ciência de dados: a performance do modelo está diretamente ligada à qualidade e diversidade das variáveis utilizadas. Embora cada modelo tenha seu mérito — seja na interpretabilidade da Árvore, na robustez da Random Forest ou na sofisticação do SVM —, nenhum deles foi capaz de compensar completamente a limitação estrutural da base.
 
 
 ### Distribuição do modelo (opcional)
