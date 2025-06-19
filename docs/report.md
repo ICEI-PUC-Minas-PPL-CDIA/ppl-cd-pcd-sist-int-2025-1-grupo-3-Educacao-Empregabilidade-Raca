@@ -26,8 +26,11 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+## Resumo
+
+Este projeto teve como objetivo analisar desigualdades raciais no mercado de trabalho tecnológico brasileiro, investigando os fatores que influenciam a inserção formal de pessoas pretas, pardas, indígenas e amarelas, a partir da análise integrada dos dados do CAGED e da pesquisa State of Data Brasil 2023. Foram considerados atributos como escolaridade, idade e raça/cor para construir modelos classificatórios capazes de identificar padrões e disparidades. A base utilizada apresentou considerável desbalanceamento, o que limitou a obtenção de resultados conclusivos para responder à questão proposta. Apesar disso, os modelos aplicados demonstraram bom desempenho, indicando que ajustes na qualidade e balanceamento dos dados podem possibilitar análises mais precisas e confiáveis. Esses insights destacam a relevância de políticas públicas inclusivas e a necessidade de aprimoramento dos conjuntos de dados para análises mais rigorosas da equidade racial no setor tecnológico.
+
+
 
 ---
 
