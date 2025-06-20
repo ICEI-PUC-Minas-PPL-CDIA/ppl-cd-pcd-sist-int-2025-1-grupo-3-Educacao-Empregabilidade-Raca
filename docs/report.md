@@ -574,7 +574,7 @@ _Portanto, o modelo apresenta uma boa sensibilidade e especificidade, conseguind
 **_Considerações Finais sobre os Resultados_**
 -O modelo demonstra ser mais eficiente na previsão de vínculos formais, o que pode ser interessante para a análise do mercado de trabalho formalizado. Entretanto, há uma tendência a classificar excessivamente como "Formal", evidenciado pelo número relativamente alto de falsos positivos. A boa AUC (0,85) valida o modelo como uma ferramenta robusta para análise, embora melhorias possam ser buscadas, seja através de ajuste de hiperparâmetros, seja explorando outros modelos ou técnicas de balanceamento de dados.
 
-# Modelo 2: Algoritmo
+# Modelo 2: SVM
 Nesta fase, foi utilizado o modelo SVM (Support Vector Machine) com kernel RBF, escolhido pelas seguintes razões:  
 • É um modelo eficaz para problemas de classificação binária.  
 • Tem bom desempenho em bases com margens de separação entre as classes.  
