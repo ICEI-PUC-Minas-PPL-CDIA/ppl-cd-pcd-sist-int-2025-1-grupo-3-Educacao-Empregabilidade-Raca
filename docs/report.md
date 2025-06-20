@@ -754,12 +754,6 @@ Independentemente do modelo adotado, todos enfrentaram o mesmo desafio central a
 
 A análise comparativa entre os modelos reforça uma lição essencial em ciência de dados: a performance do modelo está diretamente ligada à qualidade e diversidade das variáveis utilizadas. Embora cada modelo tenha seu mérito — seja na interpretabilidade da Árvore, na robustez da Random Forest ou na sofisticação do SVM —, nenhum deles foi capaz de compensar completamente a limitação estrutural da base.
 
-
-### Distribuição do modelo (opcional)
-
-Tende criar um pacote de distribuição para o modelo construído, para ser aplicado 
-em um sistema inteligente.
-
 Aqui está o conteúdo do seu **Relatório Desafios do Projeto** convertido para **Markdown** (já reestruturado para manter fidelidade ao formato, você pode copiar e colar em um editor de Markdown como Typora, Obsidian, ou GitHub):
 
 ---
