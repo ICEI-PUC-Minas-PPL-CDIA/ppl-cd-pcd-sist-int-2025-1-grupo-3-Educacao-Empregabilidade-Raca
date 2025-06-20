@@ -1,44 +1,43 @@
-cff-version: 1.0.1
-message: Por favor, cite o repositório utilizando estes metadados.
-title: Educação, Empregabilidade e Raça: O que os dados revelam
-type: Software 
+cff-version: 1.2.0
+title: ' Educação, Empregabilidade e Raça: O que os dados revelam'
+message: 'Por favor, cite o repositório utilizando estes metadados.'
+type: software
 authors:
-   - name-suffix: Aluno
-     affiliation: PUC Minas
-     family-names: Felix
-     given-names: Alváro
-   - name-suffix: Aluna
-     affiliation: PUC Minas
-     family-names: Lorens
-     given-names: Ana
-   - name-suffix: Aluna
-     affiliation: PUC Minas
-     family-names: Santos
-     given-names: Beatriz
-   - name-suffix: Aluna
-     affiliation: PUC Minas
-     family-names: Andrade
-     given-names: Mariana
-   - name-suffix: Aluna
-     affiliation: PUC Minas
-     family-names: Alemeida
-     given-names: Sarah
-   - name-suffix: Professor
-     affiliation: PUC Minas
-     family-names: de Paula
-     given-names: Hugo
-   - name-suffix: Professor
-     affiliation: PUC Minas
-     family-names: Curto
-     given-names: Hayala
+  - given-names: Alvaro
+    family-names: Silva
+    email: alvaro.silva@sga.pucminas.br
+    affiliation: Estudante
+  - given-names: Ana
+    family-names: Lorens
+    email: acslorens@sga.puciminas.br
+    affiliation: Estudante
+  - given-names: Beatriz
+    family-names: Santos
+    email: beatriz.santos.1595043@sga.pucminas.br
+    affiliation: Estudante
+  - given-names: Mariana
+    family-names: Silva
+    email: mariana.andrade.1566766@sga.pucminas.br
+    affiliation: Estudante
+  - given-names: Sarah
+    family-names: Almeida
+    email: sarah.almeida.1582677@sga.pucminas.br
+    affiliation: Estudante
+  - given-names: Hayala
+    family-names: Curto
+    affiliation: Professor
+  - given-names: Hugo
+    family-names: De Paula
+    affiliation: Professor
+repository-code: >-
+  https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca
 keywords:
   - Ciência de Dados
   - Jupyter Notebooks
-  - Aprendizado de Máquina
-  - Empregabilidade 
-  - Educação 
-  - Raça/ Cor 
-repository-code: https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca
+  - Aprendizado De Máquina
+  - Empregabilidade
+  - Educação
+  - Raça/Cor
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2025-06-27
+date-released: '2025-06-27'
