@@ -1114,7 +1114,8 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 [Slides da Apresentação](https://www.canva.com/design/DAGqwMQ1Zu8/5N--otF0AgXit8CctMs5gQ/view?utm_content=DAGqwMQ1Zu8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc679359ef6)
 
-[![Assista ao vídeo](docs/imagens/Print_Video.png)](<docs/Vídeo%20comprimido%20(Versão%20final).mp4>)
+[![Assista ao vídeo](docs/imagens/print_video.png)](docs/video_final.mp4)
+
 
 
 
