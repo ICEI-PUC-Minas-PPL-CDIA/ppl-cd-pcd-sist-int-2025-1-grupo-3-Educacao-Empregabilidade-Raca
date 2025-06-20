@@ -4,33 +4,33 @@ title: Educação, Empregabilidade e Raça: O que os dados revelam
 type: Software 
 authors:
    - name-suffix: Aluno
-    affiliation: PUC Minas
-    family-names: Felix
-    given-names: Alváro
+     affiliation: PUC Minas
+     family-names: Felix
+     given-names: Alváro
    - name-suffix: Aluna
-    affiliation: PUC Minas
-    family-names: Lorens
-    given-names: Ana
+     affiliation: PUC Minas
+     family-names: Lorens
+     given-names: Ana
    - name-suffix: Aluna
-    affiliation: PUC Minas
-    family-names: Santos
-    given-names: Beatriz
+     affiliation: PUC Minas
+     family-names: Santos
+     given-names: Beatriz
    - name-suffix: Aluna
-    affiliation: PUC Minas
-    family-names: Andrade
-    given-names: Mariana
+     affiliation: PUC Minas
+     family-names: Andrade
+     given-names: Mariana
    - name-suffix: Aluna
-    affiliation: PUC Minas
-    family-names: Alemeida
-    given-names: Sarah
+     affiliation: PUC Minas
+     family-names: Alemeida
+     given-names: Sarah
    - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: de Paula
-    given-names: Hugo
+     affiliation: PUC Minas
+     family-names: de Paula
+     given-names: Hugo
    - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: Curto
-    given-names: Hayala
+     affiliation: PUC Minas
+     family-names: Curto
+     given-names: Hayala
 keywords:
   - Ciência de Dados
   - Jupyter Notebooks
