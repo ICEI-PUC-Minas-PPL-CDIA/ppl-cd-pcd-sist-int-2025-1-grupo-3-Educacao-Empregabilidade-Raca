@@ -248,34 +248,74 @@ Mapeia onde os graduados estão inseridos no mercado de trabalho.
 (Importante mencionar que a partir do gráfico blot spot identificamos na nossa base de dados a existência de outliers que poderiam comprometer o comportamento do nosso modelo, motivo pelo qual, a partir desta percepção, restou necessária a realização de remoção dos outliers ainda existentes após a primeira limpeza da base de dados.)
 
 
-#### Relatório Exploratória - Empregabilidade e Faixa Salarial (CAGED)
+### Relatório Exploratória - Empregabilidade e Faixa Salarial (CAGED)
+---
+
 
 ![Gráfico de empregabilidade por raça/cor](imagens/grafico-empregabilidade-raça-cor.png)
 
+Este gráfico mostra a quantidade de pessoas empregadas conforme a raça/cor autodeclarada. Observa-se que a maior parte dos empregados se declara branca, seguida por pessoas pardas. Já os grupos pretos, amarelos e indígenas apresentam participação significativamente menor no total de empregados, evidenciando desigualdades raciais no mercado de trabalho.
+
+---
+
+
 ![Gráfico de empregabilidade por grau](imagens/grafico-empregabilidade-grau-instrução.png)
 
-![Gráfico de faixa salarial](imagens/grafico-faixa-salarial.png)
-Mostra a quantidade de registros(pessoas) para determinada faixa salarial.
+A distribuição mostra que a maioria dos registros apresenta o grau de instrução como "Não informado", seguido por pessoas com pós-graduação. As demais categorias possuem baixos números absolutos, o que pode indicar tanto problemas de preenchimento nos dados quanto uma possível concentração de empregabilidade em níveis mais altos de escolaridade (quando informados).
 
+---
+
+
+![Gráfico de faixa salarial](imagens/grafico-faixa-salarial.png)
 ![Gráfico de empregabilidade por faixa salarial](imagens/grafico-empregabilidade-faixa-salarial.png)
+
+A análise das faixas salariais revela que a maioria dos empregados recebe acima de R$6000, o que pode indicar uma concentração de dados em cargos de maior remuneração ou uma possível distorção nos registros. Ainda assim, há também presença relevante nas faixas de até R$2000 e entre R$2000–3999, mostrando certa diversidade salarial.
+
+---
+
+
 
 ![Gráfico de faixa salarial por grau de instrução](imagens/grafico-faixa-salarial-grau-instrução.png)
 
+Neste gráfico, é possível observar como o grau de escolaridade influencia a faixa salarial. Indivíduos com pós-graduação ou grau não informado concentram-se nas faixas salariais mais altas. Já os com menor escolaridade aparecem com menor frequência, reforçando a relação entre formação educacional e remuneração.
+
+---
+
+
+
 ![Gráfico de faixa salarial por cor/raça](imagens/grafico-faixa-raça-cor.png)
-Mostra a quantidade de pessoas de determinada cor/raça para cada faixa salarial.
+
+A análise segmentada por raça/cor indica que pessoas pardas e pretas aparecem em maior número nas faixas salariais mais baixas e médias. A faixa de R$6000 ou mais também é composta majoritariamente por pessoas pardas, mas a presença de outros grupos é bem menor, evidenciando desigualdade salarial entre raças.
+
+---
+
+
 
 ![Gráfico de Distribuição de salário por raça/cor](imagens/grafico-distribuiçao-raça-cor.png)
 
+O boxplot mostra a variação de salários dentro de cada grupo racial. Nota-se uma alta presença de outliers (valores extremos), mas a mediana salarial é mais baixa para os grupos preto, pardo, amarelo e indígena, enquanto o grupo branco tende a apresentar salários mais elevados e dispersos. Isso evidencia uma desigualdade estrutural no mercado de trabalho.
+
+---
 
 
-#### Relatório Exploratória - Empregabilidade e Faixa Salarial (STATE OF DATA 2023)
+### Relatório Exploratória - Empregabilidade e Faixa Salarial (STATE OF DATA 2023)
+---
+
+
 
 ![Gráfico empregabilidade e faixa salarial](imagens/grafico-empreg-faixa-salarial-state.png)
-Mostra a faixa salarial dos tipos de empregados analisados no projeto.
+
+Este gráfico mostra como diferentes formas de ocupação se distribuem entre as faixas salariais. A maioria dos trabalhadores CLT está concentrada nas faixas intermediárias e mais altas (especialmente de R$6.001 a R$12.000/mês), indicando que esse vínculo tende a oferecer maiores salários. Empreendedores (CNPJ), servidores públicos e estagiários também estão presentes, mas em menor escala. A presença de profissionais que trabalham remotamente para empresas estrangeiras ou como freelancers aparece diluída ao longo das faixas salariais. Isso evidencia como a forma de vínculo empregatício impacta diretamente o nível de renda mensal.
+
+---
+
+
 
 ![Gráfico empregabilidade e raça/cor](imagens/grafico-empreg-raçacor-state.png)
-Mostra a distribuição de empregados(e o tipo) para cada cor/raça analisada no projeto.
 
+Este gráfico detalha a relação entre raça/cor e o tipo de ocupação exercida. A maioria dos trabalhadores CLT (Empregado formal) se declara branca, seguida pelos grupos pardos e pretos. Observa-se que pessoas brancas também lideram em categorias como empreendedorismo, trabalho acadêmico e serviço público. Os grupos amarelo, indígena e “prefiro não informar” apresentam números consideravelmente mais baixos em todas as categorias, evidenciando disparidades no acesso a diferentes formas de trabalho. A desigualdade racial é visível tanto no volume de inserção no mercado quanto na diversidade de vínculos empregatícios.
+
+---
 
 ## Preparação dos dados
 ### Definição do Tema e Seleção Inicial de Variáveis
