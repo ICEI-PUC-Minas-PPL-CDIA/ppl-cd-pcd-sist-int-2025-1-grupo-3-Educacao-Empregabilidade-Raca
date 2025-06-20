@@ -249,20 +249,31 @@ Mapeia onde os graduados estão inseridos no mercado de trabalho.
 
 
 #### Relatório Exploratória - Empregabilidade e Faixa Salarial (CAGED)
-![Gráfico de empregabilidade por raça/cor](https://i.imgur.com/u6oixye.png)
-![Gráfico de empregabilidade por grau](https://i.imgur.com/kcvTaDt.png)
-![Gráfico de faixa salarial](https://i.imgur.com/uoyfwdu.png)
+
+![Gráfico de empregabilidade por raça/cor](docs/imagens/grafico-empregabilidade-raça-cor.png)
+
+![Gráfico de empregabilidade por grau](docs/imagens/grafico-empregabilidade-grau-instrução.png)
+
+![Gráfico de faixa salarial](docs/imagens/grafico-faixa-salarial.png)
 Mostra a quantidade de registros(pessoas) para determinada faixa salarial.
-![Gráfico de empregabilidade por faixa salarial](https://i.imgur.com/KdlQqJ4.png)
-![Gráfico de faixa salarial por grau de instrução](https://i.imgur.com/J5ZX9cF.png)
-![Gráfico de faixa salarial por cor/raça](https://i.imgur.com/rlfALZA.png)
+
+![Gráfico de empregabilidade por faixa salarial](docs/imagens/grafico-empregabilidade-faixa-salarial.png)
+
+![Gráfico de faixa salarial por grau de instrução](docs/imagens/grafico-faixa-salarial-grau-instrução.png)
+
+![Gráfico de faixa salarial por cor/raça](docs/imagens/grafico-faixa-raça-cor.png)
 Mostra a quantidade de pessoas de determinada cor/raça para cada faixa salarial.
-![Gráfico de Distribuição de salário por raça/cor](https://i.imgur.com/Vvx2eoP.png)
+
+![Gráfico de Distribuição de salário por raça/cor](docs/imagens/grafico-distribuiçao-raça-cor.png)
+
+
 
 #### Relatório Exploratória - Empregabilidade e Faixa Salarial (STATE OF DATA 2023)
-![Gráfico empregabilidade e faixa salarial](https://i.imgur.com/hOQCEAe.png)
+
+![Gráfico empregabilidade e faixa salarial](docs/imagens/grafico-empreg-faixa-salarial-state.png)
 Mostra a faixa salarial dos tipos de empregados analisados no projeto.
-![Gráfico empregabilidade e raça/cor](https://i.imgur.com/qFnYLZO.png)
+
+![Gráfico empregabilidade e raça/cor](docs/imagens/grafico-empreg-raçacor-state.png)
 Mostra a distribuição de empregados(e o tipo) para cada cor/raça analisada no projeto.
 
 
@@ -519,7 +530,7 @@ _**Resultados Principais**_
 
 A figura apresentada corresponde à árvore de decisão gerada pelo modelo Random Forest, limitada em profundidade para fins de visualização e interpretação. A árvore ilustra como o modelo realiza as divisões sequenciais nas variáveis, com o objetivo de classificar os vínculos como formal ou não formal:
 
-![arvore](https://i.imgur.com/n3rROCG.jpeg)
+![arvore](docs/imagens/arvore-random-forest.jpeg)
 
 -Cada nó da árvore representa uma decisão baseada em um atributo do conjunto de dados (ex.: escolaridade, faixa salarial, área de atuação, entre outros). As divisões são feitas de forma a maximizar a separação entre as classes, utilizando como critério a redução da impureza (Índice Gini). As cores dos nós indicam a predominância da classe:
 
@@ -546,7 +557,7 @@ Além disso, devido às restrições de profundidade impostas para melhorar a vi
 
 **Matriz de Confusão**: Permite ver onde o modelo acerta e onde erra (confunde as classes):
 
-![matriz](https://i.imgur.com/WLoAd4y.jpeg)
+![matriz](docs/imagens/matriz-random-forest.jpeg)
 
 A matriz de confusão gerada permite avaliar o desempenho do modelo na tarefa de classificação binária entre vínculos formais e não formais. Observa-se que:
 
@@ -561,7 +572,7 @@ _Este resultado evidencia que o modelo apresenta uma maior capacidade de identif
 
 **Curva ROC**: Mostra se o modelo diferencia bem quem tem ou não vínculo formal.
 
-![curva](https://i.imgur.com/fu3c6Jt.jpeg)
+![curva](docs/imagens/curva-roc-random-forest.jpeg)
 
 A Curva ROC apresenta uma área sob a curva (AUC) de 0,85, o que indica um desempenho considerado bom a muito bom. A AUC reflete a capacidade do modelo em diferenciar as classes:
 
@@ -1092,13 +1103,13 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 ### Modelo 1 – Random Forest
 
 - Árvore de decisão:  
-  https://i.imgur.com/n3rROCG.jpeg
+  ![arvore](docs/imagens/arvore-random-forest.jpeg)
 
 - Matriz de confusão:  
-  https://i.imgur.com/WLoAd4y.jpeg
+  ![matriz](docs/imagens/matriz-random-forest.jpeg)
 
 - Curva ROC-AUC:  
-  https://i.imgur.com/fu3c6Jt.jpeg
+  ![curva](docs/imagens/curva-roc-random-forest.jpeg)
 
 ### Modelo 2 – SVM
 
