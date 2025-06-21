@@ -1159,15 +1159,16 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 ## Códigos
 
 ---
-- [**Gráficos sobre educação**](../src/CODES-FOR-EDUCATION-GRAPHS.md)
+- [**Gráficos sobre educação**](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca/blob/main/src/CODES-FOR-EDUCATION-GRAPHS.md)
 - 
-- [**Gráficos sobre empregabilidade**](../src/CODES-FOR-EMPREGABILITY-GRAPHS.md)
+- [**Gráficos sobre empregabilidade**](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca/blob/main/src/CODES-FOR-EMPREGABILITY-GRAPHS.md)
 - 
-- [**Gráficos sobre raça/cor**](../src/RaceChartsCode.md)
+- [**Gráficos sobre raça/cor**](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca/blob/main/src/RaceChartsCode.md)
 - 
-- [**Modelo 1 – Random Forest**](../src/Modelo-1.py)
+- [**Modelo 1 – Random Forest**](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca/blob/main/src/Modelo-1.py)
 - 
-- [**Modelo 2 – SVM**](../src/Modelo-2.py)
+- [**Modelo 2 – SVM**](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo-3-Educacao-Empregabilidade-Raca/blob/main/src/Modelo-2.py)
+
 
 ---
 
