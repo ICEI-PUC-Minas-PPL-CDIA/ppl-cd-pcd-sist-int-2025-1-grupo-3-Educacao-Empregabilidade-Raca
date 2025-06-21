@@ -1143,13 +1143,13 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 ---
 
-- [**Base principal – State of Data BR 2023**](assets/data/State_of_data_BR_2023_Kaggle-df_survey_2023.csv)
+- [**Base principal – State of Data BR 2023**](assets/data/State%20of%20data%20BR%202023%20Kaggle%20-%20df%20survey%202023.csv)
   
 
-- [**Base secundária original – CAGED 2023**](assets/data/CAGED-Cadastro-Geral-de-Empregados-e-Desempregados-acess-download-instructions-txt) 
+- [**Base secundária original – CAGED 2023**](assets/data/CAGED%20-%20Cadastro%20Geral%20de%20Empregados%20e%20Desempregados-acess%20download%20instructions-txt) 
   
 
-- [**Base secundária filtrada**](assets/data/dados_filtrados_Cadastro-Geral-de-Empregados-e-Desempregados.xlsx)
+- [**Base secundária filtrada**](assets/data/dados_filtrados_Cadastro%20Geral%20de%20Empregados%20e%20Desempregados.xlsx)
   
 
 - [**Base final combinada (Kaggle + CAGED)**](assets/data/base_final_combinada_kaggle_caged_corrigida_ok.csv)
@@ -1160,15 +1160,15 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 ---
 
-- [**Gráficos sobre educação**](main/src/CODES_FOR_EDUCATION_GRAPHS.md) 
+- [**Gráficos sobre educação**](src/CODES%20FOR%20EDUCATION%20GRAPHS.md)
 
-- [**Gráficos sobre empregabilidade**](main/src/CODES_FOR_EMPREGABILITY_GRAPHS.md) 
+- [**Gráficos sobre empregabilidade**](src/CODES%20FOR%20EMPREGABILITY%20GRAPHS.md)  
 
-- [**Gráficos sobre raça/cor**](main/src/RaceChartsCode.md)
+- [**Gráficos sobre raça/cor**](src/RaceChartsCode.md)  
 
-- [**Modelo 1 – Random Forest**](main/src/Modelo_1.py)
+- [**Modelo 1 – Random Forest**](src/Modelo%201.py)  
 
-- [**Modelo 2 – SVM**](main/src/Modelo_2.py)
+- [**Modelo 2 – SVM**](src/Modelo%202.py)
 
 ---
 
