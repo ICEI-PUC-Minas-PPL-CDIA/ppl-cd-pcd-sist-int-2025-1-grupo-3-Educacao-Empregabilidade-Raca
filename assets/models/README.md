@@ -1,9 +1,5 @@
 # Modelos do sistema
 
-* modelo final 1
-* modelo final 2
-
-O código pode estar no formato original da ferramenta utilizada. 
-Pode ser um processo do Orange ou um Jupyter Notebook.
-
-
+- [Modelo 1 – Random Forest](../src/Modelo_1.py)
+- [Modelo 2 – SVM](../src/Modelo_2.py)
+  
