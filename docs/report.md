@@ -1137,37 +1137,44 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 # APÊNDICES
 
+---
+
 ## Bases de Dados
-- **Base principal – State of Data BR 2023 (Kaggle)**  
-  `assets/data/State_of_data_BR_2023_Kaggle - df_survey_2023.csv`
 
-- **Base secundária original – CAGED 2023**  
-  `assets/data/CAGED - Cadastro Geral de Empregados e Desempregados-acess download instructions-txt`
+---
 
-- **Base secundária filtrada**  
-  `assets/data/dados_filtrados_Cadastro Geral de Empregados e Desempregados.xlsx`
+- [**Base principal – State of Data BR 2023**](assets/data/State_of_data_BR_2023_Kaggle-df_survey_2023.csv)
+  
 
-- **Base final combinada (Kaggle + CAGED)**  
-  `assets/data/base_final_combinada_kaggle_caged_corrigida_ok.csv`
+- [**Base secundária original – CAGED 2023**](assets/data/CAGED-Cadastro-Geral-de-Empregados-e-Desempregados-acess-download-instructions-txt) 
+  
+
+- [**Base secundária filtrada**](assets/data/dados_filtrados_Cadastro-Geral-de-Empregados-e-Desempregados.xlsx)
+  
+
+- [**Base final combinada (Kaggle + CAGED)**](assets/data/base_final_combinada_kaggle_caged_corrigida_ok.csv)
+  
+---
 
 ## Códigos
 
-- **Gráficos sobre educação**  
-  `src/CODES_FOR_EDUCATION_GRAPHS.md`
+---
 
-- **Gráficos sobre empregabilidade**  
-  `src/CODES_FOR_EMPREGABILITY_GRAPHS.md`
+- [**Gráficos sobre educação**](src/CODES_FOR_EDUCATION_GRAPHS.md) 
 
-- **Gráficos sobre raça/cor**  
-  `src/RaceChartsCode.md`
+- [**Gráficos sobre empregabilidade**](src/CODES_FOR_EMPREGABILITY_GRAPHS.md) 
 
-- **Modelo 1 – Random Forest**  
-  `src/Modelo_1.py`
+- [**Gráficos sobre raça/cor**](src/RaceChartsCode.md)
 
-- **Modelo 2 – SVM**  
-  `src/Modelo_2.py`
+- [**Modelo 1 – Random Forest**](src/Modelo_1.py)
+
+- [**Modelo 2 – SVM**](src/Modelo_2.py)
+
+---
 
 ## Artefatos
+
+---
 
 ### Modelo 1 – Random Forest
 
@@ -1186,6 +1193,7 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 - [Matriz de confusão após otimização](imagens/matriz-svm-optimized.png)
 
+---
 
 **Da apresentação final**:
 
