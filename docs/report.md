@@ -197,42 +197,71 @@ A integração das bases **Kaggle 2023** e **CAGED 2023**:
 
 ![Gráfico 3](imagens/state_grafico_3.png)
 
-#### Relatório Exploratória - Educação
+### Relatório Exploratória - Educação
+---
+
 ##### 1. Distribuição de Pessoas com Doutorado por Gênero e Cor/Raça
+
 Analisa a representatividade de gênero e raça entre indivíduos com doutorado.
 
-![Gráfico 1](https://drive.google.com/uc?export=view&id=1HB3HYRV7MrdjNHs7zrh1An4bgFyT9ne2)
+![Gráfico 1](imagens/grafico-doutorado-gen-raça.png)
+
+
+---
+
 
 ##### 2. Nível de Ensino por Área de Formação
+
 Mapeia a distribuição de profissionais em diferentes estágios educacionais (da graduação ao doutorado) por área do conhecimento.
 
-![Gráfico 2](https://drive.google.com/uc?export=view&id=10F5vZqSEMlZl_qJAGmPGsyATYWpo_S53)
+![Gráfico 2](imagens/grafico-nivel-ensino-formaçao.png)
+
+---
+
 
 ##### 3. Número de Pessoas com Doutorado em Tecnologia por Gênero e Cor/Raça
+
 Avalia a diversidade em Tecnologia, focado no nível de doutorado.
 
-![Gráfico 3](https://drive.google.com/uc?export=view&id=1KVzQf07dQ_ds5j6hhuAmcAlXuYrqMnBa)
+![Gráfico 3](imagens/grafico-numero-doutorado-gen-raça.png)
+
+---
+
 
 ##### 4. Número de Pessoas com Pós-Graduação por Área de Formação
+
 Identifica quais áreas do conhecimento atraem mais especialistas.
 
-![Gráfico 4](https://drive.google.com/uc?export=view&id=1ZSa3msbyJARB9M0rfxXtydHv62a4mDFS)
+![Gráfico 4](imagens/grafico-num-pos-grad.png)
+
+---
+
 
 ##### 5. Número de Pessoas Empregadas e Desempregadas na Área de Formação de Computação / Engenharia de Software / Sistemas de Informação/ TI
+
 Mede a empregabilidade de formados em tecnologia e seus status profissionais.
 
-![Gráfico 5](https://drive.google.com/uc?export=view&id=13imyTWcirlwSc8U1-VXKch9766f88hAJ)
+![Gráfico 5](imagens/grafico-emp-desemp-comput.png)
+
+---
+
 
 ##### 6. Número de Pessoas Pretas por Nível de Ensino
+
 Avalia o acesso da população negra a cada etapa da educação formal.
 
-![Gráfico 6](https://drive.google.com/uc?export=view&id=1NegHG6T4CxhfmoFR70n47Iarr_WrCS_m)
+![Gráfico 6](imagens/grafico-num-pessoas-negras-ensino.png)
+
+---
+
 
 ##### 7. Pessoas com Graduação/Bacharelado e Seus Setores de Atuação
+
 Mapeia onde os graduados estão inseridos no mercado de trabalho.
 
-![Gráfico 7](https://drive.google.com/uc?export=view&id=14Rdkofd0zqHbdNq7bA4lRWOFClywJKlC)
+![Gráfico 7](imagens/grafico-pessoas-ensino-superior.png)
 
+---
 
 
 **Análise Gráfica CAGED**
@@ -667,7 +696,7 @@ O modelo foi treinado com dados balanceados via SMOTE, ajustando a proporção d
 
 ### Matriz de Confusão
 A matriz de confusão obtida apresentou a seguinte distribuição entre as classes previstas e reais:  
-![Matriz de Confusao 2](https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc)
+![Matriz de Confusao 2](imagens/matriz-svm.jpeg)
 
 ### Medidas de Performance
 - Acurácia: 72,89%  
@@ -723,7 +752,7 @@ Este ajuste manual aumentou a penalização de erros, melhorando a identificaç�
 ### Análise da Matriz de Confusão (pós otimização)
 A matriz de confusão gerada apresentou a seguinte distribuição (assumindo consistência com a execução anterior, sujeita a confirmação):
 
-![Matriz de Confusão 2 Pós Otimização](https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo)
+![Matriz de Confusão 2 Pós Otimização](imagens/matriz-svm-optimized.png)
 
 - Acurácia: 73.65%  
 
@@ -1153,11 +1182,9 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 ### Modelo 2 – SVM
 
-- Matriz de confusão inicial:  
-  https://drive.google.com/uc?export=view&id=1DHbdfUXd39IjKNNXVcpXR6UYp-c7shsc
+- [Matriz de confusão inicial](imagens/matriz-svm.jpeg)
 
-- Matriz de confusão após otimização:  
-  https://drive.google.com/uc?export=view&id=1RvN8zya0lwl9ObKg_3-n8AcSDa_xVepo
+- [Matriz de confusão após otimização](imagens/matriz-svm-optimized.png)
 
 
 **Da apresentação final**:
