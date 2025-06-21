@@ -1160,15 +1160,15 @@ O presente projeto, embora tenha proporcionado um rico aprendizado sobre técnic
 
 ---
 
-- [**Gráficos sobre educação**](CODES_FOR_EDUCATION_GRAPHS.md) 
+- [**Gráficos sobre educação**](main/src/CODES_FOR_EDUCATION_GRAPHS.md) 
 
-- [**Gráficos sobre empregabilidade**](CODES_FOR_EMPREGABILITY_GRAPHS.md) 
+- [**Gráficos sobre empregabilidade**](main/src/CODES_FOR_EMPREGABILITY_GRAPHS.md) 
 
-- [**Gráficos sobre raça/cor**](RaceChartsCode.md)
+- [**Gráficos sobre raça/cor**](main/src/RaceChartsCode.md)
 
-- [**Modelo 1 – Random Forest**](Modelo_1.py)
+- [**Modelo 1 – Random Forest**](main/src/Modelo_1.py)
 
-- [**Modelo 2 – SVM**](Modelo_2.py)
+- [**Modelo 2 – SVM**](main/src/Modelo_2.py)
 
 ---
 
